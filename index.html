@@ -1,26 +1,19 @@
 <!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>יניב אלירז – בית חכם</title><meta name="description" content="שעון שבת חכם, אורות, דוד ותריסים – התקנת בית חכם בירושלים">
+<title>יניב אלירז – בית חכם</title><meta name="description" content="בית חכם בירושלים – האתר בבנייה">
 <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;700;900&display=swap" rel="stylesheet">
-<style>:root{--n:#1E2A4A;--a:#F2B544}*{box-sizing:border-box}body{margin:0;font-family:Heebo,sans-serif;color:#1a1a1a;background:#f6f7fb;line-height:1.6}
-header{background:var(--n);color:#fff;padding:48px 20px 40px;text-align:center}h1{font-size:2.2rem;font-weight:900;margin:0 0 8px}header p{margin:0 auto 24px;max-width:560px;opacity:.9}
-.btn{display:inline-block;background:var(--a);color:var(--n);font-weight:700;padding:14px 26px;border-radius:40px;text-decoration:none}
-main{max-width:960px;margin:auto;padding:24px 16px}h2{color:var(--n);margin:32px 0 12px}.g{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(220px,1fr))}
-.c{background:#fff;border-radius:16px;padding:18px;box-shadow:0 2px 8px #0001}.c b{color:var(--n)}.p{font-size:1.5rem;font-weight:900;color:var(--n)}
-.d img,.d video{width:100%;border-radius:12px}footer{text-align:center;padding:30px;color:#666}</style></head><body>
-<header><h1>שעון שבת חכם</h1><p>אורות, דוד, תריסים ושבת – הבית עושה את זה לבד. הכל רץ מקומית אצלכם בבית, בלי ענן ובלי מנוי חובה.</p>
-<a class="btn" href="https://wa.me/972547429424?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%91%D7%99%D7%AA%20%D7%97%D7%9B%D7%9D">ייעוץ והדגמה בבית – ללא עלות</a><br><br><a class="btn" style="background:#fff" href="demo.html">👀 ראו את הבית החכם בפעולה – לפי חבילה</a></header><main>
-<h2>מה אפשר לעשות</h2><div class="g">
-<div class="c"><b>שבת וחג</b><br>אורות שנדלקים ונכבים לפי זמני השבת, בלי לכוון שעונים.</div>
-<div class="c"><b>דוד שמש</b><br>מחמם רק כשצריך, ומודיע כשהמים חמים.</div>
-<div class="c"><b>אורות ותריסים</b><br>תאורה לפי שעה ושקיעה, תריסים בלחיצה אחת או אוטומטית.</div>
-<div class="c"><b>ביטחון ושקט</b><br>התראה על דלת פתוחה, נזילה או מכשיר שנשאר דולק.</div></div>
-<h2>חבילות</h2><div class="g">
-<div class="c"><b>בסיס</b><div class="p">מ־₪3,100</div>שעון שבת ואורות מרכזיים.</div>
-<div class="c"><b>מתקדם</b><div class="p">מ־₪5,400</div>הבסיס + דוד, חיישנים ותרחישים.</div>
-<div class="c"><b>מלא</b><div class="p">מ־₪8,600</div>כל הבית, כולל תריסים והתראות.</div></div>
-<h2>הדגמות</h2><div class="g" id="demos"></div>
-<h2>איך זה עובד</h2><div class="c">פגישת ייעוץ בבית ← הצעת מחיר מותאמת ← יום התקנה ← הדרכה ותמיכה. הכל נשאר אצלכם ושלכם.</div>
-</main><footer>יניב אלירז – בית חכם · ירושלים</footer>
-<script>fetch('demos.json').then(r=>r.json()).then(l=>{const e=document.getElementById('demos');if(!l.length){e.innerHTML='<div class="c">הדגמות יעלו בקרוב.</div>';return}
-l.forEach(x=>{const m=/\.(mp4|webm)$/i.test(x.file)?'<video src="demos/'+x.file+'" controls muted playsinline></video>':'<img src="demos/'+x.file+'" alt="">';e.insertAdjacentHTML('beforeend','<div class="c d">'+m+'<b>'+x.title+'</b><br>'+(x.text||'')+'</div>')})})</script>
-</body></html>
+<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Heebo,sans-serif;color:#fff;text-align:center;
+background:radial-gradient(circle at 50% 30%,#2c3c66,#1E2A4A 60%,#141c33)}main{padding:24px;max-width:440px}
+svg{width:190px;height:190px}.win{animation:glow 3.2s ease-in-out infinite}.w2{animation-delay:1.1s}.w3{animation-delay:2.2s}
+@keyframes glow{0%,100%{fill:#3a4a75}40%,70%{fill:#F2B544}}.gear{transform-origin:150px 52px;animation:spin 6s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
+h1{font-size:2rem;font-weight:900;margin:14px 0 6px}p{opacity:.85;line-height:1.6;margin:0 0 26px}
+.btn{display:inline-block;background:#F2B544;color:#1E2A4A;font-weight:700;padding:14px 28px;border-radius:40px;text-decoration:none;box-shadow:0 6px 20px #F2B54455}
+.dots span{display:inline-block;width:8px;height:8px;margin:0 4px;border-radius:50%;background:#F2B544;animation:b 1.4s infinite}.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
+@keyframes b{0%,80%,100%{opacity:.2}40%{opacity:1}}small{display:block;margin-top:34px;opacity:.55}</style></head><body><main id="uc">
+<svg viewBox="0 0 200 200"><g class="gear" fill="#F2B544"><circle cx="150" cy="52" r="11"/><g stroke="#F2B544" stroke-width="7"><path d="M150 32v40M130 52h40M136 38l28 28M164 38l-28 28"/></g><circle cx="150" cy="52" r="5" fill="#1E2A4A"/></g>
+<path d="M30 100 100 40l70 60" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
+<rect x="48" y="96" width="104" height="80" rx="6" fill="#26355c" stroke="#fff" stroke-width="6"/>
+<rect fill="#3a4a75" class="win" x="62" y="110" width="24" height="22" rx="3"/><rect fill="#3a4a75" class="win w2" x="114" y="110" width="24" height="22" rx="3"/>
+<rect fill="#3a4a75" class="win w3" x="88" y="140" width="24" height="36" rx="3"/></svg>
+<h1>הבית החכם בבנייה</h1><div class="dots"><span></span><span></span><span></span></div>
+<p>האתר בדרך – אבל הבתים כבר נהיים חכמים.<br>שעון שבת חכם, אורות, דוד ותריסים – הכל רץ מקומית אצלכם, בלי ענן.</p>
+<a class="btn" href="https://wa.me/972547429424?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%91%D7%99%D7%AA%20%D7%97%D7%9B%D7%9D">💬 ייעוץ והדגמה בבית – ללא עלות</a><small>יניב אלירז – בית חכם · ירושלים</small></main></body></html>
