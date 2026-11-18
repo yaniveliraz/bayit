@@ -82,6 +82,6 @@ for(var n=0;n<els.length;n++)(function(el){
  var d=DEMOS[el.getAttribute('data-d')];if(!d)return;
  el.innerHTML='<svg viewBox="0 0 300 175" role="img" aria-label="הדגמה מונפשת">'+d.svg+'</svg><div class="dm-c"><span class="dm-n"></span><span class="dm-t"></span><span class="dm-m" aria-live="polite"></span></div>';
  var i=0;function go(){var s=d.steps[i];d.draw(el,s[3]);q(el,'.dm-n').textContent=(i+1)+'/'+d.steps.length;q(el,'.dm-t').textContent=s[0];var m=q(el,'.dm-m');m.textContent=s[1]+' '+s[2];m.style.animation='none';m.offsetWidth;m.style.animation='';i=(i+1)%d.steps.length}
- go();setInterval(go,rm?4500:3400);
+ var vis=true;if('IntersectionObserver' in window){vis=false;new IntersectionObserver(function(es){vis=es[0].isIntersecting}).observe(el)}go();setInterval(function(){if(vis)go()},rm?6000:5000);
 })(els[n]);
 })();
