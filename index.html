@@ -72,7 +72,7 @@ function draw(){document.body.style.setProperty('--sky',skyAt(h));
  $('stars').setAttribute('opacity',(h<5.5||h>19)?1:0);$('cbulb').setAttribute('fill',(h<6.5||h>17.2)?'#ffe066':'#fff6c0');
  const vx=(h>=10&&h<11.6)?(225+Math.abs(Math.sin((h-10)*9))*90):230;$('vac').setAttribute('transform','translate('+vx+' 292)');
  $('clock').textContent=String(Math.floor(h)).padStart(2,'0')+':'+String(Math.floor(h%1*60)).padStart(2,'0');
- const i=EV.findLastIndex(e=>e[0]<=h);if(i!==last&&i>=0){last=i;show(EV[i]);man=[null,null,null]}}
+ let i=-1;for(let k=0;k<EV.length;k++)if(EV[k][0]<=h)i=k;if(i!==last&&i>=0){last=i;show(EV[i]);man=[null,null,null]}}
 R.forEach((r,i)=>{const t=()=>{const g=G[i],on=g.getAttribute('fill')!=='#3a4a75';man[i]=on?0:1;draw();show(['', on?'🌑':'💡',(on?'כיביתם':'הדלקתם')+' את האור – בדיוק כמו באפליקציה'])};r.onclick=t;r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
 if(rm){h=18;draw()}else{let p=performance.now();(function f(n){h=(h+(n-p)/DAY*24*(n<hold?0.06:1))%24;p=n;draw();requestAnimationFrame(f)})(p)}
 })();
