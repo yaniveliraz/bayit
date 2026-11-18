@@ -23,4 +23,4 @@ main{max-width:960px;margin:auto;padding:24px 16px}h2{color:var(--n);margin:32px
 </main><footer style="text-align:center;padding:24px 16px;font-size:.8rem;color:#666;line-height:1.7">© 2026 יניב אלירז – בית חכם. כל הזכויות שמורות. · <a href="nagishut.html" style="color:inherit">הצהרת נגישות</a><br>Home Assistant וכל שמות המוצרים הם סימנים מסחריים של בעליהם. העסק אינו קשור אליהם רשמית.</footer>
 <script>fetch('demos.json').then(r=>r.json()).then(l=>{const e=document.getElementById('demos');if(!l.length){e.innerHTML='<div class="c">הדגמות יעלו בקרוב.</div>';return}
 l.forEach(x=>{const m=/\.(mp4|webm)$/i.test(x.file)?'<video src="demos/'+x.file+'" controls muted playsinline></video>':'<img src="demos/'+x.file+'" alt="">';e.insertAdjacentHTML('beforeend','<div class="c d">'+m+'<b>'+x.title+'</b><br>'+(x.text||'')+'</div>')})})</script>
-</body></html>
+<script src="a11y.js" defer></script></body></html>
