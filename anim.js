@@ -5,6 +5,7 @@ var W='#3a4a75',L='rgba(255,226,120,.95)',D='rgba(255,210,110,.45)',N='rgba(255,
 function q(r,s){return r.querySelector(s)}
 function at(r,s,a,v){var e=q(r,s);if(e)e.setAttribute(a,v)}
 var house='<path d="M30 70 150 18 270 70" fill="none" stroke="#fff" stroke-width="5" stroke-linejoin="round" stroke-linecap="round"/><rect x="46" y="66" width="208" height="96" rx="5" fill="#26355c" stroke="#fff" stroke-width="4"/>';
+var phone=function(x,y){return '<g transform="translate('+x+' '+y+')"><rect width="58" height="100" rx="9" fill="#111" stroke="#cfd8dc" stroke-width="2"/><g class="pn" opacity="0"><rect x="5" y="16" width="48" height="30" rx="5" fill="#fff"/><text x="47" y="35" font-size="11" text-anchor="end" direction="ltr">🔔</text><rect x="9" y="24" width="22" height="4" rx="2" fill="#90a4ae"/><rect x="9" y="32" width="16" height="4" rx="2" fill="#cfd8dc"/></g></g>'};
 var DEMOS={
 shabbat:{svg:'<rect class="sky" width="300" height="175" fill="#f0a868"/>'+house+
  '<rect class="w1" x="66" y="84" width="50" height="34" rx="3" fill="'+W+'"/><rect class="w2" x="128" y="84" width="50" height="34" rx="3" fill="'+W+'"/><rect class="w3" x="190" y="84" width="46" height="62" rx="3" fill="'+W+'"/>'+
@@ -42,13 +43,45 @@ rain:{svg:'<rect class="sky" width="300" height="175" fill="#5fa8e8"/><circle cl
   ['14:40','📱','התראה: גשם בעוד 20 דקות – להכניס כביסה',{sky:'#8a9bb0',sun:0,cl:1,dr:0,sh:0}],
   ['15:00','🌧️','התחיל גשם – התריס בסלון נסגר לבד',{sky:'#6b7a90',sun:0,cl:1,dr:1,sh:62}],
   ['16:30','🌤️','הגשם עבר – התריס נפתח',{sky:'#5fa8e8',sun:1,cl:0,dr:0,sh:0}]],
- draw:function(r,s){at(r,'.sky','fill',s.sky);at(r,'.sun','opacity',s.sun);at(r,'.cl','opacity',s.cl);at(r,'.drops','opacity',s.dr);at(r,'.sh','height',s.sh)}}
+ draw:function(r,s){at(r,'.sky','fill',s.sky);at(r,'.sun','opacity',s.sun);at(r,'.cl','opacity',s.cl);at(r,'.drops','opacity',s.dr);at(r,'.sh','height',s.sh)}},
+btn:{svg:'<rect class="sky" width="300" height="175" fill="#c9765a"/><rect x="20" y="20" width="260" height="140" rx="6" fill="#26355c" stroke="#fff" stroke-width="4"/>'+
+ '<rect x="60" y="112" width="110" height="30" rx="8" fill="#3d4d80"/><rect x="54" y="100" width="20" height="42" rx="6" fill="#3d4d80"/><rect x="156" y="100" width="20" height="42" rx="6" fill="#3d4d80"/>'+
+ '<circle class="l1" cx="200" cy="64" r="16" fill="'+W+'"/><rect x="198" y="80" width="4" height="62" fill="#9aa4b1"/><circle class="l2" cx="115" cy="44" r="12" fill="'+W+'"/>'+
+ '<rect x="236" y="88" width="26" height="26" rx="5" fill="#eceff1"/><circle cx="249" cy="101" r="5" fill="#b0bec5"/><circle class="ring" cx="249" cy="101" r="19" fill="none" stroke="#F2B544" stroke-width="3" opacity="0"/>',
+ steps:[['18:00','👆','לחיצה אחת – אור ערב חמים בסלון',{sky:'#c9765a',l1:L,l2:L,ring:1}],
+  ['20:30','🎬','לחיצה נוספת – מצב סרט: אור עמום',{sky:'#1a2346',l1:N,l2:D,ring:1}],
+  ['23:00','✋','לחיצה ארוכה – כל האורות כבים',{sky:'#0d1428',l1:W,l2:W,ring:1}],
+  ['למחרת','🔁','אותו לחצן – בלי טלפון ובלי אפליקציה',{sky:'#c9765a',l1:L,l2:L,ring:0}]],
+ draw:function(r,s){at(r,'.sky','fill',s.sky);at(r,'.l1','fill',s.l1);at(r,'.l2','fill',s.l2);at(r,'.ring','opacity',s.ring)}},
+heat:{svg:'<rect width="300" height="175" fill="#1E2A4A"/><rect x="16" y="16" width="170" height="146" rx="6" fill="#26355c" stroke="#fff" stroke-width="4"/>'+
+ '<rect class="hb" x="40" y="60" width="90" height="46" rx="6" fill="#90a4ae"/><path d="M52 70v26M64 70v26M76 70v26M88 70v26M100 70v26M112 70v26" stroke="#607080" stroke-width="3"/>'+
+ '<text class="hw" x="85" y="52" font-size="16" text-anchor="middle" opacity="0">♨️</text><text class="tmp" direction="ltr" x="150" y="140" font-size="16" font-weight="700" text-anchor="middle" fill="#fff">19°</text>'+phone(214,40),
+ steps:[['19:00','🧒','הילדים הדליקו את התנור בשירותים',{on:1,t:'19°',pn:0}],
+  ['20:00','📱','עברה שעה – הטלפון שואל: לכבות?',{on:1,t:'24°',pn:1}],
+  ['20:01','✅','לחיצה על "כן" – התנור כבה',{on:0,t:'24°',pn:0}],
+  ['07:00','🌡️','בוקר – סיכום לילה: טמפרטורה ולחות בכל חדר',{on:0,t:'21°',pn:1}]],
+ draw:function(r,s){at(r,'.hb','fill',s.on?'#ff8a65':'#90a4ae');at(r,'.hw','opacity',s.on);q(r,'.tmp').textContent=s.t;at(r,'.pn','opacity',s.pn)}},
+door:{svg:'<rect class="sky" width="300" height="175" fill="#5fa8e8"/><rect x="20" y="20" width="160" height="146" fill="#26355c" stroke="#fff" stroke-width="4"/>'+
+ '<rect x="62" y="56" width="66" height="110" rx="3" fill="#8d6e63" stroke="#fff" stroke-width="3"/><circle cx="116" cy="112" r="4" fill="#F2B544"/>'+
+ '<rect x="144" y="94" width="14" height="20" rx="3" fill="#eceff1"/><circle class="ring" cx="151" cy="104" r="14" fill="none" stroke="#F2B544" stroke-width="3" opacity="0"/>'+phone(214,40),
+ steps:[['16:40','🔔','מישהו צלצל בפעמון',{ring:1,pn:0}],
+  ['16:40','📱','תמונה מהמצלמה נשלחה לטלפון',{ring:0,pn:1}],
+  ['16:41','👋','רואים מי בדלת עוד לפני שקמים מהספה',{ring:0,pn:1}]],
+ draw:function(r,s){at(r,'.ring','opacity',s.ring);at(r,'.pn','opacity',s.pn)}},
+oven:{svg:'<rect width="300" height="175" fill="#1E2A4A"/><rect x="16" y="16" width="170" height="146" rx="6" fill="#26355c" stroke="#fff" stroke-width="4"/>'+
+ '<rect x="46" y="48" width="104" height="96" rx="6" fill="#cfd8dc"/><rect class="ow" x="58" y="74" width="80" height="54" rx="4" fill="#455a64"/><g fill="#78909c"><circle cx="64" cy="60" r="5"/><circle cx="82" cy="60" r="5"/></g>'+
+ '<circle class="pw" cx="134" cy="60" r="5" fill="#e57373"/><rect x="156" y="70" width="20" height="20" rx="4" fill="#eceff1"/><circle class="ring" cx="166" cy="80" r="14" fill="none" stroke="#F2B544" stroke-width="3" opacity="0"/>'+phone(214,40),
+ steps:[['12:00','🔌','התנור בלי חשמל – גם אם מסובבים כפתור',{ow:'#455a64',pw:'#e57373',ring:0,pn:0}],
+  ['17:00','👆','לחיצה על הלחצן – התנור מקבל חשמל',{ow:'#ffb74d',pw:'#81c784',ring:1,pn:0}],
+  ['19:30','📱','שעתיים פועל – תזכורת לטלפון',{ow:'#ffb74d',pw:'#81c784',ring:0,pn:1}],
+  ['19:45','✅','אין תגובה – החשמל לתנור נותק',{ow:'#455a64',pw:'#e57373',ring:0,pn:0}]],
+ draw:function(r,s){at(r,'.ow','fill',s.ow);at(r,'.pw','fill',s.pw);at(r,'.ring','opacity',s.ring);at(r,'.pn','opacity',s.pn)}}
 };
 var els=document.querySelectorAll('.dm');
 for(var n=0;n<els.length;n++)(function(el){
  var d=DEMOS[el.getAttribute('data-d')];if(!d)return;
- el.innerHTML='<svg viewBox="0 0 300 175" role="img" aria-label="הדגמה מונפשת">'+d.svg+'</svg><div class="dm-c"><span class="dm-t"></span><span class="dm-m" aria-live="polite"></span></div>';
- var i=0;function go(){var s=d.steps[i];d.draw(el,s[3]);q(el,'.dm-t').textContent=s[0];var m=q(el,'.dm-m');m.textContent=s[1]+' '+s[2];m.style.animation='none';m.offsetWidth;m.style.animation='';i=(i+1)%d.steps.length}
+ el.innerHTML='<svg viewBox="0 0 300 175" role="img" aria-label="הדגמה מונפשת">'+d.svg+'</svg><div class="dm-c"><span class="dm-n"></span><span class="dm-t"></span><span class="dm-m" aria-live="polite"></span></div>';
+ var i=0;function go(){var s=d.steps[i];d.draw(el,s[3]);q(el,'.dm-n').textContent=(i+1)+'/'+d.steps.length;q(el,'.dm-t').textContent=s[0];var m=q(el,'.dm-m');m.textContent=s[1]+' '+s[2];m.style.animation='none';m.offsetWidth;m.style.animation='';i=(i+1)%d.steps.length}
  go();setInterval(go,rm?4500:3400);
 })(els[n]);
 })();
