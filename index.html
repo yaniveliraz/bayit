@@ -1,19 +1,79 @@
 <!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>יניב אלירז – בית חכם</title><meta name="description" content="בית חכם בירושלים – האתר בבנייה">
+<title>יניב אלירז – בית חכם</title><meta name="description" content="בית חכם בירושלים – שעון שבת חכם, אורות, דוד ותריסים. האתר בבנייה.">
 <link href="fonts/heebo.css" rel="stylesheet">
-<style>body{margin:0;min-height:100vh;display:flex;align-items:center;justify-content:center;font-family:Heebo,sans-serif;color:#fff;text-align:center;
-background:radial-gradient(circle at 50% 30%,#2c3c66,#1E2A4A 60%,#141c33)}main{padding:24px;max-width:440px}
-svg{width:190px;height:190px}.win{animation:glow 3.2s ease-in-out infinite}.w2{animation-delay:1.1s}.w3{animation-delay:2.2s}
-@keyframes glow{0%,100%{fill:#3a4a75}40%,70%{fill:#F2B544}}.gear{transform-origin:150px 52px;animation:spin 6s linear infinite}@keyframes spin{to{transform:rotate(360deg)}}
-h1{font-size:2rem;font-weight:900;margin:14px 0 6px}p{opacity:.85;line-height:1.6;margin:0 0 26px}
-.btn{display:inline-block;background:#F2B544;color:#1E2A4A;font-weight:700;padding:14px 28px;border-radius:40px;text-decoration:none;box-shadow:0 6px 20px #F2B54455}
-.dots span{display:inline-block;width:8px;height:8px;margin:0 4px;border-radius:50%;background:#F2B544;animation:b 1.4s infinite}.dots span:nth-child(2){animation-delay:.2s}.dots span:nth-child(3){animation-delay:.4s}
-@keyframes b{0%,80%,100%{opacity:.2}40%{opacity:1}}small{display:block;margin-top:34px;opacity:.55}:focus-visible{outline:3px solid #F2B544;outline-offset:2px}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style></head><body><main id="uc">
-<svg viewBox="0 0 200 200" role="img" aria-label="איור של בית עם חלונות שנדלקים"><g class="gear" fill="#F2B544"><circle cx="150" cy="52" r="11"/><g stroke="#F2B544" stroke-width="7"><path d="M150 32v40M130 52h40M136 38l28 28M164 38l-28 28"/></g><circle cx="150" cy="52" r="5" fill="#1E2A4A"/></g>
-<path d="M30 100 100 40l70 60" fill="none" stroke="#fff" stroke-width="8" stroke-linecap="round" stroke-linejoin="round"/>
-<rect x="48" y="96" width="104" height="80" rx="6" fill="#26355c" stroke="#fff" stroke-width="6"/>
-<rect fill="#3a4a75" class="win" x="62" y="110" width="24" height="22" rx="3"/><rect fill="#3a4a75" class="win w2" x="114" y="110" width="24" height="22" rx="3"/>
-<rect fill="#3a4a75" class="win w3" x="88" y="140" width="24" height="36" rx="3"/></svg>
-<h1>הבית החכם בבנייה</h1><div class="dots"><span></span><span></span><span></span></div>
-<p>האתר בדרך – אבל הבתים כבר נהיים חכמים.<br>שעון שבת חכם, אורות, דוד ותריסים – הכל רץ מקומית אצלכם, בלי ענן.</p>
-<a class="btn" href="https://wa.me/972547429424?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%91%D7%99%D7%AA%20%D7%97%D7%9B%D7%9D">💬 ייעוץ והדגמה בבית – ללא עלות</a><br><a href="demo.html" style="display:inline-block;margin-top:14px;color:#fff;border:2px solid #ffffff66;padding:11px 24px;border-radius:40px;text-decoration:none;font-weight:700">👀 הציצו בהדגמה – ככה זה נראה באפליקציה</a><small>יניב אלירז – בית חכם · ירושלים<br>© 2026 כל הזכויות שמורות · <a href="nagishut.html" style="color:inherit">הצהרת נגישות</a></small></main><script src="a11y.js" defer></script></body></html>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font-family:Heebo,sans-serif;color:#fff;text-align:center;background:var(--sky,#1E2A4A);transition:background 1s linear;overflow-x:hidden}
+main{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 16px 28px}
+.badge{display:inline-flex;gap:8px;align-items:center;background:#0004;border:1px solid #fff3;padding:6px 14px;border-radius:30px;font-size:.85rem;backdrop-filter:blur(4px)}
+.badge i{width:8px;height:8px;border-radius:50%;background:#F2B544;animation:pulse 1.4s infinite}@keyframes pulse{50%{opacity:.25}}
+h1{font-size:clamp(1.8rem,6vw,2.6rem);font-weight:900;margin:14px 0 4px;text-shadow:0 2px 12px #0005}
+.sub{opacity:.9;margin:0 0 14px;text-shadow:0 1px 8px #0006}
+.scene{width:min(520px,96vw);aspect-ratio:520/330;position:relative}
+svg{width:100%;height:100%;overflow:visible}
+.room{cursor:pointer}.room rect.glass{transition:fill .6s}.room:focus-visible rect.wall{stroke:#F2B544;stroke-width:4}
+.clock{font:700 1.05rem monospace;background:#0005;padding:4px 12px;border-radius:10px;display:inline-block;margin-top:6px;direction:ltr}
+.feed{height:64px;margin:10px auto 0;width:min(460px,94vw);position:relative;overflow:hidden}
+.ev{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:8px;background:#fff;color:#1E2A4A;border-radius:14px;font-weight:500;box-shadow:0 6px 20px #0003;animation:ev .5s both;padding:0 12px;font-size:.95rem}
+@keyframes ev{from{transform:translateY(30px);opacity:0}}
+.hint{font-size:.8rem;opacity:.7;margin-top:8px}
+.btn{display:inline-block;background:#F2B544;color:#1E2A4A;font-weight:700;padding:14px 28px;border-radius:40px;text-decoration:none;box-shadow:0 6px 20px #F2B54455;margin-top:18px}
+.btn2{display:inline-block;margin-top:12px;color:#fff;border:2px solid #ffffff66;padding:11px 24px;border-radius:40px;text-decoration:none;font-weight:700;background:#0003}
+small{display:block;margin-top:26px;opacity:.6;line-height:1.7}small a{color:inherit}
+.star{animation:tw 3s infinite}@keyframes tw{50%{opacity:.2}}
+.hook{animation:bob 3.5s ease-in-out infinite;transform-origin:0 0}@keyframes bob{50%{transform:translateY(14px)}}
+:focus-visible{outline:3px solid #F2B544;outline-offset:2px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style></head><body><main id="uc">
+<span class="badge"><i></i>האתר בבנייה</span>
+<h1>האתר בבנייה. הבית כבר חכם.</h1>
+<p class="sub">צפו ביום אחד בבית חכם – או לחצו על החדרים בעצמכם.</p>
+<div class="scene"><svg viewBox="0 0 520 330" role="img" aria-label="איור מונפש של בית חכם לאורך יום: אורות, תריס, דוד ושואב שפועלים לבד">
+<g id="stars" opacity="0"><circle class="star" cx="40" cy="30" r="1.6" fill="#fff"/><circle class="star" cx="120" cy="60" r="1.2" fill="#fff" style="animation-delay:1s"/><circle class="star" cx="470" cy="40" r="1.5" fill="#fff" style="animation-delay:.5s"/><circle class="star" cx="300" cy="22" r="1.1" fill="#fff" style="animation-delay:2s"/><circle class="star" cx="400" cy="80" r="1.3" fill="#fff" style="animation-delay:1.5s"/></g>
+<circle id="sun" r="18" fill="#FFD54F"/><circle id="moon" r="13" fill="#eef2ff"/>
+<!-- crane -->
+<g stroke="#F2B544" stroke-width="4" fill="none" stroke-linecap="round"><path d="M455 300V70M440 300h30M455 74h-80M455 74l-35 -22M455 74l25 -14"/><path d="M455 120l-20-20M455 170l-20-20M455 220l-20-20M455 270l-20-20" stroke-width="2"/></g>
+<g class="hook"><line x1="398" y1="74" x2="398" y2="120" stroke="#ddd" stroke-width="1.5"/><path d="M392 120h12l-3 10h-6z" fill="#ccc"/><g transform="translate(398 140)"><circle r="9" id="cbulb" fill="#fff6c0"/><rect x="-4" y="8" width="8" height="6" fill="#aaa"/></g></g>
+<!-- house -->
+<path d="M40 150 200 60 360 150" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
+<g><rect x="250" y="84" width="40" height="22" rx="3" fill="#2b3b66" stroke="#9fb3e8" stroke-width="2" transform="rotate(-29 270 95)"/><rect id="boiler" x="300" y="76" width="22" height="34" rx="9" fill="#cfd8dc"/><text id="steam" x="311" y="70" font-size="14" text-anchor="middle" opacity="0">♨️</text></g>
+<rect class="wall" x="62" y="146" width="276" height="160" rx="6" fill="#26355c" stroke="#fff" stroke-width="5"/>
+<line x1="200" y1="146" x2="200" y2="306" stroke="#ffffff55" stroke-width="3"/><line x1="62" y1="226" x2="200" y2="226" stroke="#ffffff55" stroke-width="3"/>
+<g class="room" tabindex="0" role="button" aria-label="אור בחדר שינה" data-r="0"><rect class="glass" x="96" y="166" width="70" height="44" rx="4" fill="#3a4a75"/><text x="131" y="194" font-size="13" text-anchor="middle" fill="#ffffffaa">🛏️</text></g>
+<g class="room" tabindex="0" role="button" aria-label="אור במטבח" data-r="1"><rect class="glass" x="96" y="242" width="70" height="44" rx="4" fill="#3a4a75"/><text x="131" y="270" font-size="13" text-anchor="middle" fill="#ffffffaa">🍳</text></g>
+<g class="room" tabindex="0" role="button" aria-label="אור בסלון" data-r="2"><rect class="glass" x="222" y="166" width="96" height="74" rx="4" fill="#3a4a75"/><text x="270" y="210" font-size="16" text-anchor="middle" fill="#ffffffaa">🛋️</text><rect id="shut" x="222" y="166" width="96" height="0" fill="url(#sl)" opacity=".9"/></g>
+<defs><pattern id="sl" width="8" height="7" patternUnits="userSpaceOnUse"><rect width="8" height="5" fill="#9aa4b1"/><rect y="5" width="8" height="2" fill="#7d8794"/></pattern></defs>
+<g id="vac" transform="translate(230 292)"><ellipse rx="13" ry="6" fill="#eceff1"/><circle cx="4" cy="-2" r="2" fill="#4fc3f7"/></g>
+<line x1="10" y1="306" x2="510" y2="306" stroke="#ffffff44" stroke-width="2"/>
+</svg></div>
+<div class="clock" id="clock">06:00</div>
+<div class="feed" id="feed" aria-live="polite"></div>
+<div class="hint">💡 לחצו על חלון כדי להדליק או לכבות</div>
+<a class="btn" href="https://wa.me/972547429424?text=%D7%94%D7%99%D7%99%2C%20%D7%90%D7%A9%D7%9E%D7%97%20%D7%9C%D7%A9%D7%9E%D7%95%D7%A2%20%D7%A2%D7%9C%20%D7%91%D7%99%D7%AA%20%D7%97%D7%9B%D7%9D">💬 ייעוץ והדגמה בבית – ללא עלות</a>
+<a class="btn2" href="demo.html">👀 הציצו בהדגמה – ככה זה נראה באפליקציה</a>
+<small>יניב אלירז – בית חכם · ירושלים<br>© 2026 כל הזכויות שמורות · <a href="nagishut.html">הצהרת נגישות</a></small>
+</main>
+<script>
+(function(){
+const $=id=>document.getElementById(id),R=[...document.querySelectorAll('.room')],G=R.map(r=>r.querySelector('.glass'));
+const sky=[[0,'#0d1428'],[5,'#1a2346'],[6.5,'#f6a86b'],[8,'#5fa8e8'],[16,'#4a90d9'],[17.3,'#e8875a'],[18.3,'#2c3c66'],[20,'#141c36'],[24,'#0d1428']];
+const hex=h=>[1,3,5].map(i=>parseInt(h.substr(i,2),16)),mix=(a,b,t)=>'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',')+')';
+function skyAt(h){for(let i=0;i<sky.length-1;i++){const[a,c1]=sky[i],[b,c2]=sky[i+1];if(h>=a&&h<b)return mix(hex(c1),hex(c2),(h-a)/(b-a))}return sky[0][1]}
+const EV=[[6.5,'☀️','זריחה – התריס בסלון נפתח'],[7,'🌅','אור עדין במטבח לבוקר טוב'],[10,'🤖','כולם יצאו – השואב יצא לנקות'],[11.6,'✅','הניקיון הסתיים, השואב חזר לתחנה'],[17.2,'🌇','שקיעה – אורות הסלון נדלקו, התריס נסגר'],[17.5,'🔥','הדוד התחיל לחמם'],[18.3,'🚿','המים חמים – הדוד כבה לבד'],[21.5,'🛏️','אור לילה עמום בחדר השינה'],[23.3,'🌙','לילה טוב – הכל כבה בבית']];
+let h=6,last=-1,man=[null,null,null],DAY=24000;const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+function auto(h){return[(h>=21.5&&h<23.3)?.35:0,(h>=7&&h<8.5)?.6:(h>=17.2&&h<21)?1:0,(h>=17.2&&h<23.3)?1:0]}
+function show(e){const f=$('feed');f.innerHTML='<div class="ev"><span>'+e[1]+'</span>'+e[2]+'</div>'}
+function draw(){document.body.style.setProperty('--sky',skyAt(h));
+ const a=auto(h);G.forEach((g,i)=>{const v=man[i]!==null?man[i]:a[i];g.setAttribute('fill',v?'rgba(255,'+(200+Math.round(30*v))+',90,'+(.35+.65*v)+')':'#3a4a75');g.parentNode.setAttribute('aria-pressed',!!v)});
+ const sh=(h>=6.5&&h<17.2)?0:46;$('shut').setAttribute('height',sh);
+ const boil=h>=17.5&&h<18.3;$('boiler').setAttribute('fill',boil?'#ff8a65':'#cfd8dc');$('steam').setAttribute('opacity',boil?1:0);
+ const d=h>=6&&h<18,t=d?(h-6)/12:((h+6)%24)/12,x=40+t*440,y=120-Math.sin(t*Math.PI)*95;
+ $('sun').setAttribute('cx',x);$('sun').setAttribute('cy',y);$('sun').setAttribute('opacity',d?1:0);$('moon').setAttribute('cx',x);$('moon').setAttribute('cy',y);$('moon').setAttribute('opacity',d?0:1);
+ $('stars').setAttribute('opacity',(h<5.5||h>19)?1:0);$('cbulb').setAttribute('fill',(h<6.5||h>17.2)?'#ffe066':'#fff6c0');
+ const vx=(h>=10&&h<11.6)?(225+Math.abs(Math.sin((h-10)*9))*90):230;$('vac').setAttribute('transform','translate('+vx+' 292)');
+ $('clock').textContent=String(Math.floor(h)).padStart(2,'0')+':'+String(Math.floor(h%1*60)).padStart(2,'0');
+ const i=EV.findLastIndex(e=>e[0]<=h);if(i!==last&&i>=0){last=i;show(EV[i]);man=[null,null,null]}}
+R.forEach((r,i)=>{const t=()=>{const g=G[i],on=g.getAttribute('fill')!=='#3a4a75';man[i]=on?0:1;draw();show(['', on?'🌑':'💡',(on?'כיביתם':'הדלקתם')+' את האור – בדיוק כמו באפליקציה'])};r.onclick=t;r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
+if(rm){h=18;draw()}else{let p=performance.now();(function f(n){h=(h+(n-p)/DAY*24)%24;p=n;draw();requestAnimationFrame(f)})(p)}
+})();
+</script><script src="a11y.js" defer></script></body></html>
