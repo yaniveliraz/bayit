@@ -37,7 +37,7 @@ footer small{margin:0 0 30px}
 a.post{display:block;color:inherit;text-decoration:none}.more-l{display:inline-block;margin-top:10px;color:#F2B544;font-weight:700}/*navy*/.more{background:#1E2A4A;box-shadow:0 0 0 100vmax #1E2A4A;clip-path:inset(0 -100vmax);padding-top:24px}
 footer{background:#1E2A4A;padding:10px 0 1px}
 .more .c,.more .steps li,.more details,.more .note,.more .cta{background:#26355c;border-color:#ffffff1a;backdrop-filter:none}
-/*wide*/@media(min-width:760px){main{min-height:0;padding:64px 24px 48px}.scene{width:min(700px,70vw)}h1{font-size:3rem}.sub{font-size:1.2rem}.feed{width:min(560px,80vw)}.more{max-width:1080px}}</style><link rel="icon" type="image/png" sizes="512x512" href="/bayit-blue.png?v=2611181950"><link rel="apple-touch-icon" href="/bayit-blue.png?v=2611181950"><link rel="manifest" href="/manifest.webmanifest?v=2611181950"><meta name="theme-color" content="#0b1026"></head><body><main id="uc">
+/*wide*/@media(min-width:760px){main{min-height:0;padding:64px 24px 48px}.scene{width:min(700px,70vw)}h1{font-size:3rem}.sub{font-size:1.2rem}.feed{width:min(560px,80vw)}.more{max-width:1080px}}/*mec*/.me{flex-direction:column;text-align:center}.me div{min-width:0}</style><link rel="icon" type="image/png" sizes="512x512" href="/bayit-blue.png?v=2611181950"><link rel="apple-touch-icon" href="/bayit-blue.png?v=2611181950"><link rel="manifest" href="/manifest.webmanifest?v=2611181950"><meta name="theme-color" content="#0b1026"></head><body><main id="uc">
 <span class="badge"><i></i>טיוטה</span>
 <h1>בית חכם</h1>
 <p class="sub">שבת וחג, תאורה, דוד, תריסים וניקיון – הבית עושה את זה לבד. בלי ענן, בלי מנויים.</p>
@@ -115,6 +115,6 @@ function draw(){document.body.style.setProperty('--sky',skyAt(h));
  $('clock').textContent=String(Math.floor(h)).padStart(2,'0')+':'+String(Math.floor(h%1*60)).padStart(2,'0');
  let i=-1;for(let k=0;k<EV.length;k++)if(EV[k][0]<=h)i=k;if(i!==last&&i>=0){last=i;show(EV[i]);man=[null,null,null]}}
 R.forEach((r,i)=>{const t=()=>{const g=G[i],on=g.getAttribute('fill')!=='#3a4a75';man[i]=on?0:1;draw();show(['', on?'🌑':'💡',(on?'כיביתם':'הדלקתם')+' את האור – בדיוק כמו באפליקציה'])};r.onclick=t;r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
-if(rm){h=18;draw()}else{let p=performance.now();(function f(n){h=(h+(n-p)/DAY*24*(n<hold?0.06:1))%24;p=n;draw();requestAnimationFrame(f)})(p)}
+if(rm){let j=0;const st=()=>{h=EV[j][0]+.01;draw();j=(j+1)%EV.length};st();setInterval(st,4000)}else{let p=performance.now();(function f(n){h=(h+(n-p)/DAY*24*(n<hold?0.06:1))%24;p=n;draw();requestAnimationFrame(f)})(p)}
 })();
 </script><script src="a11y.js" defer></script></body></html>

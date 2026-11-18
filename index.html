@@ -74,6 +74,6 @@ function draw(){document.body.style.setProperty('--sky',skyAt(h));
  $('clock').textContent=String(Math.floor(h)).padStart(2,'0')+':'+String(Math.floor(h%1*60)).padStart(2,'0');
  let i=-1;for(let k=0;k<EV.length;k++)if(EV[k][0]<=h)i=k;if(i!==last&&i>=0){last=i;show(EV[i]);man=[null,null,null]}}
 R.forEach((r,i)=>{const t=()=>{const g=G[i],on=g.getAttribute('fill')!=='#3a4a75';man[i]=on?0:1;draw();show(['', on?'🌑':'💡',(on?'כיביתם':'הדלקתם')+' את האור – בדיוק כמו באפליקציה'])};r.onclick=t;r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
-if(rm){h=18;draw()}else{let p=performance.now();(function f(n){h=(h+(n-p)/DAY*24*(n<hold?0.06:1))%24;p=n;draw();requestAnimationFrame(f)})(p)}
+if(rm){let j=0;const st=()=>{h=EV[j][0]+.01;draw();j=(j+1)%EV.length};st();setInterval(st,4000)}else{let p=performance.now();(function f(n){h=(h+(n-p)/DAY*24*(n<hold?0.06:1))%24;p=n;draw();requestAnimationFrame(f)})(p)}
 })();
 </script><script src="a11y.js" defer></script></body></html>
