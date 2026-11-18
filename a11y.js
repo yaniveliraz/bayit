@@ -9,7 +9,7 @@ var st=document.createElement('style');st.textContent=
 'html.a-hc body,html.a-hc main,html.a-hc .c,html.a-hc .card,html.a-hc .box,html.a-hc .bar,html.a-hc header,html.a-hc .top{background:#000!important;color:#ff0!important}'+
 'html.a-hc a,html.a-hc button:not(#a11y-b):not(#a11y-p button){color:#0ff!important}html.a-hc *{border-color:#ff0!important}'+
 'html.a-ln a{text-decoration:underline!important;outline:2px dashed currentColor;outline-offset:2px}'+
-'html.a-na *{animation:none!important;transition:none!important}'+
+'html.a-na *{animation:none!important;transition:none!important}html.a-na{scroll-behavior:auto!important}html.a-hc .more,html.a-hc footer,html.a-hc .cta,html.a-hc .note,html.a-hc .steps li,html.a-hc details,html.a-hc .tz-r,html.a-hc .dm-m,html.a-hc .dm-t,html.a-hc .dm-n,html.a-hc .badge,html.a-hc .clock,html.a-hc .ev,html.a-hc .wf input,html.a-hc .wf select,html.a-hc .wf textarea,html.a-hc .ch span{background:#000!important;color:#ff0!important}html.a-hc .more{box-shadow:0 0 0 100vmax #000!important}html.a-hc .btn,html.a-hc .btn2{background:#000!important;color:#ff0!important;border:3px solid #ff0!important;box-shadow:none!important}html.a-hc .ch input:checked+span{background:#ff0!important;color:#000!important}html.a-hc h1,html.a-hc h2,html.a-hc h3,html.a-hc .more-l,html.a-hc .wf label,html.a-hc legend{color:#ff0!important;text-shadow:none!important}'+
 'html.a-rf body,html.a-rf body *:not(#a11y-b){font-family:Arial,sans-serif!important;letter-spacing:.03em}';
 document.head.appendChild(st);
 var h=document.documentElement;
