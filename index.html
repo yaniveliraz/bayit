@@ -60,9 +60,9 @@ const sky=[[0,'#0d1428'],[5,'#1a2346'],[6.5,'#f6a86b'],[8,'#5fa8e8'],[16,'#4a90d
 const hex=h=>[1,3,5].map(i=>parseInt(h.substr(i,2),16)),mix=(a,b,t)=>'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',')+')';
 function skyAt(h){for(let i=0;i<sky.length-1;i++){const[a,c1]=sky[i],[b,c2]=sky[i+1];if(h>=a&&h<b)return mix(hex(c1),hex(c2),(h-a)/(b-a))}return sky[0][1]}
 const EV=[[6.5,'☀️','זריחה – התריס בסלון נפתח'],[7,'🌅','אור עדין במטבח לבוקר טוב'],[10,'🤖','כולם יצאו – השואב יצא לנקות'],[11.6,'✅','הניקיון הסתיים, השואב חזר לתחנה'],[17.2,'🌇','שקיעה – אורות הסלון נדלקו, התריס נסגר'],[17.5,'🔥','הדוד התחיל לחמם'],[18.3,'🚿','המים חמים – הדוד כבה לבד'],[21.5,'🛏️','אור לילה עמום בחדר השינה'],[23.3,'🌙','לילה טוב – הכל כבה בבית']];
-let h=6,last=-1,man=[null,null,null],DAY=24000;const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let h=6,last=-1,hold=0,man=[null,null,null],DAY=24000;const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
 function auto(h){return[(h>=21.5&&h<23.3)?.35:0,(h>=7&&h<8.5)?.6:(h>=17.2&&h<21)?1:0,(h>=17.2&&h<23.3)?1:0]}
-function show(e){const f=$('feed');f.innerHTML='<div class="ev"><span>'+e[1]+'</span>'+e[2]+'</div>'}
+function show(e){hold=performance.now()+2800;const f=$('feed');f.innerHTML='<div class="ev"><span>'+e[1]+'</span>'+e[2]+'</div>'}
 function draw(){document.body.style.setProperty('--sky',skyAt(h));
  const a=auto(h);G.forEach((g,i)=>{const v=man[i]!==null?man[i]:a[i];g.setAttribute('fill',v?'rgba(255,'+(200+Math.round(30*v))+',90,'+(.35+.65*v)+')':'#3a4a75');g.parentNode.setAttribute('aria-pressed',!!v)});
  const sh=(h>=6.5&&h<17.2)?0:46;$('shut').setAttribute('height',sh);
@@ -74,6 +74,6 @@ function draw(){document.body.style.setProperty('--sky',skyAt(h));
  $('clock').textContent=String(Math.floor(h)).padStart(2,'0')+':'+String(Math.floor(h%1*60)).padStart(2,'0');
  const i=EV.findLastIndex(e=>e[0]<=h);if(i!==last&&i>=0){last=i;show(EV[i]);man=[null,null,null]}}
 R.forEach((r,i)=>{const t=()=>{const g=G[i],on=g.getAttribute('fill')!=='#3a4a75';man[i]=on?0:1;draw();show(['', on?'🌑':'💡',(on?'כיביתם':'הדלקתם')+' את האור – בדיוק כמו באפליקציה'])};r.onclick=t;r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
-if(rm){h=18;draw()}else{let p=performance.now();(function f(n){h=(h+(n-p)/DAY*24)%24;p=n;draw();requestAnimationFrame(f)})(p)}
+if(rm){h=18;draw()}else{let p=performance.now();(function f(n){h=(h+(n-p)/DAY*24*(n<hold?0.06:1))%24;p=n;draw();requestAnimationFrame(f)})(p)}
 })();
 </script><script src="a11y.js" defer></script></body></html>
