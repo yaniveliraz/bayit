@@ -1,0 +1,104 @@
+<!doctype html><html lang="he" dir="rtl"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>הדגמה – בית חכם לפי חבילה</title>
+<link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700;900&display=swap" rel="stylesheet">
+<style>
+:root{--n:#1E2A4A;--a:#F2B544;--ha:#03a9f4;--bg:#f2f4f7;--on:#ffb300}
+*{box-sizing:border-box}body{margin:0;font-family:Heebo,sans-serif;background:var(--bg);color:#212121}
+.top{background:var(--n);color:#fff;padding:14px 16px 0;position:sticky;top:0;z-index:5;box-shadow:0 2px 8px #0003}
+.top a{color:#fff;opacity:.8;font-size:.9rem;text-decoration:none}.top h1{margin:4px 0 10px;font-size:1.3rem}
+.tabs{display:flex;gap:6px}.tab{flex:1;border:0;border-radius:12px 12px 0 0;padding:10px 4px;font:700 .95rem Heebo;background:#ffffff22;color:#fff;cursor:pointer}
+.tab small{display:block;font-weight:400;opacity:.85}.tab.act{background:var(--bg);color:var(--n)}
+.sum{max-width:1100px;margin:14px auto 0;padding:0 14px}.sum .box{background:#fff;border-radius:16px;padding:14px 16px;border-right:6px solid var(--a)}
+.sum b{color:var(--n)}.sum ul{margin:6px 0 0;padding:0 18px;columns:2;font-size:.9rem}
+.bar{background:#fff;max-width:1100px;margin:12px auto 0;border-radius:16px;display:flex;align-items:center;gap:10px;padding:10px 14px;font-size:.9rem}
+.bar .dot{width:10px;height:10px;border-radius:50%;background:#4caf50}.mode{margin-inline-start:auto;font-weight:700;color:var(--n)}
+.grid{max-width:1100px;margin:12px auto 40px;padding:0 14px;display:grid;gap:12px;grid-template-columns:repeat(auto-fill,minmax(260px,1fr))}
+.card{background:#fff;border-radius:16px;padding:14px;box-shadow:0 1px 3px #0001;position:relative;transition:.3s}
+.card h3{margin:0 0 10px;font-size:1rem;display:flex;align-items:center;gap:8px}.ic{font-size:1.3rem}
+.card.lock{filter:grayscale(1);opacity:.4;pointer-events:none}
+.card.lock:after{content:attr(data-need);position:absolute;inset:auto 10px 10px auto;background:var(--n);color:#fff;font-size:.75rem;padding:3px 10px;border-radius:20px;opacity:1}
+.row{display:flex;align-items:center;gap:10px;padding:7px 0;border-top:1px solid #eee}.row:first-of-type{border:0}.row span{flex:1}
+.bulb{font-size:1.3rem;transition:.3s;filter:grayscale(1) opacity(.5)}.bulb.on{filter:drop-shadow(0 0 6px var(--on))}
+.sw{position:relative;width:42px;height:24px;border-radius:12px;background:#ccc;border:0;cursor:pointer;transition:.2s}
+.sw:after{content:"";position:absolute;top:3px;right:3px;width:18px;height:18px;border-radius:50%;background:#fff;transition:.2s}
+.sw.on{background:var(--ha)}.sw.on:after{right:21px}
+input[type=range]{width:100%;accent-color:var(--ha)}
+.btns{display:flex;flex-wrap:wrap;gap:8px}.b{border:0;border-radius:20px;padding:8px 14px;font:500 .9rem Heebo;background:#e3f2fd;color:#0277bd;cursor:pointer}
+.b:active{transform:scale(.96)}.b.warn{background:#ffebee;color:#c62828}.b.lockb{display:none}
+.big{font-size:2rem;font-weight:900;color:var(--n)}.mut{color:#777;font-size:.85rem}
+.prog{height:8px;background:#eee;border-radius:4px;overflow:hidden;margin:8px 0}.prog i{display:block;height:100%;width:0;background:var(--ha);transition:.5s}
+.shutter{height:90px;border-radius:10px;background:linear-gradient(#87ceeb,#e0f4ff);position:relative;overflow:hidden;margin-bottom:8px}
+.shutter i{position:absolute;top:0;left:0;right:0;background:repeating-linear-gradient(#9aa4b1 0 7px,#7d8794 7px 9px);transition:height .6s}
+.cam{height:150px;border-radius:10px;background:radial-gradient(circle at 30% 70%,#3d4a5c,#141a24);position:relative;overflow:hidden;color:#fff}
+.cam .door{position:absolute;bottom:0;right:30%;width:28%;height:75%;background:#5d4037;border-radius:4px 4px 0 0}
+.cam .p{position:absolute;bottom:0;right:62%;font-size:3rem;transition:right 2s}.cam .ts{position:absolute;top:6px;left:8px;font:12px monospace}
+.cam .rec{position:absolute;top:6px;right:8px;font-size:12px}.cam .rec:before{content:"● ";color:#f44336}
+.auto .row{font-size:.9rem}.auto .row.lock{opacity:.35}
+#toasts{position:fixed;bottom:14px;left:14px;right:14px;max-width:380px;margin:auto;z-index:9;display:flex;flex-direction:column;gap:8px}
+.toast{background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 4px 16px #0003;font-size:.9rem;animation:in .3s;border-right:5px solid var(--ha)}
+.toast.red{border-color:#f44336}.toast b{display:block}@keyframes in{from{transform:translateY(20px);opacity:0}}
+.cta{text-align:center;margin:0 0 40px}.cta a{display:inline-block;background:var(--a);color:var(--n);font-weight:700;padding:14px 26px;border-radius:40px;text-decoration:none}
+</style></head><body>
+<div class="top"><a href="./">→ חזרה לאתר</a><h1>ככה נראה הבית שלכם באפליקציה</h1>
+<div class="tabs"><button class="tab act" data-t="1">בסיס<small>מ־₪3,100</small></button><button class="tab" data-t="2">מתקדם<small>מ־₪5,400</small></button><button class="tab" data-t="3">מלא<small>מ־₪8,600</small></button></div></div>
+<div class="sum"><div class="box" id="sum"></div></div>
+<div class="bar"><span class="dot"></span><span>הכל רץ מקומית אצלכם בבית · <span id="clock"></span></span><span class="mode" id="mode">בבית</span></div>
+<div class="grid">
+<div class="card" data-t="1"><h3><span class="ic">💡</span>אורות</h3><div id="lights"></div></div>
+<div class="card" data-t="1"><h3><span class="ic">🕯️</span>שעון שבת חכם</h3>
+<div class="row"><span>מצב שבת</span><button class="sw" id="shab"></button></div>
+<div class="mut" id="shabtxt">כבוי · כשמופעל, האורות פועלים לפי זמני כניסת ויציאת השבת – בלי לכוון שעונים.</div></div>
+<div class="card" data-t="1"><h3><span class="ic">🎬</span>תרחישים</h3><div class="btns" id="scenes"></div><p class="mut">לחיצה אחת – כמה מכשירים יחד.</p></div>
+<div class="card" data-t="2"><h3><span class="ic">🔥</span>דוד שמש</h3><div class="big" id="boil">כבוי</div><div class="prog"><i id="boilp"></i></div>
+<div class="btns"><button class="b" onclick="boiler(30)">30 דק׳</button><button class="b" onclick="boiler(45)">45 דק׳</button><button class="b warn" onclick="boiler(0)">כבה</button></div><p class="mut">נכבה לבד ומודיע כשהמים חמים. (בהדגמה: שנייה = דקה)</p></div>
+<div class="card" data-t="2"><h3><span class="ic">❄️</span>מזגן וסלון</h3>
+<div class="row"><span>מזגן</span><b id="ac_t">24°</b><button class="b" onclick="ac(-1)">−</button><button class="b" onclick="ac(1)">+</button><button class="sw" id="ac"></button></div>
+<div class="row"><span>🌡️ טמפרטורה בסלון</span><b id="temp">26.1°</b></div><div class="row"><span>💧 לחות</span><b id="hum">55%</b></div></div>
+<div class="card" data-t="2"><h3><span class="ic">🚪</span>ביטחון ושקט</h3>
+<div class="row"><span>דלת כניסה</span><b id="door">סגורה</b><button class="b" onclick="doorT()">פתח/סגור</button></div>
+<div class="row"><span>חיישן נזילה – מקלחת</span><b id="leak">יבש</b><button class="b warn" onclick="leak()">דמה נזילה</button></div></div>
+<div class="card" data-t="3"><h3><span class="ic">🪟</span>תריס סלון</h3><div class="shutter"><i id="shi"></i></div>
+<input type="range" id="sh" min="0" max="100" value="100"><div class="btns"><button class="b" onclick="shSet(100)">▲ פתח</button><button class="b" onclick="shSet(50)">חצי</button><button class="b" onclick="shSet(0)">▼ סגור</button></div></div>
+<div class="card" data-t="3"><h3><span class="ic">🤖</span>שואב שוטף</h3><div class="big" id="vac">בעמדה</div><div class="prog"><i id="vacp"></i></div>
+<div class="btns"><button class="b" onclick="vac('כל הבית')">כל הבית</button><button class="b" onclick="vac('מטבח')">רק מטבח</button></div></div>
+<div class="card" data-t="3"><h3><span class="ic">📷</span>מצלמת כניסה</h3><div class="cam"><div class="door"></div><div class="p" id="pp">🧍</div><span class="ts" id="camts"></span><span class="rec">שידור חי</span></div><p class="mut">ההקלטות נשמרות בבית – לא בענן של אף אחד.</p></div>
+<div class="card" data-t="3"><h3><span class="ic">⚡</span>צריכת חשמל</h3><div class="big" dir="ltr" style="text-align:right" id="pw">0 W</div><div class="mut" id="kwh">היום: 6.2 קוט״ש</div></div>
+<div class="card" data-t="2"><h3><span class="ic">🏃</span>יצאנו מהבית</h3><p class="mut" id="leavetxt"></p><button class="b warn" onclick="leave()">יצאנו!</button></div>
+<div class="card auto" data-t="1"><h3><span class="ic">⚙️</span>אוטומציות שרצות לבד</h3><div id="autos"></div></div>
+</div>
+<div class="cta"><a id="wa" href="./">רוצים כזה בבית? ייעוץ והדגמה – ללא עלות</a></div>
+<div id="toasts"></div>
+<script>
+const $=id=>document.getElementById(id);let T=1;const N={1:'בסיס',2:'מתקדם',3:'מלא'};
+const SUM={1:['מרכז בקרה ביתי + אפליקציה','4 נקודות תאורה חכמות','שעון שבת לפי זמני השבת','2 תרחישים + אוטומציות שקיעה וזריחה'],
+2:['כל מה שבבסיס','דוד שמש חכם עם טיימר','מזגן + חיישני טמפרטורה ולחות','חיישן דלת והתראת נזילה','כפתור "יצאנו" ותרחישים נוספים'],
+3:['כל מה שבמתקדם','תריס חשמלי','שואב רובוטי משולב','מצלמת כניסה בלי ענן','מדידת צריכת חשמל ומצב לילה']};
+const L=[['סלון',1],['מטבח',1],['מסדרון',0],['חדר שינה',0]],S={};
+const SC=[['🌇 ערב',1,[1,1,1,0]],['☀️ בוקר',1,[0,1,1,0]],['🍽️ ארוחת ערב',2,[1,1,0,0]],['🎥 סרט',2,[0,0,1,0]],['🌙 לילה טוב',3,[0,0,1,0]]];
+const AU=[['מסדרון נדלק עמום בשקיעה',1],['אורות נכבים בזריחה',1],['שבת: הדלקה וכיבוי לפי הזמנים',1],['דוד נכבה לבד + הודעה',2],['מזגן נדלק מעל 27°',2],['דלת נפתחה כשאין אף אחד בבית → התראה',2],['נזילה → התראה דחופה לטלפון',2],['תריס נסגר בשקיעה',3],['שואב יוצא כשכולם יצאו',3],['22:30 – מצב לילה לכל הבית',3]];
+function toast(t,m,red){const d=document.createElement('div');d.className='toast'+(red?' red':'');d.innerHTML='<b>'+t+'</b>'+m;$('toasts').prepend(d);setTimeout(()=>d.remove(),4500)}
+function sw(el,v){el.classList.toggle('on',v)}
+function drawL(){$('lights').innerHTML=L.map((l,i)=>'<div class="row"><span class="bulb '+(l[1]?'on':'')+'">💡</span><span>'+l[0]+'</span><button class="sw '+(l[1]?'on':'')+'" onclick="L['+i+'][1]^=1;drawL();power()"></button></div>').join('')}
+function drawS(){$('scenes').innerHTML=SC.map((s,i)=>s[1]<=T?'<button class="b" onclick="scene('+i+')">'+s[0]+'</button>':'').join('')}
+function scene(i){SC[i][2].forEach((v,j)=>L[j][1]=v);drawL();power();if(i==3&&T>=3)shSet(0);if(i==4){if(T>=3)shSet(0);S.boil=0;boilDraw();$('mode').textContent='לילה'}toast('תרחיש הופעל',SC[i][0])}
+function setT(t){T=t;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('act',b.dataset.t==t));
+document.querySelectorAll('.card[data-t]').forEach(c=>{const n=+c.dataset.t;c.classList.toggle('lock',n>t);c.dataset.need='בחבילת '+N[n]});
+$('sum').innerHTML='<b>חבילת '+N[t]+'</b> – מה כלול:<ul>'+SUM[t].map(x=>'<li>'+x+'</li>').join('')+'</ul>';
+$('autos').innerHTML=AU.map(a=>'<div class="row'+(a[1]>t?' lock':'')+'"><span>'+a[0]+'</span><button class="sw '+(a[1]<=t?'on':'')+'"></button></div>').join('');
+$('leavetxt').textContent='מכבה את כל האורות והמזגן'+(t>=3?', סוגר תריס ומוציא את השואב':'')+' – בלחיצה אחת.';drawS()}
+document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>setT(+b.dataset.t));
+$('shab').onclick=function(){S.shab=!S.shab;sw(this,S.shab);$('shabtxt').textContent=S.shab?'פועל · כניסת שבת 16:21 → אורות סלון ומטבח דולקים · 23:00 כיבוי · 06:30 מסדרון נדלק':'כבוי · כשמופעל, האורות פועלים לפי זמני כניסת ויציאת השבת – בלי לכוון שעונים.';$('mode').textContent=S.shab?'שבת':'בבית';if(S.shab){L[0][1]=L[1][1]=1;drawL();toast('שבת שלום 🕯️','האורות יפעלו לבד עד צאת השבת')}}
+let bt;function boiler(m){clearInterval(bt);S.boil=m;S.bmax=m;boilDraw();if(!m)return;toast('הדוד הופעל 🔥',m+' דקות');bt=setInterval(()=>{S.boil--;boilDraw();if(S.boil<=0){clearInterval(bt);toast('המים חמים 🚿','הדוד כבה לבד')}},1000)}
+function boilDraw(){$('boil').textContent=S.boil>0?'פועל · עוד '+S.boil+' דק׳':'כבוי';$('boilp').style.width=S.boil>0?(100-S.boil/S.bmax*100)+'%':'0';power()}
+S.act=24;function ac(d){S.act+=d;$('ac_t').textContent=S.act+'°'}
+$('ac').onclick=function(){S.ac=!S.ac;sw(this,S.ac);power();toast('מזגן',S.ac?'הופעל על '+S.act+'°':'כובה')}
+function doorT(){S.door=!S.door;$('door').textContent=S.door?'פתוחה':'סגורה';$('pp').style.right=S.door?'34%':'62%';if(S.door)toast('🚪 הדלת נפתחה',S.away?'אין אף אחד בבית!':'ברוכים הבאים',S.away)}
+function leak(){$('leak').textContent='נזילה!';toast('🚨 נזילה במקלחת','בדקו מיד – נשלח לכל בני הבית',1);setTimeout(()=>$('leak').textContent='יבש',5000)}
+const sh=$('sh');function shSet(v){sh.value=v;shDraw()}function shDraw(){$('shi').style.height=(100-sh.value)+'%'}sh.oninput=shDraw;
+let vt;function vac(w){clearInterval(vt);let p=0;$('vac').textContent='שואב ושוטף · '+w;vt=setInterval(()=>{p+=5;$('vacp').style.width=p+'%';if(p>=100){clearInterval(vt);$('vac').textContent='חזר לעמדה';$('vacp').style.width=0;toast('🤖 הניקיון הסתיים',w)}},400)}
+function leave(){L.forEach(l=>l[1]=0);drawL();S.ac=0;sw($('ac'),0);S.away=1;$('mode').textContent='יצאנו';if(T>=3){shSet(0);vac('כל הבית')}power();toast('להתראות 👋','הבית במצב "יצאנו"');setTimeout(()=>S.away=0,15000)}
+function power(){S.pw=120+L.filter(l=>l[1]).length*9+(S.boil>0?2500:0)+(S.ac?900:0)+Math.round(Math.random()*20);$('pw').textContent=S.pw.toLocaleString()+' W'}
+setInterval(()=>{const d=new Date(),t=d.toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'});$('clock').textContent=t;$('camts').textContent=d.toLocaleString('he-IL');power();$('temp').textContent=(S.ac?23.5:26.1+Math.random()*.3-.15).toFixed(1)+'°'},1500);
+fetch('wa.txt').then(r=>r.ok?r.text():'').then(u=>{if(u.trim())$('wa').href=u.trim()});
+drawL();shDraw();setT(1);power();
+</script></body></html>
