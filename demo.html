@@ -38,7 +38,7 @@ input[type=range]{width:100%;accent-color:var(--ha)}
 .toast{background:#fff;border-radius:14px;padding:10px 14px;box-shadow:0 4px 16px #0003;font-size:.9rem;animation:in .3s;border-right:5px solid var(--ha)}
 .toast.red{border-color:#f44336}.toast b{display:block}@keyframes in{from{transform:translateY(20px);opacity:0}}
 .cta{text-align:center;margin:0 0 40px}.cta a{display:inline-block;background:var(--a);color:var(--n);font-weight:700;padding:14px 26px;border-radius:40px;text-decoration:none}
-:focus-visible{outline:3px solid #F2B544;outline-offset:2px}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}</style></head><body>
+:focus-visible{outline:3px solid #F2B544;outline-offset:2px}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}.wide{grid-column:1/-1}.vst{display:flex;justify-content:space-between;align-items:flex-end;margin-top:10px}.vrooms{display:flex;flex-wrap:wrap;gap:6px;margin-top:6px}.chip{background:#f1f3f6;border-radius:20px;padding:5px 12px;font-size:.85rem}.chip small{color:#666}.chip.now{background:#e3f2fd;color:#0277bd;font-weight:700}.chip.done{background:#e8f5e9}</style></head><body>
 <div class="top"><a href="./">→ חזרה לעמוד הראשי</a><h1>ככה נראה הבית שלכם באפליקציה</h1>
 <div class="tabs"><button class="tab act" data-t="1">בסיס<small>להתחלה</small></button><button class="tab" data-t="2">מתקדם<small>הכי פופולרי</small></button><button class="tab" data-t="3">מלא<small>כל הבית</small></button></div></div>
 <div class="sum"><div class="box" id="sum"></div></div>
@@ -59,8 +59,14 @@ input[type=range]{width:100%;accent-color:var(--ha)}
 <div class="row"><span>חיישן נזילה – מקלחת</span><b id="leak">יבש</b><button class="b warn" onclick="leak()">דמה נזילה</button></div></div>
 <div class="card" data-t="3"><h3><span class="ic">🪟</span>תריס סלון</h3><div class="shutter"><i id="shi"></i></div>
 <input type="range" id="sh" min="0" max="100" value="100"><div class="btns"><button class="b" onclick="shSet(100)">▲ פתח</button><button class="b" onclick="shSet(50)">חצי</button><button class="b" onclick="shSet(0)">▼ סגור</button></div></div>
-<div class="card" data-t="3"><h3><span class="ic">🤖</span>שואב שוטף</h3><div class="big" id="vac">בעמדה</div><div class="prog"><i id="vacp"></i></div>
-<div class="btns"><button class="b" onclick="vac('כל הבית')">כל הבית</button><button class="b" onclick="vac('מטבח')">רק מטבח</button></div></div>
+<div class="card wide" data-t="3"><h3><span class="ic">🤖</span>שואב שוטף – תוכניות ניקוי חכמות</h3>
+<div class="btns" id="vplans"></div>
+<div class="vst"><div><span class="mut">עכשיו</span><div class="big" id="vac" style="font-size:1.25rem">בעמדה, טעון</div></div><div><span class="mut">🔋</span> <b id="vbat">100%</b></div></div>
+<div class="prog"><i id="vacp"></i></div><div class="vrooms" id="vrooms"></div>
+<div class="btns" style="margin-top:8px"><button class="b warn" onclick="vacStop()">⏹ חזרה לתחנה</button><button class="b" onclick="vacStuck()">דמה היתקעות</button></div>
+<div class="mut" id="vrep" style="margin-top:8px"></div>
+<ul class="mut" style="margin:8px 0 0;padding:0 18px;line-height:1.7"><li>כמות שאיבות ושטיפות שונה לכל חדר (מטבח: 2 שאיבות + 3 שטיפות)</li><li>ריקון אבק ושטיפת מגבים עם מילוי מים בין החדרים – הרובוט לא "שוטף יבש"</li><li>הודעה לפני כל חדר כדי להספיק לפנות חפצים, והתראה מיידית אם נתקע</li><li>תוכנית חדשה עוצרת את הקודמת – אין חפיפות</li><li>דוח קצר בסוף כל ניקוי</li></ul>
+<p class="mut" style="font-size:.78rem;margin:8px 0 0">* זמין רק לשואבים רובוטיים הנתמכים ב-Home Assistant. ניקוי לפי חדרים, שטיפה וריקון אוטומטי תלויים ביכולות הדגם.</p></div>
 <div class="card" data-t="3"><h3><span class="ic">📷</span>מצלמת כניסה</h3><div class="cam"><div class="door"></div><div class="p" id="pp">🧍</div><span class="ts" id="camts"></span><span class="rec">שידור חי</span></div><p class="mut">ההקלטות נשמרות בבית – לא בענן של אף אחד.</p></div>
 <div class="card" data-t="3"><h3><span class="ic">⚡</span>צריכת חשמל</h3><div class="big" dir="ltr" style="text-align:right" id="pw">0 W</div><div class="mut" id="kwh">היום: 6.2 קוט״ש</div></div>
 <div class="card" data-t="2"><h3><span class="ic">🏃</span>יצאנו מהבית</h3><p class="mut" id="leavetxt"></p><button class="b warn" onclick="leave()">יצאנו!</button></div>
@@ -95,7 +101,24 @@ $('ac').onclick=function(){S.ac=!S.ac;sw(this,S.ac);power();toast('מזגן',S.a
 function doorT(){S.door=!S.door;$('door').textContent=S.door?'פתוחה':'סגורה';$('pp').style.right=S.door?'34%':'62%';if(S.door)toast('🚪 הדלת נפתחה',S.away?'אין אף אחד בבית!':'ברוכים הבאים',S.away)}
 function leak(){$('leak').textContent='נזילה!';toast('🚨 נזילה במקלחת','בדקו מיד – נשלח לכל בני הבית',1);setTimeout(()=>$('leak').textContent='יבש',5000)}
 const sh=$('sh');function shSet(v){sh.value=v;shDraw()}function shDraw(){$('shi').style.height=(100-sh.value)+'%'}sh.oninput=shDraw;
-let vt;function vac(w){clearInterval(vt);let p=0;$('vac').textContent='שואב ושוטף · '+w;vt=setInterval(()=>{p+=5;$('vacp').style.width=p+'%';if(p>=100){clearInterval(vt);$('vac').textContent='חזר לעמדה';$('vacp').style.width=0;toast('🤖 הניקיון הסתיים',w)}},400)}
+const VP={'ניקוי יסודי':[['מטבח',2,3],['פינת אוכל',2,3],['סלון',2,2]],'ניקוי מהיר':[['מטבח',1,1,1],['פינת אוכל',1,1,1],['סלון',1,1,1]],'שאיבה מהירה':[['מטבח',2,0],['פינת אוכל',2,0],['סלון',2,0]],'חדרי שינה':[['חדר הורים',1,1],['חדר ילדים',1,1],['מסדרון',2,2],['אמבטיה',2,2]]};
+let vq=[],vt,vi=0,vplan='',vst=0,vbat=100,vR=[],vhold=0,vstart=0;
+function vDraw(){$('vrooms').innerHTML=vR.map(r=>'<span class="chip '+r.s+'">'+(r.s=='done'?'✅':r.s=='now'?'🧹':'⏳')+' '+r.n+' <small>'+(r.p?'שאיבה+שטיפה ×'+r.v:r.v+' שאיבות'+(r.m?' · '+r.m+' שטיפות':''))+'</small></span>').join('');$('vbat').textContent=Math.round(vbat)+'%'}
+function vac(p){if(p==='כל הבית'||!VP[p])p='ניקוי מהיר';clearInterval(vt);if(vplan&&vst)toast('🛑 התוכנית הקודמת בוטלה','כדי שלא יהיו שתי תוכניות במקביל');vplan=p;vR=VP[p].map(r=>({n:r[0],v:r[1],m:r[2],p:r[3],s:'wait'}));vq=[];
+ vR.forEach((r,i)=>{vq.push(['go',i]);if(r.p)for(let k=1;k<=r.v;k++)vq.push(['c',i,'שואבת ושוטפת במקביל',k,r.v]);else{for(let k=1;k<=r.v;k++)vq.push(['c',i,'שאיבה',k,r.v]);vq.push(['dust',i]);for(let k=1;k<=r.m;k++){vq.push(['c',i,'שטיפה רטובה',k,r.m]);vq.push(['wash',i])}}vq.push(['end',i])});
+ vq.push(['fin']);vi=0;vst=1;vbat=Math.max(vbat,85);vstart=Date.now();$('vrep').textContent='';if(vbat<40){toast('🔌 טעינה','הסוללה נמוכה – נטען ל-80% לפני היציאה')}toast('🤖 '+p,'יוצאת לדרך – '+vR.length+' אזורים');vDraw();vt=setInterval(vStep,900)}
+function vStep(){if(vhold){vhold--;if(!vhold){toast('✅ השתחררה','ממשיכה מאיפה שעצרה');}return}const s=vq[vi++];if(!s)return;const r=vR[s[1]];$('vacp').style.width=(vi/vq.length*100)+'%';vbat-=0.6;
+ if(s[0]=='go'){r.s='now';$('vac').textContent='בדרך ל'+r.n;toast('🔔 '+r.n+' – עוד רגע','פנו חפצים מהרצפה 🧸')}
+ else if(s[0]=='c'){$('vac').textContent=r.n+' · '+s[2]+' '+s[3]+'/'+s[4]}
+ else if(s[0]=='dust'){$('vac').textContent='בתחנה · ריקון מיכל אבק 🗑️'}
+ else if(s[0]=='wash'){$('vac').textContent='בתחנה · שטיפת מגבים ומילוי מים 💧'}
+ else if(s[0]=='end'){r.s='done';const nx=vR[s[1]+1];toast('✅ '+r.n+' נקי',nx?'הבא בתור: '+nx.n:'חוזרת לתחנה')}
+ else if(s[0]=='fin'){clearInterval(vt);vst=0;$('vac').textContent='חזרה לתחנה · מייבשת מגבים';$('vacp').style.width=0;
+  const t=Math.round((Date.now()-vstart)/900*1.5);$('vrep').innerHTML='📋 <b>דוח ניקוי – '+vplan+':</b> '+vR.map(x=>x.n).join(', ')+' · הכל בוצע כמתוכנן · '+t+' דק׳ · סוללה '+Math.round(vbat)+'%';toast('📋 הניקוי הסתיים','הכל בוצע כמתוכנן')}
+ vDraw()}
+function vacStop(){clearInterval(vt);if(vst)toast('⏹ חזרה לתחנה','התוכנית נעצרה');vst=0;$('vac').textContent='בעמדה';$('vacp').style.width=0}
+function vacStuck(){if(!vst){toast('🤖','הפעילו קודם תוכנית ניקוי');return}const r=vR.find(x=>x.s=='now');vhold=4;toast('⚠️ נתקעה על מפתן',(r?r.n:'')+' – כדאי להציץ',1);$('vac').textContent='נתקעה – ממתינה לעזרה'}
+$('vplans').innerHTML=Object.keys(VP).map(p=>'<button class="b" onclick="vac(\''+p+'\')">'+p+'</button>').join('');
 function leave(){L.forEach(l=>l[1]=0);drawL();S.ac=0;sw($('ac'),0);S.away=1;$('mode').textContent='יצאנו';if(T>=3){shSet(0);vac('כל הבית')}power();toast('להתראות 👋','הבית במצב "יצאנו"');setTimeout(()=>S.away=0,15000)}
 function power(){S.pw=120+L.filter(l=>l[1]).length*9+(S.boil>0?2500:0)+(S.ac?900:0)+Math.round(Math.random()*20);$('pw').textContent=S.pw.toLocaleString()+' W'}
 setInterval(()=>{const d=new Date(),t=d.toLocaleTimeString('he-IL',{hour:'2-digit',minute:'2-digit'});$('clock').textContent=t;$('camts').textContent=d.toLocaleString('he-IL');power();$('temp').textContent=(S.ac?23.5:26.1+Math.random()*.3-.15).toFixed(1)+'°'},1500);
