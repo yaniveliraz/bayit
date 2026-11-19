@@ -23,7 +23,7 @@ small{display:block;margin-top:26px;opacity:.6;line-height:1.7}small a{color:inh
 .star{animation:tw 3s infinite}@keyframes tw{50%{opacity:.2}}
 
 :focus-visible{outline:3px solid #F2B544;outline-offset:2px}
-@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+
 .more{max-width:980px;margin:auto;padding:10px 16px 30px;text-align:right}.more h2{font-size:1.6rem;margin:44px 0 14px;text-shadow:0 2px 12px #0005}
 .g{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
 .c,.steps li,details,.note,.cta{background:#0005;border:1px solid #fff2;border-radius:18px;padding:16px 18px;backdrop-filter:blur(6px);box-shadow:0 6px 20px #0002}
@@ -41,13 +41,14 @@ footer{background:#1E2A4A;padding:10px 0 1px}
 <a class="badge" href="#contact" style="color:inherit;text-decoration:none"><i></i>📍 ירושלים והסביבה</a>
 <h1>הבית הנבון</h1>
 <p class="sub">תאורה, דוד, תריסים וניקיון – וגם שבת וחג. הבית עושה את זה לבד, בלי ענן ובלי מנויים.</p>
+<a class="toapp" href="demo.html" style="display:inline-block;margin:4px 0 6px;color:#fff;font-weight:700;text-decoration:underline">📱 נסו את האפליקציה בעצמכם ←</a>
 <div class="scene"><svg viewBox="0 0 520 330" role="img" aria-label="איור מונפש של בית חכם לאורך יום: אורות, תריס, דוד ושואב שפועלים לבד">
 <g id="stars" opacity="0"><circle class="star" cx="40" cy="30" r="1.6" fill="#fff"/><circle class="star" cx="120" cy="60" r="1.2" fill="#fff" style="animation-delay:1s"/><circle class="star" cx="470" cy="40" r="1.5" fill="#fff" style="animation-delay:.5s"/><circle class="star" cx="300" cy="22" r="1.1" fill="#fff" style="animation-delay:2s"/><circle class="star" cx="400" cy="80" r="1.3" fill="#fff" style="animation-delay:1.5s"/></g>
 <circle id="sun" r="18" fill="#FFD54F"/><circle id="moon" r="13" fill="#eef2ff"/>
 <!-- street lamp --><polygon id="cglow" points="404,92 426,92 450,300 380,300" fill="#ffe066" opacity="0"/><g stroke="#9aa7c0" stroke-linecap="round" fill="none"><path d="M455 300V104q0-26-26-26h-14" stroke-width="5"/><path d="M445 300h20" stroke-width="7"/></g><path d="M400 74h30l-5 12h-20z" fill="#cfd8dc"/><ellipse id="cbulb" cx="415" cy="89" rx="9" ry="4" fill="#fff6c0"/>
 <!-- house -->
 <path d="M40 150 200 60 360 150" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-<g><rect id="boiler" x="300" y="74" width="22" height="36" rx="9" fill="#cfd8dc"/><text id="steam" x="311" y="68" font-size="14" text-anchor="middle" opacity="0">♨️</text></g>
+<g transform="rotate(-29 270 95)"><rect x="246" y="86" width="48" height="18" rx="1" fill="#2b5aa8" stroke="#cfd8dc" stroke-width="2"/><path d="M258 86v18M270 86v18M282 86v18M246 95h48" stroke="#9fc3ff" stroke-width="1"/></g><g><rect id="boiler" x="300" y="74" width="22" height="36" rx="9" fill="#cfd8dc"/><text id="steam" x="311" y="68" font-size="14" text-anchor="middle" opacity="0">♨️</text></g>
 <rect class="wall" x="62" y="146" width="276" height="160" rx="6" fill="#26355c" stroke="#fff" stroke-width="5"/>
 <line x1="200" y1="146" x2="200" y2="306" stroke="#ffffff55" stroke-width="3"/><line x1="62" y1="226" x2="200" y2="226" stroke="#ffffff55" stroke-width="3"/>
 <g class="room" tabindex="0" role="button" aria-label="אור בחדר שינה" data-r="0"><rect class="glass" x="96" y="166" width="70" height="44" rx="4" fill="#3a4a75"/><text x="131" y="194" font-size="13" text-anchor="middle" fill="#ffffffaa">🛏️</text></g>
@@ -60,7 +61,7 @@ footer{background:#1E2A4A;padding:10px 0 1px}
 <div class="clock" id="clock">06:00</div>
 <div class="feed" id="feed"></div>
 <div class="hint">💡 לחצו על חלון כדי להדליק או לכבות</div>
-<a class="btn" href="#contact">💬 ייעוץ והדגמה בבית – ללא עלות</a>
+<a class="btn" href="#contact">📞 ייעוץ טלפוני – ללא עלות</a><div class="hint" style="margin-top:8px">פגישת ייעוץ בבית – בתשלום, שמתקזז מההתקנה</div>
 
 
 </main>
@@ -102,7 +103,7 @@ const sky=[[0,'#0d1428'],[5,'#1a2346'],[6.5,'#f6a86b'],[8,'#5fa8e8'],[16,'#4a90d
 const hex=h=>[1,3,5].map(i=>parseInt(h.substr(i,2),16)),mix=(a,b,t)=>'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',')+')';
 function skyAt(h){for(let i=0;i<sky.length-1;i++){const[a,c1]=sky[i],[b,c2]=sky[i+1];if(h>=a&&h<b)return mix(hex(c1),hex(c2),(h-a)/(b-a))}return sky[0][1]}
 const EV=[[6.5,'☀️','זריחה – התריס בסלון נפתח'],[7,'🌅','אור עדין במטבח לבוקר טוב'],[10,'🤖','כולם יצאו – השואב יצא לנקות'],[11.6,'✅','הניקיון הסתיים, השואב חזר לתחנה'],[17.2,'🌇','שקיעה – אורות הסלון נדלקו, התריס נסגר'],[17.5,'🔥','הדוד התחיל לחמם'],[18.3,'🚿','המים חמים – הדוד כבה לבד'],[21.5,'🛏️','אור לילה עמום בחדר השינה'],[23.3,'🌙','לילה טוב – הכל כבה בבית']];
-let h=6,last=-1,hold=0,man=[null,null,null],DAY=24000;const rm=matchMedia('(prefers-reduced-motion: reduce)').matches;
+let h=6,last=-1,hold=0,man=[null,null,null],DAY=24000;const rm=false;
 function auto(h){return[(h>=21.5&&h<23.3)?.35:0,(h>=7&&h<8.5)?.6:(h>=17.2&&h<21)?1:0,(h>=17.2&&h<23.3)?1:0]}
 function show(e){hold=performance.now()+2800;const f=$('feed');f.innerHTML='<div class="ev"><span>'+e[1]+'</span>'+e[2]+'</div>'}
 function draw(){document.body.style.setProperty('--sky',skyAt(h));
