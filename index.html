@@ -21,7 +21,7 @@ svg{width:100%;height:100%;overflow:visible}
 .btn2{display:inline-block;margin-top:12px;color:#fff;border:2px solid #ffffff66;padding:11px 24px;border-radius:40px;text-decoration:none;font-weight:700;background:#0003}
 small{display:block;margin-top:26px;opacity:.6;line-height:1.7}small a{color:inherit}
 .star{animation:tw 3s infinite}@keyframes tw{50%{opacity:.2}}
-.hook{animation:bob 3.5s ease-in-out infinite;transform-origin:0 0}@keyframes bob{50%{transform:translateY(14px)}}
+
 :focus-visible{outline:3px solid #F2B544;outline-offset:2px}
 @media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
 .more{max-width:980px;margin:auto;padding:10px 16px 30px;text-align:right}.more h2{font-size:1.6rem;margin:44px 0 14px;text-shadow:0 2px 12px #0005}
@@ -44,9 +44,7 @@ footer{background:#1E2A4A;padding:10px 0 1px}
 <div class="scene"><svg viewBox="0 0 520 330" role="img" aria-label="איור מונפש של בית חכם לאורך יום: אורות, תריס, דוד ושואב שפועלים לבד">
 <g id="stars" opacity="0"><circle class="star" cx="40" cy="30" r="1.6" fill="#fff"/><circle class="star" cx="120" cy="60" r="1.2" fill="#fff" style="animation-delay:1s"/><circle class="star" cx="470" cy="40" r="1.5" fill="#fff" style="animation-delay:.5s"/><circle class="star" cx="300" cy="22" r="1.1" fill="#fff" style="animation-delay:2s"/><circle class="star" cx="400" cy="80" r="1.3" fill="#fff" style="animation-delay:1.5s"/></g>
 <circle id="sun" r="18" fill="#FFD54F"/><circle id="moon" r="13" fill="#eef2ff"/>
-<!-- crane -->
-<g stroke="#F2B544" stroke-width="4" fill="none" stroke-linecap="round"><path d="M455 300V70M440 300h30M455 74h-80M455 74l-35 -22M455 74l25 -14"/><path d="M455 120l-20-20M455 170l-20-20M455 220l-20-20M455 270l-20-20" stroke-width="2"/></g>
-<g class="hook"><line x1="398" y1="74" x2="398" y2="120" stroke="#ddd" stroke-width="1.5"/><path d="M392 120h12l-3 10h-6z" fill="#ccc"/><g transform="translate(398 140)"><circle r="9" id="cbulb" fill="#fff6c0"/><rect x="-4" y="8" width="8" height="6" fill="#aaa"/></g></g>
+<!-- street lamp --><polygon id="cglow" points="404,92 426,92 450,300 380,300" fill="#ffe066" opacity="0"/><g stroke="#9aa7c0" stroke-linecap="round" fill="none"><path d="M455 300V104q0-26-26-26h-14" stroke-width="5"/><path d="M445 300h20" stroke-width="7"/></g><path d="M400 74h30l-5 12h-20z" fill="#cfd8dc"/><ellipse id="cbulb" cx="415" cy="89" rx="9" ry="4" fill="#fff6c0"/>
 <!-- house -->
 <path d="M40 150 200 60 360 150" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
 <g><rect id="boiler" x="300" y="74" width="22" height="36" rx="9" fill="#cfd8dc"/><text id="steam" x="311" y="68" font-size="14" text-anchor="middle" opacity="0">♨️</text></g>
@@ -113,7 +111,7 @@ function draw(){document.body.style.setProperty('--sky',skyAt(h));
  const boil=h>=17.5&&h<18.3;$('boiler').setAttribute('fill',boil?'#ff8a65':'#cfd8dc');$('steam').setAttribute('opacity',boil?1:0);
  const d=h>=6&&h<18,t=d?(h-6)/12:((h+6)%24)/12,x=40+t*440,y=120-Math.sin(t*Math.PI)*95;
  $('sun').setAttribute('cx',x);$('sun').setAttribute('cy',y);$('sun').setAttribute('opacity',d?1:0);$('moon').setAttribute('cx',x);$('moon').setAttribute('cy',y);$('moon').setAttribute('opacity',d?0:1);
- $('stars').setAttribute('opacity',(h<5.5||h>19)?1:0);$('cbulb').setAttribute('fill',(h<6.5||h>17.2)?'#ffe066':'#fff6c0');
+ $('stars').setAttribute('opacity',(h<5.5||h>19)?1:0);$('cbulb').setAttribute('fill',(h<6.5||h>17.2)?'#ffe066':'#fff6c0');$('cglow').setAttribute('opacity',(h<6.5||h>17.2)?.28:0);
  const vx=(h>=10&&h<11.6)?(225+Math.abs(Math.sin((h-10)*9))*90):230;$('vac').setAttribute('transform','translate('+vx+' 292)');
  $('clock').textContent=String(Math.floor(h)).padStart(2,'0')+':'+String(Math.floor(h%1*60)).padStart(2,'0');
  let i=-1;for(let k=0;k<EV.length;k++)if(EV[k][0]<=h)i=k;if(i!==last&&i>=0){last=i;show(EV[i]);man=[null,null,null]}}
