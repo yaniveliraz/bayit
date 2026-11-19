@@ -89,7 +89,7 @@ function drawS(){$('scenes').innerHTML=SC.map((s,i)=>s[1]<=T?'<button class="b" 
 function scene(i){SC[i][2].forEach((v,j)=>L[j][1]=v);drawL();power();if(i==3&&T>=3)shSet(0);if(i==4){if(T>=3)shSet(0);S.boil=0;boilDraw();$('mode').textContent='לילה'}toast('תרחיש הופעל',SC[i][0])}
 function setT(t){T=t;document.querySelectorAll('.tab').forEach(b=>b.classList.toggle('act',b.dataset.t==t));
 document.querySelectorAll('.card[data-t]').forEach(c=>{const n=+c.dataset.t;c.classList.toggle('lock',n>t);c.dataset.need='בחבילת '+N[n]});
-$('sum').innerHTML='<b>חבילת '+N[t]+'</b> – מה כלול:<ul>'+SUM[t].map(x=>'<li>'+x+'</li>').join('')+'</ul><div style="font-size:.8rem;color:#5f5f5f;margin-top:8px">המחיר נקבע בהצעת מחיר אישית אחרי פגישת ייעוץ בבית. עלות הפגישה מתקזזת מההתקנה.</div>';
+$('sum').innerHTML='<b>חבילת '+N[t]+'</b> – מה כלול:<ul>'+SUM[t].map(x=>'<li>'+x+'</li>').join('')+'</ul><div style="font-size:.8rem;color:#5f5f5f;margin-top:8px">המחיר נקבע בהצעת מחיר אישית אחרי שיחת ייעוץ.</div>';
 $('autos').innerHTML=AU.map(a=>'<div class="row'+(a[1]>t?' lock':'')+'"><span>'+a[0]+'</span><button class="sw '+(a[1]<=t?'on':'')+'"></button></div>').join('');
 $('leavetxt').textContent='מכבה את כל האורות והמזגן'+(t>=3?', סוגר תריס ומוציא את השואב':'')+' – בלחיצה אחת.';drawS()}
 document.querySelectorAll('.tab').forEach(b=>b.onclick=()=>setT(+b.dataset.t));
