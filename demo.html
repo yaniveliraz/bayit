@@ -55,7 +55,7 @@ body{margin:0;background:#f3f5fa;font-family:system-ui,-apple-system,"Segoe UI",
 #p3 details.price{max-width:900px;margin:18px auto 0;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 2px 10px #1e2a4a14}
 #p3 details.price summary{font-size:18px;font-weight:700;cursor:pointer;padding:4px 0}
 #p3 .pt{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}#p3 .pt td{padding:6px 4px;border-bottom:1px solid #eef0f5;vertical-align:top}#p3 .pt td.n{white-space:nowrap;text-align:left;direction:ltr}#p3 .pt tr.rm td{font-weight:700;background:#f6f7fb}
-#p3 .pt .ok{color:#2e7d32}#p3 .pt .no{color:#aaa}#p3 .disc{font-size:12.5px;opacity:.75;line-height:1.6;margin-top:10px}
+#p3 .pt tr.k{cursor:pointer}#p3 .pt tr.k:not(.sel) td{opacity:.5}#p3 .pt tr.core{cursor:default}#p3 .pt input{width:20px;height:20px;accent-color:#1e2a4a}#p3 .pt .ds{font-size:12.5px;opacity:.75;margin-top:2px}#p3 .pt .bs{color:#b26a00}#p3 .pt .see{font-size:12px;color:#1565c0;padding:4px 0 0}#p3 .pt tr.tot td{font-weight:700;border-top:2px solid #1e2a4a}#p3 .pt .ok{color:#2e7d32}#p3 .pt .no{color:#aaa}#p3 .disc{font-size:12.5px;opacity:.75;line-height:1.6;margin-top:10px}
 
 @media (max-width:700px){#p3 .house{flex-basis:100%}#p3 .scr{height:520px}#p3 .sim button{padding:5px 8px;font-size:12px}}
 @media (prefers-reduced-motion:reduce){#p3 *{transition:none!important}}
@@ -78,8 +78,8 @@ body{margin:0;background:#f3f5fa;font-family:system-ui,-apple-system,"Segoe UI",
 <div class="sh" id="p3s"><div class="sheet" id="p3sh"></div></div>
 </div></div>
 </div>
-<details class="price" id="p3pr"><summary>💰 כמה עולה מה שראיתם?</summary><div id="p3pt"></div>
-<div class="disc"><b>המחירים נבדקו ב־22.11.2026</b> מול KSP, איקאה, באג ומחירון מידרג – לפי מחירים רגילים, לא מחירי מבצע (בלאק פריידיי). כל האוטומציות שבהדגמה כלולות במחיר. שתי שורות של תנור הן חלופות – בוחרים אחת.</div>
+<details class="price" id="p3pr" open><summary>🧩 בנו את הבית שלכם – סמנו מה רוצים, והמחיר מתעדכן</summary><div id="p3pt"></div>
+<div class="disc"><b>המחירים נבדקו ב־22.11.2026</b> מול KSP, איקאה, באג ומחירון מידרג – לפי מחירים רגילים, לא מחירי מבצע (בלאק פריידיי). כל האוטומציות שבהדגמה כלולות במחיר. שתי שורות התנור הן חלופות – מסמנים אחת.</div>
 <div class="disc">המחירים הם הערכה בלבד ואינם הצעה מחייבת – המחיר הסופי נקבע אחרי שיחה או ביקור, לפי הדגם והחיווט. המחירים ללא מע״מ (עוסק פטור). עבודת חשמל נעשית רק על ידי חשמלאי מוסמך, ועלותה כלולה במחיר הפריט. תחזוקה מרחוק – לבחירה, ₪50–100 לחודש. המערכת מתריעה ומסייעת אך אינה מונעת נזקים, ואינה מחליפה מערכת אזעקה, גלאי עשן תקני או השגחה. הדגמים להמחשה ועשויים להשתנות. ההדגמה להמחשה בלבד – בבית אמיתי הכפתורים שולטים במכשירים שלכם, גם בלי אינטרנט. Home Assistant ושמות המוצרים הם סימנים מסחריים של בעליהם; העסק אינו קשור אליהם רשמית.</div></details>
 </section>
 <script src="js/three.min.js"></script>
@@ -116,32 +116,43 @@ function stateTxt(d){switch(d.k){
 const isOn=d=>d.k=='shutter'||d.k=='curtain'?d.pos>0:d.k=='temp'?0:!!d.on;
 const icon=d=>d.k=='lock'&&!d.on?'🔓':IC[d.k];
 
-// ---------- plans & prices (unit prices from rooms.html; extra bulbs/plugs at the site's unit price) ----------
-// pkg: base = in the basic package · add = add-on (priced) · quote = shown in the demo, priced per quote
-const PR=[['בסיס לכל הבית',[['יחידת בקרה + מודול Thread/Zigbee, התקנה ואפליקציה',1200,1800,'base'],['שעון שבת וחג',300,500,'base']]],
-['סלון',[['נורה חכמה – תאורת סלון',90,200,'base','lc'],['שקע חכם – מנורת עמידה',120,200,'base','lf'],['לחצן קיר אלחוטי',60,150,'base'],['חיישן טמפרטורה ולחות',80,200,'base'],['נורה חכמה – פינת אוכל',90,200,'add','ld'],['נורה צבעונית',90,200,'add','ll'],['שליטה במזגן מהטלפון',300,450,'add','ac'],['מתג תריס חכם (חשמלאי מוסמך)',550,750,'add','ls'],['חיבור שואב רובוטי קיים',200,300,'add','vac'],['וילון חשמלי',0,0,'quote','cur'],['שליטה בטלוויזיה',0,0,'quote','tv']]],
-['מטבח',[['שקע חכם – פלטה לשבת',120,200,'base','pl'],['חיישן הצפה',80,180,'base'],['שקע חכם – לד מתחת לארונות',120,200,'add','kl'],['מתג תאורה חכם – ספוטים (חשמלאי מוסמך)',550,750,'add','ks'],['מתג תאורה חכם – מנורות מעל האי (חשמלאי מוסמך)',550,750,'add','kp'],['ניתוק חשמל לתנור – כל תנור (מתג 16A, חשמלאי מוסמך)',450,650,'add','ov'],['או: נעילת ילדים לתנור שכבר מחובר ל־Wi‑Fi',150,300,'add']]],
-['חדר ילדים',[['נורת לילה חכמה',90,200,'base','kn'],['שקע חכם לרדיאטור עם טיימר',120,200,'base','ht'],['חיישן טמפרטורה ולחות',80,200,'base'],['לחצן אלחוטי ליד המיטה',60,150,'base'],['נורה חכמה – תקרה',90,200,'add','kc'],['מתג תריס חכם (חשמלאי מוסמך)',550,750,'add','kss']]],
-['חדר הורים',[['נורה חכמה – תקרה',90,200,'base','pc'],['לחצן אלחוטי ליד המיטה',60,150,'base'],['שקע חכם – מנורות ליד המיטה',120,200,'add','pb'],['חיישן טמפרטורה ולחות',80,200,'add','pt'],['מתג תריס חכם (חשמלאי מוסמך)',550,750,'add','ps'],['מאוורר תקרה',0,0,'quote','fan']]],
-['מקלחת ושירותים',[['דוד חכם (חשמלאי מוסמך)',600,800,'base','bo'],['נורה חכמה – תקרה',90,200,'add','bl'],['נורה חכמה – מראה',90,200,'add','bm']]],
-['כניסה ומסדרון',[['פעמון עם מצלמה',600,850,'base','bell'],['חיישן דלת',80,180,'base'],['נורה חכמה – מסדרון',90,200,'base','co'],['נורה חכמה – מבואה',90,200,'add','eh'],['חיישן תנועה',80,180,'add','mo'],['מנעול חכם (על הצילינדר הקיים, בלי חשמלאי)',900,1500,'add','lk']]],
-['גינה ומרפסת',[['תאורת מרפסת',0,0,'quote','ob'],['פנסי גינה',0,0,'quote','og'],['השקיה',0,0,'quote','ir']]]];
-const CAT={};for(const[,it]of PR)for(const[n,lo,hi,pkg,id]of it)if(id)CAT[id]={n,lo,hi,pkg};
-let plan='full';
-const locked=id=>plan=='base'&&CAT[id]&&CAT[id].pkg!='base';
-const AUTO={base:'שעון שבת וחג · תאורה לפי שקיעה ולילה · תרחישים · פעמון עם תמונה בטלפון · התראת גשם · דוד ורדיאטור עם טיימר',
-full:'הכל מהבסיס + תריסים שנסגרים לבד בגשם · אור מסדרון לפי תנועה · שואב רובוטי · נעילת תנור לילדים · מנעול חכם · מזגן · אורות נוספים'};
-function plansUI(){let lo=0,hi=0;for(const[,it]of PR)for(const[n,a,b,pkg]of it)if(pkg=='base'||(plan=='full'&&pkg=='add')){lo+=a;hi+=b}
- $('#p3pl').innerHTML=`<button class="${plan=='base'?'on':''}" data-plan="base">⭐ חבילה בסיסית</button><button class="${plan=='full'?'on':''}" data-plan="full">🌟 בסיס + תוספות</button><div class="sum">${plan=='base'?'החבילה הבסיסית':'מה שמופעל בהדגמה'}: <b dir="ltr" style="unicode-bidi:isolate">₪${lo.toLocaleString()}–${hi.toLocaleString()}</b> כולל התקנה · ללא מנוי חודשי${plan=='full'?' · + פריטים לפי הצעת מחיר':''}<br><small>🤖 ${AUTO[plan]}</small></div>`;
- const T={base:'<td class="ok">✓</td>',add:plan=='full'?'<td class="ok">✓</td>':'<td class="no">–</td>',quote:plan=='full'?'<td class="ok">✓</td>':'<td class="no">–</td>'};
- $('#p3pt').innerHTML='<table class="pt">'+PR.map(([r,it])=>`<tr class="rm"><td colspan="3">${r}</td></tr>`+it.map(([n,a,b,pkg])=>`<tr>${T[pkg]}<td>${n}${pkg=='add'?' <small>(תוספת)</small>':pkg=='quote'?' <small>(לפי הצעת מחיר)</small>':''}</td><td class="n">${a?`₪${a}–${b}`:'—'}</td></tr>`).join('')).join('')+'</table>'}
-document.getElementById('p3pl').addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(!b)return;plan=b.dataset.plan;
- if(plan=='base')for(const id in CAT)if(locked(id)){const d=D[id];if(d.k=='shutter'||d.k=='curtain')d.pos=100;else if(d.k!='lock')d.on=0}plansUI();ui()});
-const lockTxt=id=>{const c=CAT[id];return c.pkg=='quote'?'לפי הצעת מחיר':`תוספת · ₪${c.lo}–${c.hi}`};
+// ---------- build-your-home catalog: [name, lo, hi, pkg, deviceId, what-it-does, group] ----------
+// pkg: core = always included · base = in the basic package · add = add-on · quote = priced per quote. All automations are included.
+const PR=[['בסיס לכל הבית',[['יחידת בקרה + מודול Thread/Zigbee, התקנה ואפליקציה',1200,1800,'core','','המוח של הבית – הכל עובד מקומית, גם בלי אינטרנט, באפליקציה אחת'],['שעון שבת וחג',300,500,'core','','אורות, פלטה ודוד נדלקים ונכבים לבד לפי זמני השבת והחגים']]],
+['סלון',[['נורה חכמה – תאורת סלון',90,200,'base','lc','מתעמעמת ומתחממת לבד לקראת הערב, ונכנסת לתרחישים כמו "סרט"'],['שקע חכם – מנורת עמידה',120,200,'base','lf','מדליק ומכבה כל מנורה רגילה – בשעון, בשבת או בלחיצה'],['לחצן קיר אלחוטי',60,150,'base','','נדבק לקיר בלי קידוח – תרחיש שלם בלחיצה אחת'],['חיישן טמפרטורה ולחות',80,200,'base','','מודד חום ולחות ומזין את ההחלטות של החימום והמזגן'],['נורה חכמה – פינת אוכל',90,200,'add','ld','אור לשולחן שנדלק לבד בארוחת ערב ובשבת'],['נורה צבעונית',90,200,'add','ll','אווירה בצבעים – לסרט, למסיבה או לחג'],['שליטה במזגן מהטלפון',300,450,'add','ac','מדליקים בדרך הביתה, והמזגן נכבה לבד כשכולם יוצאים'],['מתג תריס חכם (חשמלאי מוסמך)',550,750,'add','ls','נפתח בבוקר, נסגר בלילה ובגשם – גם כשאתם לא בבית'],['חיבור שואב רובוטי קיים',200,300,'add','vac','מתחיל לנקות כשכולם יצאו, וחוזר לתחנה כשמגיעים'],['וילון חשמלי',0,0,'quote','cur','נפתח ונסגר לפי שעה, שמש או תרחיש'],['שליטה בטלוויזיה',0,0,'quote','tv','"סרט" – מכבה אורות וסוגר תריסים בלחיצה אחת']]],
+['מטבח',[['שקע חכם – פלטה לשבת',120,200,'base','pl','הפלטה נדלקת לבד לפני שבת ונכבית בסופה'],['חיישן הצפה',80,180,'base','','התראה לטלפון ברגע שיש מים מתחת לכיור או למדיח'],['שקע חכם – לד מתחת לארונות',120,200,'add','kl','תאורת עבודה שנדלקת לבד עם הערב'],['מתג תאורה חכם – ספוטים (חשמלאי מוסמך)',550,750,'add','ks','המפסק בקיר ממשיך לעבוד – ונוספת שליטה מהטלפון ומהתרחישים'],['מתג תאורה חכם – מנורות מעל האי (חשמלאי מוסמך)',550,750,'add','kp','אור לאי שנכנס לתרחישים ונכבה לבד בלילה'],['ניתוק חשמל לתנור – כל תנור (מתג 16A, חשמלאי מוסמך)',450,650,'add','ov','הילדים לא יכולים להדליק את התנור – אתם פותחים מהטלפון','oven'],['או: נעילת ילדים לתנור שכבר מחובר ל־Wi‑Fi',150,300,'add','ov','נעילת הילדים של התנור עצמו, מהטלפון ומהתרחישים','oven']]],
+['חדר ילדים',[['נורת לילה חכמה',90,200,'base','kn','אור חם ועדין שנדלק בלילה ב־5% בלבד'],['שקע חכם לרדיאטור עם טיימר',120,200,'base','ht','מחמם לפי הטמפרטורה בחדר ונכבה לבד בטיימר'],['חיישן טמפרטורה ולחות',80,200,'base','','מודד את החדר ושולח המלצה אם לחמם הלילה'],['לחצן אלחוטי ליד המיטה',60,150,'base','','הילדים מדליקים אור לילה בלי לקום'],['נורה חכמה – תקרה',90,200,'add','kc','אור שנכבה לבד בשעת השינה'],['מתג תריס חכם (חשמלאי מוסמך)',550,750,'add','kss','נסגר לבד בשעת השינה ונפתח בבוקר']]],
+['חדר הורים',[['נורה חכמה – תקרה',90,200,'base','pc','אור בוקר הדרגתי במקום שעון מעורר'],['לחצן אלחוטי ליד המיטה',60,150,'base','','"לילה טוב" – מכבה את כל הבית בלחיצה מהמיטה'],['שקע חכם – מנורות ליד המיטה',120,200,'add','pb','מנורות קריאה שנכבות לבד אחרי שנרדמים'],['חיישן טמפרטורה ולחות',80,200,'add','pt','מעקב חום ולחות בחדר השינה'],['מתג תריס חכם (חשמלאי מוסמך)',550,750,'add','ps','נסגר בלילה ונפתח בהדרגה בבוקר'],['מאוורר תקרה',0,0,'quote','fan','מופעל לבד לפי החום בחדר']]],
+['מקלחת ושירותים',[['דוד חכם (חשמלאי מוסמך)',600,800,'base','bo','מחמם רק כשצריך – לפי השמש והשעה – ומודיע כשהמים חמים'],['נורה חכמה – תקרה',90,200,'add','bl','אור שנכבה לבד כששוכחים'],['נורה חכמה – מראה',90,200,'add','bm','אור למראה שנדלק בבוקר']]],
+['כניסה ומסדרון',[['פעמון עם מצלמה',600,850,'base','bell','רואים מי בדלת בטלפון, גם מחוץ לבית – ההקלטה נשמרת בבית'],['חיישן דלת',80,180,'base','','יודע אם הדלת נשארה פתוחה ומתריע'],['נורה חכמה – מסדרון',90,200,'base','co','אור לילה עדין כדי לא להיתקל בחושך'],['נורה חכמה – מבואה',90,200,'add','eh','אור כניסה שנדלק כשמגיעים הביתה בחושך'],['חיישן תנועה',80,180,'add','mo','מדליק אור במסדרון כשעוברים בלילה, ומכבה לבד'],['מנעול חכם (על הצילינדר הקיים, בלי חשמלאי)',900,1500,'add','lk','פותחים לאורח מהטלפון, והדלת ננעלת לבד אחרי שנכנס']]],
+['גינה ומרפסת',[['תאורת מרפסת',0,0,'quote','ob','נדלקת בשקיעה ונכבית בלילה'],['פנסי גינה',0,0,'quote','og','תאורת גינה לפי השקיעה'],['השקיה',0,0,'quote','ir','משקה לפי לוח זמנים ומדלגת כשיורד גשם']]]];
+const IT={},CAT={};PR.forEach(([,it],r)=>it.forEach(([n,lo,hi,pkg,id,ds,g],i)=>{const k=r+'.'+i;IT[k]={k,n,lo,hi,pkg,id,ds,g};if(id)(CAT[id]=CAT[id]||[]).push(k)}));
+const PRESET={base:k=>['core','base'].includes(IT[k].pkg),full:k=>!(IT[k].g&&IT[k].n.startsWith('או:'))};
+let sel=new Set(Object.keys(IT).filter(PRESET.full));
+const locked=id=>CAT[id]&&D[id]?!CAT[id].some(k=>sel.has(k)):false;
+const isPreset=p=>Object.keys(IT).every(k=>sel.has(k)==PRESET[p](k));
+const money=(a,b)=>`<bdi dir="ltr">₪${a.toLocaleString()}–${b.toLocaleString()}</bdi>`;
+function devOff(id){const d=D[id];if(!d)return;if(d.k=='shutter'||d.k=='curtain')d.pos=100;else if(d.k!='lock')d.on=0}
+function tog(k,on,quiet){const it=IT[k];if(!it||it.pkg=='core')return;if(on===undefined)on=!sel.has(k);
+ if(on){if(it.g)for(const o in IT)if(IT[o].g==it.g&&o!=k)sel.delete(o);sel.add(k);if(it.id&&D[it.id]){const d=D[it.id];if(d.k=='light')apply(d.id,{on:1});else if(d.k=='shutter'||d.k=='curtain')apply(d.id,{pos:100})}}
+ else{sel.delete(k);if(it.id&&locked(it.id))devOff(it.id)}
+ if(!quiet)say(on?`➕ ${it.n}: ${it.ds}`:`➖ ${it.n} הוסר מהבחירה`);plansUI();ui()}
+function plansUI(){let lo=0,hi=0,n=0,q=0;for(const k of sel){const it=IT[k];if(it.lo){lo+=it.lo;hi+=it.hi}else q++;n++}
+ const cur=isPreset('base')?'base':isPreset('full')?'full':'';
+ $('#p3pl').innerHTML=`<button class="${cur=='base'?'on':''}" data-plan="base">⭐ חבילה בסיסית</button><button class="${cur=='full'?'on':''}" data-plan="full">🌟 הכל</button><button class="${cur?'':'on'}" data-plan="mine">✏️ בחירה אישית</button><div class="sum">הבחירה שלכם · ${n} פריטים: <b style="unicode-bidi:isolate">${money(lo,hi)}</b> כולל התקנה · ללא מנוי חודשי${q?` · + ${q} לפי הצעת מחיר`:''}<br><small>🤖 כל האוטומציות כלולות במחיר · סמנו והסירו פריטים בטבלה למטה, או לחצו על אריח נעול בטלפון</small></div>`;
+ $('#p3pt').innerHTML='<table class="pt">'+PR.map(([r,it],ri)=>`<tr class="rm"><td colspan="3">${r}</td></tr>`+it.map((x,i)=>{const k=ri+'.'+i,o=IT[k],on=sel.has(k);
+  return `<tr class="k${on?' sel':''}${o.pkg=='core'?' core':''}" data-ck="${k}"><td><input type="checkbox" ${on?'checked':''} ${o.pkg=='core'?'disabled':''} aria-label="${o.n}"></td><td><b>${o.n}</b>${o.pkg=='base'?' <small class="bs">⭐ בסיס</small>':''}${o.pkg=='quote'?' <small>(לפי הצעת מחיר)</small>':''}<div class="ds">${o.ds}</div>${o.id&&D[o.id]?`<button class="see" data-see="${o.id}">👀 לראות בבית</button>`:''}</td><td class="n">${o.lo?money(o.lo,o.hi):'—'}</td></tr>`}).join('')).join('')+`<tr class="tot"><td></td><td>סה״כ הבחירה שלכם</td><td class="n">${money(lo,hi)}</td></tr></table>`}
+function toHouse(){const h=$('.house');try{if(window.frameElement){const f=frameElement.getBoundingClientRect();parent.scrollTo({top:parent.scrollY+f.top+h.getBoundingClientRect().top-8,behavior:'smooth'});return}}catch(e){}h.scrollIntoView({behavior:'smooth',block:'start'})}
+document.getElementById('p3pl').addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(!b||b.dataset.plan=='mine'){if(b)$('#p3pr').scrollIntoView({behavior:'smooth'});return}
+ sel=new Set(Object.keys(IT).filter(PRESET[b.dataset.plan]));for(const id in CAT)if(locked(id))devOff(id);plansUI();ui()});
+document.getElementById('p3pt').addEventListener('click',e=>{const sb=e.target.closest('[data-see]');
+ if(sb){const id=sb.dataset.see,d=D[id];const k=CAT[id].find(x=>sel.has(x));if(!k)tog(CAT[id][0],true,1);view=d.r;ui();if(window.P3)P3.focus(view);say(`${IT[k||CAT[id][0]].n}: ${IT[k||CAT[id][0]].ds}`);toHouse();return}
+ const tr=e.target.closest('[data-ck]');if(tr){e.preventDefault();tog(tr.dataset.ck)}});
+const lockTxt=id=>{const c=IT[CAT[id][0]];return c.pkg=='quote'?'לפי הצעת מחיר':`תוספת · ₪${c.lo}–${c.hi}`};
 function tile(d){const on=isOn(d),c=COL[d.k]||'#999';let f='';
  if(d.k=='shutter'||d.k=='curtain')f=`<div class="feat"><button data-sh="${d.id}" data-v="100" aria-label="פתח">▲</button><button data-sh="${d.id}" data-v="50" aria-label="חצי">◼</button><button data-sh="${d.id}" data-v="0" aria-label="סגור">▼</button></div>`;
  if(d.k=='light'&&d.on&&!d.nodim){const bi=L.reduce((m,v,i)=>Math.abs(v-d.b)<Math.abs(L[m]-d.b)?i:m,0);f=`<input type="range" min="0" max="9" value="${bi}" data-br="${d.id}" aria-label="בהירות">`}
- if(locked(d.id))return `<div class="tile lock" data-lock="${d.id}"><div class="th"><span class="ti">${icon(d)}</span><div class="tx"><b>${d.n}</b><span>לא בחבילה הבסיסית</span></div></div><span class="tag">${CAT[d.id].pkg=='quote'?'לפי הצעת מחיר':`תוספת · <bdi dir="ltr">₪${CAT[d.id].lo}–${CAT[d.id].hi}</bdi>`}</span></div>`;
+ if(locked(d.id))return `<div class="tile lock" data-lock="${d.id}"><div class="th"><span class="ti">${icon(d)}</span><div class="tx"><b>${d.n}</b><span>לא בבחירה – לחצו להוספה</span></div></div><span class="tag">➕ ${lockTxt(d.id)}</span></div>`;
  return `<div class="tile${f?' wide':''}" data-open="${d.id}"><div class="th"><button class="ti" data-tg="${d.id}" style="${on?`background:${c}33;color:${c}`:''}" aria-label="הפעלה/כיבוי">${icon(d)}</button><div class="tx"><b>${d.n}</b><span>${stateTxt(d)}</span></div></div>${f}</div>`}
 function ui(){
  $('#p3t').innerHTML=Object.keys(R).map(k=>`<button class="tab ${k==view?'on':''}" data-view="${k}">${R[k].i} ${R[k].n}</button>`).join('');
@@ -192,7 +203,7 @@ function setShab(v){shab=v;$('[data-sim="shabbat"]').classList.toggle('on',v);if
 $('.scr').addEventListener('click',e=>{if(e.target==$('#p3s')){closeSheet();return}
  const b=e.target.closest('[data-tg],[data-sh],[data-view],[data-scene],[data-open],[data-tone],[data-col],[data-ac],[data-shab],[data-door],[data-vm],[data-lock]');if(!b)return;const s=b.dataset;
  if(s.shab){setShab(!shab);return}
- if(s.lock){say(`${D[s.lock].n}: ${lockTxt(s.lock)}`);return}
+ if(s.lock){tog(CAT[s.lock][0],true);return}
  if(s.view){view=s.view;ui();if(window.P3)P3.focus(view);return}
  if(s.door){if(s.door=='1'&&locked('lk')){say('הפעמון והתמונה כלולים בבסיס. פתיחת הדלת מהטלפון דורשת מנעול חכם – '+lockTxt('lk')+'');closeSheet();return}if(s.door=='1'){apply('lk',{on:0});say('הדלת נפתחה מהטלפון – ותינעל שוב לבד');setTimeout(()=>{apply('lk',{on:1});D.bell.on=0;ui()},6000);if(window.P3)P3.visitorIn()}closeSheet();ui();return}
  if(shab&&!s.view)return;
@@ -210,7 +221,7 @@ $('#p3h').addEventListener('input',e=>{hr=+e.target.value;$('#p3hl').textContent
 $('#p3h').addEventListener('change',()=>autoClock());
 document.querySelector('#p3 .sim').addEventListener('click',e=>{const b=e.target.closest('[data-sim]');if(!b)return;const k=b.dataset.sim;
  if(k=='shabbat')setShab(!shab);
- if(k=='rain'){rain=!rain;b.classList.toggle('on',rain);if(rain)runTargets({ls:{pos:0},kss:{pos:0},ps:{pos:0},ir:{on:0}},plan=='base'?'גשם בדרך: התראה נשלחה לטלפון (סגירת תריסים אוטומטית – עם מתג תריס, תוספת)':'גשם זוהה: התריסים נסגרו וההשקיה בוטלה');else say('הגשם נפסק');ui()}
+ if(k=='rain'){rain=!rain;b.classList.toggle('on',rain);if(rain)runTargets({ls:{pos:0},kss:{pos:0},ps:{pos:0},ir:{on:0}},locked('ls')?'גשם בדרך: התראה נשלחה לטלפון (סגירת תריסים אוטומטית – עם מתג תריס, תוספת)':'גשם זוהה: התריסים נסגרו וההשקיה בוטלה');else say('הגשם נפסק');ui()}
  if(k=='bell'){D.bell.on=1;view='hall';ui();if(window.P3){P3.focus('hall');P3.visitor()}setTimeout(()=>openSheet('bell'),900);say('צלצול בדלת: תמונה מהמצלמה נשלחה לטלפון')}
  if(k=='walk'){if(window.P3)P3.walk()}});
 setInterval(()=>{const h=D.ht;h.temp=Math.max(19.2,Math.min(23,h.temp+(h.on?.1:-.02)));D.pt.temp=Math.max(19,Math.min(23,D.pt.temp+(D.ac.on?.06:-.01)));if(D.bo.on&&D.bo.m>1)D.bo.m--;
