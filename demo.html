@@ -59,7 +59,7 @@ body{margin:0;background:#f3f5fa;font-family:system-ui,-apple-system,"Segoe UI",
 
 @media (max-width:700px){#p3 .house{flex-basis:100%}#p3 .scr{height:520px}#p3 .sim button{padding:5px 8px;font-size:12px}}
 @media (prefers-reduced-motion:reduce){#p3 *{transition:none!important}}
-</style></head><body>
+#p3.appm .house,#p3.appm #p3pl,#p3.appm #p3pr,#p3.appm #p3nav,#p3.appm>h2,#p3.appm>.sub{display:none!important}#p3.appm .wrap{justify-content:center}</style></head><body>
 <section id="p3" dir="rtl" aria-label="דמו אינטראקטיבי: שליטה בבית מהטלפון">
 <div class="nav" id="p3nav"><a href="./">→ חזרה לאתר</a><a href="rooms.html">🏠 כמה זה עולה – לפי חדרים</a><a class="cta" href="./#contact">📞 ייעוץ טלפוני – ללא עלות</a></div>
 <h2>👆 נסו בעצמכם</h2><p class="sub">לחצו בטלפון – והבית מגיב. הזיזו את השעון, הפעילו שבת, גשם או צלצול בדלת.</p>
@@ -128,7 +128,8 @@ const PR=[['בסיס לכל הבית',[['יחידת בקרה + מודול Thread
 ['גינה ומרפסת',[['תאורת מרפסת',0,0,'quote','ob','נדלקת בשקיעה ונכבית בלילה'],['פנסי גינה',0,0,'quote','og','תאורת גינה לפי השקיעה'],['השקיה',0,0,'quote','ir','משקה לפי לוח זמנים ומדלגת כשיורד גשם']]]];
 const IT={},CAT={};PR.forEach(([,it],r)=>it.forEach(([n,lo,hi,pkg,id,ds,g],i)=>{const k=r+'.'+i;IT[k]={k,n,lo,hi,pkg,id,ds,g};if(id)(CAT[id]=CAT[id]||[]).push(k)}));
 const PRESET={base:k=>['core','base'].includes(IT[k].pkg),full:k=>!(IT[k].g&&IT[k].n.startsWith('או:'))};
-let sel=new Set(Object.keys(IT).filter(PRESET.full));
+const APP=(new URLSearchParams(location.search).get('app')||'base');PRESET.adv=k=>PRESET.full(k)&&IT[k].pkg!='quote';PRESET.custom=PRESET.full;
+let sel=new Set(Object.keys(IT).filter(PRESET[APP]||PRESET.base));document.getElementById('p3').classList.add('appm');
 const locked=id=>CAT[id]&&D[id]?!CAT[id].some(k=>sel.has(k)):false;
 const isPreset=p=>Object.keys(IT).every(k=>sel.has(k)==PRESET[p](k));
 const money=(a,b)=>`<bdi dir="ltr">₪${a.toLocaleString()}–${b.toLocaleString()}</bdi>`;
@@ -155,14 +156,14 @@ function tile(d){const on=isOn(d),c=COL[d.k]||'#999';let f='';
  if(locked(d.id))return `<div class="tile lock" data-lock="${d.id}"><div class="th"><span class="ti">${icon(d)}</span><div class="tx"><b>${d.n}</b><span>לא בבחירה – לחצו להוספה</span></div></div><span class="tag">➕ ${lockTxt(d.id)}</span></div>`;
  return `<div class="tile${f?' wide':''}" data-open="${d.id}"><div class="th"><button class="ti" data-tg="${d.id}" style="${on?`background:${c}33;color:${c}`:''}" aria-label="הפעלה/כיבוי">${icon(d)}</button><div class="tx"><b>${d.n}</b><span>${stateTxt(d)}</span></div></div>${f}</div>`}
 function ui(){
- $('#p3t').innerHTML=Object.keys(R).map(k=>`<button class="tab ${k==view?'on':''}" data-view="${k}">${R[k].i} ${R[k].n}</button>`).join('');
+ $('#p3t').innerHTML=Object.keys(R).filter(k=>k=='home'||Object.values(D).some(d=>d.r==k&&!locked(d.id))).map(k=>`<button class="tab ${k==view?'on':''}" data-view="${k}">${R[k].i} ${R[k].n}</button>`).join('');
  $('#p3b').innerHTML=shab?'<div class="shb">🕯️ מצב שבת – הבית עובד לבד לפי שעון השבת</div>':'';$('#p3bt').textContent=hh(hr);
  let h='';
  if(view=='home'){const lo=Object.values(D).filter(d=>d.k=='light'&&d.on).length;
   h=`<div class="badges"><span class="bdg">🌡️ ${D.pt.temp.toFixed(1)}°</span><span class="bdg">${rain?'🌧️ יורד גשם':'🌙 בחוץ 11°'}</span><span class="bdg">💡 ${lo} דולקים</span><span class="bdg">${D.lk.on?'🔒 נעול':'🔓 פתוח'}</span></div>`;
   h+=`<div class="sec">תרחישים</div><div class="grid"><div class="tile wide" data-shab="1"><div class="th"><span class="ti" style="${shab?'background:#7e57c233':''}">🕯️</span><div class="tx"><b>מצב שבת</b><span>${shab?'פעיל – שעון שבת אוטומטי':'כבוי · לחצו להפעלה'}</span></div></div></div>${SC.map(([i,n])=>`<div class="tile" data-scene="${n}"><div class="th"><span class="ti" style="${scene==n?'background:#03a9f433':''}">${i}</span><div class="tx"><b>${n}</b><span>${scene==n?'פעיל':'הפעלה'}</span></div></div></div>`).join('')}</div>`;
-  h+=`<div class="sec">חדרים</div><div class="grid">${Object.keys(R).filter(k=>k!='home').map(k=>{const n=Object.values(D).filter(d=>d.r==k&&d.k=='light'&&d.on).length;return `<div class="tile" data-view="${k}"><div class="th"><span class="ti" style="${n?'background:#ffb30033':''}">${R[k].i}</span><div class="tx"><b>${R[k].n}</b><span>${n?n+' אורות דולקים':'הכל כבוי'}</span></div></div></div>`}).join('')}</div>`}
- else h=`<div class="sec">${R[view].i} ${R[view].n}</div><div class="grid">${Object.values(D).filter(d=>d.r==view).map(tile).join('')}</div>`;
+  h+=`<div class="sec">חדרים</div><div class="grid">${Object.keys(R).filter(k=>k!='home'&&Object.values(D).some(d=>d.r==k&&!locked(d.id))).map(k=>{const n=Object.values(D).filter(d=>d.r==k&&d.k=='light'&&d.on).length;return `<div class="tile" data-view="${k}"><div class="th"><span class="ti" style="${n?'background:#ffb30033':''}">${R[k].i}</span><div class="tx"><b>${R[k].n}</b><span>${n?n+' אורות דולקים':'הכל כבוי'}</span></div></div></div>`}).join('')}</div>`}
+ else h=`<div class="sec">${R[view].i} ${R[view].n}</div><div class="grid">${Object.values(D).filter(d=>d.r==view&&!locked(d.id)).map(tile).join('')}</div>`;
  const v=$('#p3v');v.classList.toggle('dis',shab);v.innerHTML=h;if(sheet)sheetUI();if(window.P3)P3.sync()}
 const CAM=`<svg viewBox="0 0 300 180"><rect width="300" height="180" fill="#1b2433"/><rect x="190" y="20" width="80" height="160" fill="#5d4037"/><circle cx="260" cy="100" r="4" fill="#ffd27a"/><rect x="0" y="150" width="300" height="30" fill="#2d3748"/><ellipse cx="120" cy="178" rx="60" ry="8" fill="#0006"/><circle cx="120" cy="62" r="24" fill="#c9a27a"/><path d="M80 180 q0-80 40-90 q40 10 40 90z" fill="#3f6fb5"/><rect x="95" y="105" width="34" height="26" rx="3" fill="#c9a27a"/><text x="10" y="18" fill="#fff" font-size="11">● LIVE · דלת כניסה</text></svg>`;
 function sheetUI(){const d=D[sheet];let h=`<div class="hdl"></div><h3>${icon(d)} ${d.n}</h3><div class="st">${stateTxt(d)}</div>`;
@@ -205,7 +206,7 @@ $('.scr').addEventListener('click',e=>{if(e.target==$('#p3s')){closeSheet();retu
  if(s.shab){setShab(!shab);return}
  if(s.lock){tog(CAT[s.lock][0],true);return}
  if(s.view){view=s.view;ui();if(window.P3)P3.focus(view);return}
- if(s.door){if(s.door=='1'&&locked('lk')){say('הפעמון והתמונה כלולים בבסיס. פתיחת הדלת מהטלפון דורשת מנעול חכם – '+lockTxt('lk')+'');closeSheet();return}if(s.door=='1'){apply('lk',{on:0});say('הדלת נפתחה מהטלפון – ותינעל שוב לבד');setTimeout(()=>{apply('lk',{on:1});D.bell.on=0;ui()},6000);if(window.P3)P3.visitorIn()}closeSheet();ui();return}
+ if(s.door){if(s.door=='1'&&locked('lk')){say('פתיחת הדלת מהטלפון – בחבילה המתקדמת');closeSheet();return}if(s.door=='1'){apply('lk',{on:0});say('הדלת נפתחה מהטלפון – ותינעל שוב לבד');setTimeout(()=>{apply('lk',{on:1});D.bell.on=0;ui()},6000);if(window.P3)P3.visitorIn()}closeSheet();ui();return}
  if(shab&&!s.view)return;
  if(s.tg){const d=D[s.tg];if(['temp','motion','bell'].includes(d.k))return;scene=null;apply(d.id,{on:d.on?0:1});ui();return}
  if(s.sh){D[s.sh].pos=+s.v;scene=null;ui();return}
@@ -226,7 +227,7 @@ document.querySelector('#p3 .sim').addEventListener('click',e=>{const b=e.target
  if(k=='walk'){if(window.P3)P3.walk()}});
 setInterval(()=>{const h=D.ht;h.temp=Math.max(19.2,Math.min(23,h.temp+(h.on?.1:-.02)));D.pt.temp=Math.max(19,Math.min(23,D.pt.temp+(D.ac.on?.06:-.01)));if(D.bo.on&&D.bo.m>1)D.bo.m--;
  if(!sheet&&['kids','parents','bath','home'].includes(view)&&!document.querySelector('#p3 input:active'))ui()},2500);
-if(self!==top){const h=$('h2'),p=$('.sub');h&&h.remove();p&&p.remove();$('#p3nav').remove();new ResizeObserver(()=>parent.postMessage({p3h:document.documentElement.scrollHeight},'*')).observe(document.body);document.querySelectorAll('#p3 a').forEach(a=>a.target='_top')}
+if(self!==top){const h=$('h2'),p=$('.sub');h&&h.remove();p&&p.remove();$('#p3nav').remove();new ResizeObserver(()=>parent.postMessage({p3h:document.body.scrollHeight+16},'*')).observe(document.body);document.querySelectorAll('#p3 a').forEach(a=>a.target='_top')}
 plansUI();
 ui();
 
