@@ -47,11 +47,23 @@ body{margin:0;background:#f3f5fa;font-family:system-ui,-apple-system,"Segoe UI",
 #p3 .cam{border-radius:14px;overflow:hidden;margin-bottom:10px;background:#111}#p3 .cam svg{display:block;width:100%}
 #p3 .note{text-align:center;font-size:12px;opacity:.6;margin-top:10px}
 #p3 .err{color:#fff;padding:40px;text-align:center}
+#p3 .nav{display:flex;gap:8px;flex-wrap:wrap;justify-content:space-between;align-items:center;margin-bottom:12px}
+#p3 .nav a{color:#1e2a4a;text-decoration:none;background:#fff;border:1px solid #dde2ee;border-radius:20px;padding:8px 14px;font-size:14px;min-height:20px}#p3 .nav a.cta{background:#f2b544;border-color:#f2b544;font-weight:700}
+#p3 .plans{display:flex;gap:6px;justify-content:center;flex-wrap:wrap;margin:0 0 12px}#p3 .plans button{background:#fff;border:1px solid #dde2ee;border-radius:20px;padding:8px 14px;font-size:14px}#p3 .plans button.on{background:#1e2a4a;color:#fff;border-color:#1e2a4a}
+#p3 .plans .sum{width:100%;text-align:center;font-size:14px;margin-top:4px}#p3 .plans .sum b{font-size:17px}
+#p3 .tile.lock{opacity:.5}#p3 .tile .tag{font-size:11px;color:#b26a00;background:#fff4e0;border-radius:8px;padding:1px 6px;align-self:flex-start}
+#p3 details.price{max-width:900px;margin:18px auto 0;background:#fff;border-radius:18px;padding:12px 16px;box-shadow:0 2px 10px #1e2a4a14}
+#p3 details.price summary{font-size:18px;font-weight:700;cursor:pointer;padding:4px 0}
+#p3 .pt{width:100%;border-collapse:collapse;font-size:14px;margin-top:8px}#p3 .pt td{padding:6px 4px;border-bottom:1px solid #eef0f5;vertical-align:top}#p3 .pt td.n{white-space:nowrap;text-align:left;direction:ltr}#p3 .pt tr.rm td{font-weight:700;background:#f6f7fb}
+#p3 .pt .ok{color:#2e7d32}#p3 .pt .no{color:#aaa}#p3 .disc{font-size:12.5px;opacity:.75;line-height:1.6;margin-top:10px}
+
 @media (max-width:700px){#p3 .house{flex-basis:100%}#p3 .scr{height:520px}#p3 .sim button{padding:5px 8px;font-size:12px}}
 @media (prefers-reduced-motion:reduce){#p3 *{transition:none!important}}
 </style></head><body>
 <section id="p3" dir="rtl" aria-label="דמו אינטראקטיבי: שליטה בבית מהטלפון">
+<div class="nav" id="p3nav"><a href="./">→ חזרה לאתר</a><a href="rooms.html">🏠 כמה זה עולה – לפי חדרים</a><a class="cta" href="./#contact">📞 ייעוץ טלפוני – ללא עלות</a></div>
 <h2>👆 נסו בעצמכם</h2><p class="sub">לחצו בטלפון – והבית מגיב. הזיזו את השעון, הפעילו שבת, גשם או צלצול בדלת.</p>
+<div class="plans" id="p3pl"></div>
 <div class="wrap">
 <div class="house"><canvas id="p3c"></canvas>
 <div class="sim"><button data-sim="shabbat">🕯️ שבת</button><button data-sim="rain">🌧️ גשם</button><button data-sim="bell">🔔 צלצול בדלת</button><button data-sim="walk">🚶 מעבר בלילה</button></div>
@@ -66,7 +78,8 @@ body{margin:0;background:#f3f5fa;font-family:system-ui,-apple-system,"Segoe UI",
 <div class="sh" id="p3s"><div class="sheet" id="p3sh"></div></div>
 </div></div>
 </div>
-<p class="note">הדגמה בלבד – בבית אמיתי הכפתורים שולטים במכשירים שלכם, גם בלי אינטרנט.</p>
+<details class="price" id="p3pr"><summary>💰 כמה עולה מה שראיתם?</summary><div id="p3pt"></div>
+<div class="disc">המחירים הם הערכה בלבד ואינם הצעה מחייבת – המחיר הסופי נקבע אחרי שיחה או ביקור, לפי הדגם והחיווט. המחירים ללא מע״מ (עוסק פטור). עבודת חשמל נעשית רק על ידי חשמלאי מוסמך, ועלותה כלולה במחיר הפריט. תחזוקה מרחוק – לבחירה, ₪50–100 לחודש. המערכת מתריעה ומסייעת אך אינה מונעת נזקים, ואינה מחליפה מערכת אזעקה, גלאי עשן תקני או השגחה. הדגמים להמחשה ועשויים להשתנות. ההדגמה להמחשה בלבד – בבית אמיתי הכפתורים שולטים במכשירים שלכם, גם בלי אינטרנט. Home Assistant ושמות המוצרים הם סימנים מסחריים של בעליהם; העסק אינו קשור אליהם רשמית.</div></details>
 </section>
 <script src="js/three.min.js"></script>
 <script>
@@ -101,9 +114,27 @@ function stateTxt(d){switch(d.k){
  case'bell':return d.on?'צלצול עכשיו!':'אין צלצולים';case'motion':return d.on?'זוהתה תנועה':'אין תנועה'}}
 const isOn=d=>d.k=='shutter'||d.k=='curtain'?d.pos>0:d.k=='temp'?0:!!d.on;
 const icon=d=>d.k=='lock'&&!d.on?'🔓':IC[d.k];
+
+// ---------- plans & prices (from rooms.html) ----------
+const PR=[['בסיס לכל הבית',[['יחידת בקרה + מודול Thread/Zigbee, התקנה ואפליקציה',1200,1800,1,[]],['שעון שבת וחג',300,500,1,['shab']]]],
+['סלון',[['2 נורות או שקעים חכמים',180,400,1,['lc','ld','ll','lf']],['לחצן קיר אלחוטי',60,150,1,[]],['חיישן טמפרטורה ולחות',80,200,1,[]],['שליטה במזגן מהטלפון',300,450,0,['ac']],['מתג תריס חכם (חשמלאי מוסמך)',550,750,0,['ls']],['חיבור שואב רובוטי קיים',200,300,0,['vac']]]],
+['מטבח',[['חיישן הצפה',80,180,1,[]],['נורה או שקע לתאורת עבודה',90,200,1,['kl','pl']],['חיישן תנועה',80,180,0,[]],['מתג תאורה חכם בקיר (חשמלאי מוסמך)',550,750,0,['ks','kp']],['נעילת ילדים לתנור חכם',150,300,0,['ov']]]],
+['חדר ילדים',[['נורת לילה חכמה',90,200,1,['kn','kc']],['חיישן טמפרטורה ולחות',80,200,1,[]],['לחצן אלחוטי ליד המיטה',60,150,1,[]]]],
+['חדר הורים',[['נורה חכמה',90,200,1,['pc','pb']],['לחצן אלחוטי ליד המיטה',60,150,1,[]],['חיישן טמפרטורה ולחות',80,200,0,['pt']],['מתג תריס חכם (חשמלאי מוסמך)',550,750,0,['ps']]]],
+['מקלחת ושירותים',[['דוד חכם (חשמלאי מוסמך)',600,800,1,['bo']],['שקע חכם לתנור חימום עם טיימר',90,200,1,['ht']],['תאורה',0,0,1,['bl','bm']]]],
+['כניסה ומסדרון',[['פעמון עם מצלמה',600,850,1,['bell']],['חיישן דלת',80,180,1,[]],['נורה חכמה למסדרון',90,200,1,['co','eh']],['חיישן תנועה',80,180,0,['mo']]]]];
+const DEMO_ONLY=['cur','fan','tv','lk','kss','ob','og','ir'];
+let plan='full';const OPT={};for(const[,it]of PR)for(const[n,lo,hi,def,ids]of it)if(!def)for(const id of ids)OPT[id]=[lo,hi];
+const locked=id=>plan=='base'&&OPT[id];
+function plansUI(){let lo=0,hi=0;for(const[,it]of PR)for(const[n,a,b,def]of it)if(def||plan=='full'){lo+=a;hi+=b}
+ $('#p3pl').innerHTML=`<button class="${plan=='base'?'on':''}" data-plan="base">⭐ חבילה בסיסית</button><button class="${plan=='full'?'on':''}" data-plan="full">🌟 בסיס + כל התוספות</button><div class="sum">מה שמופעל עכשיו בהדגמה: <b dir="ltr" style="unicode-bidi:isolate">₪${lo.toLocaleString()}–${hi.toLocaleString()}</b> כולל התקנה · ללא מנוי חודשי</div>`;
+ $('#p3pt').innerHTML='<table class="pt">'+PR.map(([r,it])=>`<tr class="rm"><td colspan="3">${r}</td></tr>`+it.filter(x=>x[1]).map(([n,a,b,def])=>{const inn=def||plan=='full';return `<tr><td class="${inn?'ok':'no'}">${inn?'✓':'–'}</td><td>${n}${def?'':' <small>(תוספת)</small>'}</td><td class="n">₪${a}–${b}</td></tr>`}).join('')).join('')+`<tr class="rm"><td colspan="3">מופיע בהדגמה – לפי הצעת מחיר</td></tr><tr><td></td><td colspan="2">וילון חשמלי, מאוורר תקרה, טלוויזיה, מנעול חכם, תריס בחדר הילדים, תאורת מרפסת וגינה, השקיה</td></tr></table>`}
+document.getElementById('p3pl').addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(!b)return;plan=b.dataset.plan;
+ if(plan=='base')for(const id in OPT){const d=D[id];if(d.k=='shutter')d.pos=100;else d.on=0}plansUI();ui()});
 function tile(d){const on=isOn(d),c=COL[d.k]||'#999';let f='';
  if(d.k=='shutter'||d.k=='curtain')f=`<div class="feat"><button data-sh="${d.id}" data-v="100" aria-label="פתח">▲</button><button data-sh="${d.id}" data-v="50" aria-label="חצי">◼</button><button data-sh="${d.id}" data-v="0" aria-label="סגור">▼</button></div>`;
  if(d.k=='light'&&d.on&&!d.nodim){const bi=L.reduce((m,v,i)=>Math.abs(v-d.b)<Math.abs(L[m]-d.b)?i:m,0);f=`<input type="range" min="0" max="9" value="${bi}" data-br="${d.id}" aria-label="בהירות">`}
+ if(locked(d.id))return `<div class="tile lock" data-lock="${d.id}"><div class="th"><span class="ti">${icon(d)}</span><div class="tx"><b>${d.n}</b><span>לא בחבילה הבסיסית</span></div></div><span class="tag">תוספת · ₪${OPT[d.id][0]}–${OPT[d.id][1]}</span></div>`;
  return `<div class="tile${f?' wide':''}" data-open="${d.id}"><div class="th"><button class="ti" data-tg="${d.id}" style="${on?`background:${c}33;color:${c}`:''}" aria-label="הפעלה/כיבוי">${icon(d)}</button><div class="tx"><b>${d.n}</b><span>${stateTxt(d)}</span></div></div>${f}</div>`}
 function ui(){
  $('#p3t').innerHTML=Object.keys(R).map(k=>`<button class="tab ${k==view?'on':''}" data-view="${k}">${R[k].i} ${R[k].n}</button>`).join('');
@@ -133,7 +164,7 @@ function sheetUI(){const d=D[sheet];let h=`<div class="hdl"></div><h3>${icon(d)}
 function openSheet(id){sheet=id;$('#p3s').classList.add('open');sheetUI()}
 function closeSheet(){sheet=null;$('#p3s').classList.remove('open')}
 function apply(id,t){Object.assign(D[id],t);if(D[id].k=='vac'&&t.on&&window.P3)P3.vacStart()}
-function runTargets(tg,msg){const st=Object.entries(tg).filter(([id,t])=>Object.keys(t).some(k=>D[id][k]!=t[k])).sort((a,b)=>(a[1].on?1:0)-(b[1].on?1:0));if(msg)say(msg);
+function runTargets(tg,msg){for(const id in tg)if(locked(id))delete tg[id];const st=Object.entries(tg).filter(([id,t])=>Object.keys(t).some(k=>D[id][k]!=t[k])).sort((a,b)=>(a[1].on?1:0)-(b[1].on?1:0));if(msg)say(msg);
  st.forEach(([id,t],k)=>setTimeout(()=>{apply(id,t);ui()},250+k*400))}
 function allLightsOff(){const tg={};for(const d of Object.values(D))if(d.k=='light'||d.k=='tv')tg[d.id]={on:0};return tg}
 function fromMap(m,base){const tg=base||{};for(const id in m){const v=m[id],d=D[id];tg[id]=d.k=='shutter'||d.k=='curtain'?{pos:v[0]}:Object.assign({on:v[0]},v[1]?{b:v[1]}:{},v[2]?{tone:v[2]}:{})}return tg}
@@ -152,8 +183,9 @@ function autoClock(force){const p=phase(hr);if(p==lastAuto&&!force)return;lastAu
 function setShab(v){shab=v;$('[data-sim="shabbat"]').classList.toggle('on',v);if(v){hr=16.5;$('#p3h').value=hr;$('#p3hl').textContent=hh(hr)}closeSheet();autoClock(true);ui()}
 // ---------- phone events ----------
 $('.scr').addEventListener('click',e=>{if(e.target==$('#p3s')){closeSheet();return}
- const b=e.target.closest('[data-tg],[data-sh],[data-view],[data-scene],[data-open],[data-tone],[data-col],[data-ac],[data-shab],[data-door],[data-vm]');if(!b)return;const s=b.dataset;
+ const b=e.target.closest('[data-tg],[data-sh],[data-view],[data-scene],[data-open],[data-tone],[data-col],[data-ac],[data-shab],[data-door],[data-vm],[data-lock]');if(!b)return;const s=b.dataset;
  if(s.shab){setShab(!shab);return}
+ if(s.lock){const o=OPT[s.lock];say(`${D[s.lock].n}: תוספת לחבילה · ₪${o[0]}–${o[1]} כולל התקנה`);return}
  if(s.view){view=s.view;ui();if(window.P3)P3.focus(view);return}
  if(s.door){if(s.door=='1'){apply('lk',{on:0});say('הדלת נפתחה מהטלפון – ותינעל שוב לבד');setTimeout(()=>{apply('lk',{on:1});D.bell.on=0;ui()},6000);if(window.P3)P3.visitorIn()}closeSheet();ui();return}
  if(shab&&!s.view)return;
@@ -176,7 +208,8 @@ document.querySelector('#p3 .sim').addEventListener('click',e=>{const b=e.target
  if(k=='walk'){if(window.P3)P3.walk()}});
 setInterval(()=>{const h=D.ht;h.temp=Math.max(19.2,Math.min(23,h.temp+(h.on?.1:-.02)));D.pt.temp=Math.max(19,Math.min(23,D.pt.temp+(D.ac.on?.06:-.01)));if(D.bo.on&&D.bo.m>1)D.bo.m--;
  if(!sheet&&['kids','parents','bath','home'].includes(view)&&!document.querySelector('#p3 input:active'))ui()},2500);
-if(self!==top){const h=$('h2'),p=$('.sub');h&&h.remove();p&&p.remove()}
+if(self!==top){const h=$('h2'),p=$('.sub');h&&h.remove();p&&p.remove();$('#p3nav').remove();new ResizeObserver(()=>parent.postMessage({p3h:document.documentElement.scrollHeight},'*')).observe(document.body);document.querySelectorAll('#p3 a').forEach(a=>a.target='_top')}
+plansUI();
 ui();
 
 // ---------- 3D ----------
