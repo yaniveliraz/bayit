@@ -59,7 +59,7 @@ body{margin:0;background:#f3f5fa;font-family:system-ui,-apple-system,"Segoe UI",
 
 @media (max-width:700px){#p3 .house{flex-basis:100%}#p3 .scr{height:520px}#p3 .sim button{padding:5px 8px;font-size:12px}}
 @media (prefers-reduced-motion:reduce){#p3 *{transition:none!important}}
-#p3.appm .house,#p3.appm #p3pl,#p3.appm #p3pr,#p3.appm #p3nav,#p3.appm>h2,#p3.appm>.sub{display:none!important}#p3.appm .wrap{justify-content:center}</style></head><body>
+#p3.appm .house,#p3.appm #p3pl,#p3.appm #p3pr,#p3.appm #p3nav,#p3.appm>h2,#p3.appm>.sub{display:none!important}#p3.appm .wrap{justify-content:center}#p3.appm{margin:0 auto}</style></head><body>
 <section id="p3" dir="rtl" aria-label="דמו אינטראקטיבי: שליטה בבית מהטלפון">
 <div class="nav" id="p3nav"><a href="./">→ חזרה לאתר</a><a href="rooms.html">🏠 כמה זה עולה – לפי חדרים</a><a class="cta" href="./#contact">📞 ייעוץ טלפוני – ללא עלות</a></div>
 <h2>👆 נסו בעצמכם</h2><p class="sub">לחצו בטלפון – והבית מגיב. הזיזו את השעון, הפעילו שבת, גשם או צלצול בדלת.</p>
@@ -129,7 +129,7 @@ const PR=[['בסיס לכל הבית',[['יחידת בקרה + מודול Thread
 const IT={},CAT={};PR.forEach(([,it],r)=>it.forEach(([n,lo,hi,pkg,id,ds,g],i)=>{const k=r+'.'+i;IT[k]={k,n,lo,hi,pkg,id,ds,g};if(id)(CAT[id]=CAT[id]||[]).push(k)}));
 const PRESET={base:k=>['core','base'].includes(IT[k].pkg),full:k=>!(IT[k].g&&IT[k].n.startsWith('או:'))};
 const APP=(new URLSearchParams(location.search).get('app')||'base');PRESET.adv=k=>PRESET.full(k)&&IT[k].pkg!='quote';PRESET.custom=PRESET.full;
-let sel=new Set(Object.keys(IT).filter(PRESET[APP]||PRESET.base));document.getElementById('p3').classList.add('appm');
+let sel=new Set(Object.keys(IT).filter(PRESET[APP]||PRESET.base));document.getElementById('p3').classList.add('appm');document.body.style.background='transparent';
 const locked=id=>CAT[id]&&D[id]?!CAT[id].some(k=>sel.has(k)):false;
 const isPreset=p=>Object.keys(IT).every(k=>sel.has(k)==PRESET[p](k));
 const money=(a,b)=>`<bdi dir="ltr">₪${a.toLocaleString()}–${b.toLocaleString()}</bdi>`;
@@ -227,7 +227,7 @@ document.querySelector('#p3 .sim').addEventListener('click',e=>{const b=e.target
  if(k=='walk'){if(window.P3)P3.walk()}});
 setInterval(()=>{const h=D.ht;h.temp=Math.max(19.2,Math.min(23,h.temp+(h.on?.1:-.02)));D.pt.temp=Math.max(19,Math.min(23,D.pt.temp+(D.ac.on?.06:-.01)));if(D.bo.on&&D.bo.m>1)D.bo.m--;
  if(!sheet&&['kids','parents','bath','home'].includes(view)&&!document.querySelector('#p3 input:active'))ui()},2500);
-if(self!==top){const h=$('h2'),p=$('.sub');h&&h.remove();p&&p.remove();$('#p3nav').remove();new ResizeObserver(()=>parent.postMessage({p3h:document.body.scrollHeight+16},'*')).observe(document.body);document.querySelectorAll('#p3 a').forEach(a=>a.target='_top')}
+if(self!==top){const h=$('h2'),p=$('.sub');h&&h.remove();p&&p.remove();$('#p3nav').remove();new ResizeObserver(()=>{const H=document.body.scrollHeight+16;if(Math.abs(H-(self._h||0))>4){self._h=H;parent.postMessage({p3h:H},'*')}}).observe(document.body);document.querySelectorAll('#p3 a').forEach(a=>a.target='_top')}
 plansUI();
 ui();
 
