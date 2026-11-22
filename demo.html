@@ -115,26 +115,32 @@ function stateTxt(d){switch(d.k){
 const isOn=d=>d.k=='shutter'||d.k=='curtain'?d.pos>0:d.k=='temp'?0:!!d.on;
 const icon=d=>d.k=='lock'&&!d.on?'🔓':IC[d.k];
 
-// ---------- plans & prices (from rooms.html) ----------
-const PR=[['בסיס לכל הבית',[['יחידת בקרה + מודול Thread/Zigbee, התקנה ואפליקציה',1200,1800,1,[]],['שעון שבת וחג',300,500,1,['shab']]]],
-['סלון',[['2 נורות או שקעים חכמים',180,400,1,['lc','ld','ll','lf']],['לחצן קיר אלחוטי',60,150,1,[]],['חיישן טמפרטורה ולחות',80,200,1,[]],['שליטה במזגן מהטלפון',300,450,0,['ac']],['מתג תריס חכם (חשמלאי מוסמך)',550,750,0,['ls']],['חיבור שואב רובוטי קיים',200,300,0,['vac']]]],
-['מטבח',[['חיישן הצפה',80,180,1,[]],['נורה או שקע לתאורת עבודה',90,200,1,['kl','pl']],['חיישן תנועה',80,180,0,[]],['מתג תאורה חכם בקיר (חשמלאי מוסמך)',550,750,0,['ks','kp']],['נעילת ילדים לתנור חכם',150,300,0,['ov']]]],
-['חדר ילדים',[['נורת לילה חכמה',90,200,1,['kn','kc']],['חיישן טמפרטורה ולחות',80,200,1,[]],['לחצן אלחוטי ליד המיטה',60,150,1,[]]]],
-['חדר הורים',[['נורה חכמה',90,200,1,['pc','pb']],['לחצן אלחוטי ליד המיטה',60,150,1,[]],['חיישן טמפרטורה ולחות',80,200,0,['pt']],['מתג תריס חכם (חשמלאי מוסמך)',550,750,0,['ps']]]],
-['מקלחת ושירותים',[['דוד חכם (חשמלאי מוסמך)',600,800,1,['bo']],['שקע חכם לתנור חימום עם טיימר',90,200,1,['ht']],['תאורה',0,0,1,['bl','bm']]]],
-['כניסה ומסדרון',[['פעמון עם מצלמה',600,850,1,['bell']],['חיישן דלת',80,180,1,[]],['נורה חכמה למסדרון',90,200,1,['co','eh']],['חיישן תנועה',80,180,0,['mo']]]]];
-const DEMO_ONLY=['cur','fan','tv','lk','kss','ob','og','ir'];
-let plan='full';const OPT={};for(const[,it]of PR)for(const[n,lo,hi,def,ids]of it)if(!def)for(const id of ids)OPT[id]=[lo,hi];
-const locked=id=>plan=='base'&&OPT[id];
-function plansUI(){let lo=0,hi=0;for(const[,it]of PR)for(const[n,a,b,def]of it)if(def||plan=='full'){lo+=a;hi+=b}
- $('#p3pl').innerHTML=`<button class="${plan=='base'?'on':''}" data-plan="base">⭐ חבילה בסיסית</button><button class="${plan=='full'?'on':''}" data-plan="full">🌟 בסיס + כל התוספות</button><div class="sum">מה שמופעל עכשיו בהדגמה: <b dir="ltr" style="unicode-bidi:isolate">₪${lo.toLocaleString()}–${hi.toLocaleString()}</b> כולל התקנה · ללא מנוי חודשי</div>`;
- $('#p3pt').innerHTML='<table class="pt">'+PR.map(([r,it])=>`<tr class="rm"><td colspan="3">${r}</td></tr>`+it.filter(x=>x[1]).map(([n,a,b,def])=>{const inn=def||plan=='full';return `<tr><td class="${inn?'ok':'no'}">${inn?'✓':'–'}</td><td>${n}${def?'':' <small>(תוספת)</small>'}</td><td class="n">₪${a}–${b}</td></tr>`}).join('')).join('')+`<tr class="rm"><td colspan="3">מופיע בהדגמה – לפי הצעת מחיר</td></tr><tr><td></td><td colspan="2">וילון חשמלי, מאוורר תקרה, טלוויזיה, מנעול חכם, תריס בחדר הילדים, תאורת מרפסת וגינה, השקיה</td></tr></table>`}
+// ---------- plans & prices (unit prices from rooms.html; extra bulbs/plugs at the site's unit price) ----------
+// pkg: base = in the basic package · add = add-on (priced) · quote = shown in the demo, priced per quote
+const PR=[['בסיס לכל הבית',[['יחידת בקרה + מודול Thread/Zigbee, התקנה ואפליקציה',1200,1800,'base'],['שעון שבת וחג',300,500,'base']]],
+['סלון',[['נורה חכמה – תאורת סלון',90,200,'base','lc'],['שקע חכם – מנורת עמידה',90,200,'base','lf'],['לחצן קיר אלחוטי',60,150,'base'],['חיישן טמפרטורה ולחות',80,200,'base'],['נורה חכמה – פינת אוכל',90,200,'add','ld'],['נורה צבעונית',90,200,'add','ll'],['שליטה במזגן מהטלפון',300,450,'add','ac'],['מתג תריס חכם (חשמלאי מוסמך)',550,750,'add','ls'],['חיבור שואב רובוטי קיים',200,300,'add','vac'],['וילון חשמלי',0,0,'quote','cur'],['שליטה בטלוויזיה',0,0,'quote','tv']]],
+['מטבח',[['שקע חכם – פלטה לשבת',90,200,'base','pl'],['חיישן הצפה',80,180,'base'],['שקע חכם – לד מתחת לארונות',90,200,'add','kl'],['מתג תאורה חכם – ספוטים (חשמלאי מוסמך)',550,750,'add','ks'],['מתג תאורה חכם – מנורות מעל האי (חשמלאי מוסמך)',550,750,'add','kp'],['נעילת ילדים לתנור חכם',150,300,'add','ov']]],
+['חדר ילדים',[['נורת לילה חכמה',90,200,'base','kn'],['שקע חכם לרדיאטור עם טיימר',90,200,'base','ht'],['חיישן טמפרטורה ולחות',80,200,'base'],['לחצן אלחוטי ליד המיטה',60,150,'base'],['נורה חכמה – תקרה',90,200,'add','kc'],['מתג תריס חכם (חשמלאי מוסמך)',550,750,'add','kss']]],
+['חדר הורים',[['נורה חכמה – תקרה',90,200,'base','pc'],['לחצן אלחוטי ליד המיטה',60,150,'base'],['שקע חכם – מנורות ליד המיטה',90,200,'add','pb'],['חיישן טמפרטורה ולחות',80,200,'add','pt'],['מתג תריס חכם (חשמלאי מוסמך)',550,750,'add','ps'],['מאוורר תקרה',0,0,'quote','fan']]],
+['מקלחת ושירותים',[['דוד חכם (חשמלאי מוסמך)',600,800,'base','bo'],['נורה חכמה – תקרה',90,200,'add','bl'],['נורה חכמה – מראה',90,200,'add','bm']]],
+['כניסה ומסדרון',[['פעמון עם מצלמה',600,850,'base','bell'],['חיישן דלת',80,180,'base'],['נורה חכמה – מסדרון',90,200,'base','co'],['נורה חכמה – מבואה',90,200,'add','eh'],['חיישן תנועה',80,180,'add','mo'],['מנעול חכם',0,0,'quote','lk']]],
+['גינה ומרפסת',[['תאורת מרפסת',0,0,'quote','ob'],['פנסי גינה',0,0,'quote','og'],['השקיה',0,0,'quote','ir']]]];
+const CAT={};for(const[,it]of PR)for(const[n,lo,hi,pkg,id]of it)if(id)CAT[id]={n,lo,hi,pkg};
+let plan='full';
+const locked=id=>plan=='base'&&CAT[id]&&CAT[id].pkg!='base';
+const AUTO={base:'שעון שבת וחג · תאורה לפי שקיעה ולילה · תרחישים · פעמון עם תמונה בטלפון · התראת גשם · דוד ורדיאטור עם טיימר',
+full:'הכל מהבסיס + תריסים שנסגרים לבד בגשם · אור מסדרון לפי תנועה · שואב רובוטי · נעילת תנור לילדים · מזגן · אורות נוספים'};
+function plansUI(){let lo=0,hi=0;for(const[,it]of PR)for(const[n,a,b,pkg]of it)if(pkg=='base'||(plan=='full'&&pkg=='add')){lo+=a;hi+=b}
+ $('#p3pl').innerHTML=`<button class="${plan=='base'?'on':''}" data-plan="base">⭐ חבילה בסיסית</button><button class="${plan=='full'?'on':''}" data-plan="full">🌟 בסיס + תוספות</button><div class="sum">${plan=='base'?'החבילה הבסיסית':'מה שמופעל בהדגמה'}: <b dir="ltr" style="unicode-bidi:isolate">₪${lo.toLocaleString()}–${hi.toLocaleString()}</b> כולל התקנה · ללא מנוי חודשי${plan=='full'?' · + פריטים לפי הצעת מחיר':''}<br><small>🤖 ${AUTO[plan]}</small></div>`;
+ const T={base:'<td class="ok">✓</td>',add:plan=='full'?'<td class="ok">✓</td>':'<td class="no">–</td>',quote:plan=='full'?'<td class="ok">✓</td>':'<td class="no">–</td>'};
+ $('#p3pt').innerHTML='<table class="pt">'+PR.map(([r,it])=>`<tr class="rm"><td colspan="3">${r}</td></tr>`+it.map(([n,a,b,pkg])=>`<tr>${T[pkg]}<td>${n}${pkg=='add'?' <small>(תוספת)</small>':pkg=='quote'?' <small>(לפי הצעת מחיר)</small>':''}</td><td class="n">${a?`₪${a}–${b}`:'—'}</td></tr>`).join('')).join('')+'</table>'}
 document.getElementById('p3pl').addEventListener('click',e=>{const b=e.target.closest('[data-plan]');if(!b)return;plan=b.dataset.plan;
- if(plan=='base')for(const id in OPT){const d=D[id];if(d.k=='shutter')d.pos=100;else d.on=0}plansUI();ui()});
+ if(plan=='base')for(const id in CAT)if(locked(id)){const d=D[id];if(d.k=='shutter'||d.k=='curtain')d.pos=100;else if(d.k!='lock')d.on=0}plansUI();ui()});
+const lockTxt=id=>{const c=CAT[id];return c.pkg=='quote'?'לפי הצעת מחיר':`תוספת · ₪${c.lo}–${c.hi}`};
 function tile(d){const on=isOn(d),c=COL[d.k]||'#999';let f='';
  if(d.k=='shutter'||d.k=='curtain')f=`<div class="feat"><button data-sh="${d.id}" data-v="100" aria-label="פתח">▲</button><button data-sh="${d.id}" data-v="50" aria-label="חצי">◼</button><button data-sh="${d.id}" data-v="0" aria-label="סגור">▼</button></div>`;
  if(d.k=='light'&&d.on&&!d.nodim){const bi=L.reduce((m,v,i)=>Math.abs(v-d.b)<Math.abs(L[m]-d.b)?i:m,0);f=`<input type="range" min="0" max="9" value="${bi}" data-br="${d.id}" aria-label="בהירות">`}
- if(locked(d.id))return `<div class="tile lock" data-lock="${d.id}"><div class="th"><span class="ti">${icon(d)}</span><div class="tx"><b>${d.n}</b><span>לא בחבילה הבסיסית</span></div></div><span class="tag">תוספת · ₪${OPT[d.id][0]}–${OPT[d.id][1]}</span></div>`;
+ if(locked(d.id))return `<div class="tile lock" data-lock="${d.id}"><div class="th"><span class="ti">${icon(d)}</span><div class="tx"><b>${d.n}</b><span>לא בחבילה הבסיסית</span></div></div><span class="tag">${CAT[d.id].pkg=='quote'?'לפי הצעת מחיר':`תוספת · <bdi dir="ltr">₪${CAT[d.id].lo}–${CAT[d.id].hi}</bdi>`}</span></div>`;
  return `<div class="tile${f?' wide':''}" data-open="${d.id}"><div class="th"><button class="ti" data-tg="${d.id}" style="${on?`background:${c}33;color:${c}`:''}" aria-label="הפעלה/כיבוי">${icon(d)}</button><div class="tx"><b>${d.n}</b><span>${stateTxt(d)}</span></div></div>${f}</div>`}
 function ui(){
  $('#p3t').innerHTML=Object.keys(R).map(k=>`<button class="tab ${k==view?'on':''}" data-view="${k}">${R[k].i} ${R[k].n}</button>`).join('');
@@ -173,21 +179,21 @@ let sayT;function say(t){const a=$('#p3a');a.textContent='🤖 '+t;a.classList.a
 function phase(h){h=((h%24)+24)%24;if(shab){if(h>=12&&h<16.5)return'sh-pre';if(h>=16.5&&h<23)return'sh-in';if(h>=23||h<7)return'sh-night';return'sh-morn'}
  if(h>=6.5&&h<8)return'morn';if(h>=8&&h<16.75)return'day';if(h>=16.75&&h<23)return'eve';return'night'}
 const PH={morn:['בוקר 06:30: התריסים נפתחו',{ls:[100],kss:[100],ps:[100],cur:[100]},1],day:['יום: האורות נכבו כשהבית מואר',{},1],
-eve:['שקיעה 16:45: תאורת ערב נדלקה לבד',{lc:[1,50,'warm'],ld:[1,60],kl:[1],eh:[1,40],ob:[1,50],og:[1,70]},1],
+eve:['שקיעה 16:45: תאורת ערב נדלקה לבד',{lf:[1,50],co:[1,30],lc:[1,50,'warm'],ld:[1,60],kl:[1],eh:[1,40],ob:[1,50],og:[1,70]},1],
 night:['לילה 23:00: הכל נכבה, אור לילה במסדרון, הדלת ננעלה',{co:[1,5],kn:[1,5],ls:[0],kss:[0],ps:[0],cur:[0],lk:[1]},1],
 'sh-pre':['ערב שבת: הדוד מחמם, הבית מתכונן לשבת',{bo:[1]},0],
-'sh-in':['כניסת שבת 16:30: אורות שבת נדלקו, הפלטה פועלת, התנור ננעל',{ld:[1,80],lc:[1,50,'warm'],kl:[1],kp:[1,40],eh:[1,40],co:[1,30],og:[1,70],pl:[1],bo:[0],ov:[0]},1],
+'sh-in':['כניסת שבת 16:30: אורות שבת נדלקו, הפלטה פועלת',{lf:[1,60],ld:[1,80],lc:[1,50,'warm'],kl:[1],kp:[1,40],eh:[1,40],co:[1,30],og:[1,70],pl:[1],bo:[0],ov:[0]},1],
 'sh-night':['לילה בשבת: רק אור לילה במסדרון ובחדר הילדים',{co:[1,5],kn:[1,5],pl:[1]},1],
-'sh-morn':['שבת בבוקר 07:00: אור בסלון ובפינת האוכל',{lc:[1,40,'warm'],ld:[1,60],kl:[1],co:[1,20],pl:[1]},1]};
+'sh-morn':['שבת בבוקר 07:00: אור בסלון ובפינת האוכל',{lf:[1,50],lc:[1,40,'warm'],ld:[1,60],kl:[1],co:[1,20],pl:[1]},1]};
 function autoClock(force){const p=phase(hr);if(p==lastAuto&&!force)return;lastAuto=p;const[msg,m,off]=PH[p];scene=null;runTargets(fromMap(m,off?allLightsOff():{}),msg)}
 function setShab(v){shab=v;$('[data-sim="shabbat"]').classList.toggle('on',v);if(v){hr=16.5;$('#p3h').value=hr;$('#p3hl').textContent=hh(hr)}closeSheet();autoClock(true);ui()}
 // ---------- phone events ----------
 $('.scr').addEventListener('click',e=>{if(e.target==$('#p3s')){closeSheet();return}
  const b=e.target.closest('[data-tg],[data-sh],[data-view],[data-scene],[data-open],[data-tone],[data-col],[data-ac],[data-shab],[data-door],[data-vm],[data-lock]');if(!b)return;const s=b.dataset;
  if(s.shab){setShab(!shab);return}
- if(s.lock){const o=OPT[s.lock];say(`${D[s.lock].n}: תוספת לחבילה · ₪${o[0]}–${o[1]} כולל התקנה`);return}
+ if(s.lock){say(`${D[s.lock].n}: ${lockTxt(s.lock)}`);return}
  if(s.view){view=s.view;ui();if(window.P3)P3.focus(view);return}
- if(s.door){if(s.door=='1'){apply('lk',{on:0});say('הדלת נפתחה מהטלפון – ותינעל שוב לבד');setTimeout(()=>{apply('lk',{on:1});D.bell.on=0;ui()},6000);if(window.P3)P3.visitorIn()}closeSheet();ui();return}
+ if(s.door){if(s.door=='1'&&locked('lk')){say('הפעמון והתמונה כלולים בבסיס. פתיחת הדלת מהטלפון דורשת מנעול חכם – לפי הצעת מחיר');closeSheet();return}if(s.door=='1'){apply('lk',{on:0});say('הדלת נפתחה מהטלפון – ותינעל שוב לבד');setTimeout(()=>{apply('lk',{on:1});D.bell.on=0;ui()},6000);if(window.P3)P3.visitorIn()}closeSheet();ui();return}
  if(shab&&!s.view)return;
  if(s.tg){const d=D[s.tg];if(['temp','motion','bell'].includes(d.k))return;scene=null;apply(d.id,{on:d.on?0:1});ui();return}
  if(s.sh){D[s.sh].pos=+s.v;scene=null;ui();return}
@@ -203,7 +209,7 @@ $('#p3h').addEventListener('input',e=>{hr=+e.target.value;$('#p3hl').textContent
 $('#p3h').addEventListener('change',()=>autoClock());
 document.querySelector('#p3 .sim').addEventListener('click',e=>{const b=e.target.closest('[data-sim]');if(!b)return;const k=b.dataset.sim;
  if(k=='shabbat')setShab(!shab);
- if(k=='rain'){rain=!rain;b.classList.toggle('on',rain);if(rain)runTargets({ls:{pos:0},kss:{pos:0},ps:{pos:0},ir:{on:0}},'גשם זוהה: התריסים נסגרו וההשקיה בוטלה');else say('הגשם נפסק');ui()}
+ if(k=='rain'){rain=!rain;b.classList.toggle('on',rain);if(rain)runTargets({ls:{pos:0},kss:{pos:0},ps:{pos:0},ir:{on:0}},plan=='base'?'גשם בדרך: התראה נשלחה לטלפון (סגירת תריסים אוטומטית – עם מתג תריס, תוספת)':'גשם זוהה: התריסים נסגרו וההשקיה בוטלה');else say('הגשם נפסק');ui()}
  if(k=='bell'){D.bell.on=1;view='hall';ui();if(window.P3){P3.focus('hall');P3.visitor()}setTimeout(()=>openSheet('bell'),900);say('צלצול בדלת: תמונה מהמצלמה נשלחה לטלפון')}
  if(k=='walk'){if(window.P3)P3.walk()}});
 setInterval(()=>{const h=D.ht;h.temp=Math.max(19.2,Math.min(23,h.temp+(h.on?.1:-.02)));D.pt.temp=Math.max(19,Math.min(23,D.pt.temp+(D.ac.on?.06:-.01)));if(D.bo.on&&D.bo.m>1)D.bo.m--;
@@ -322,7 +328,7 @@ const tone=d=>d.tone=='color'?new T.Color(d.c):new T.Color(d.tone=='cool'?0xeef4
 window.P3={sync(){dirty=true},vacStart(){vi=0;vac.position.set(300,1,190)},
  focus(k){const r=R[k]&&R[k].r;selL.visible=!!r;if(r){const P=[];for(const[x,z,w,d]of r){const a=[[x+3,z+3],[x+w-3,z+3],[x+w-3,z+d-3],[x+3,z+d-3]];for(let i=0;i<4;i++){const u=a[i],v=a[(i+1)%4];P.push(new T.Vector3(u[0],3,u[1]),new T.Vector3(v[0],3,v[1]))}}selL.geometry.setFromPoints(P)}dirty=true},
  visitor(){vis.visible=true;vis.position.set(680,0,180);vp={i:0,path:VP}},visitorIn(){vp={i:0,path:VPin}},
- walk(){walker.visible=true;walker.position.set(363,0,300);wp={i:0,path:WP};const night=phase(hr).includes('night');D.mo.on=1;const b=D.co.b,o=D.co.on;apply('co',{on:1,b:night?5:30});say(night?'תנועה במסדרון בלילה: אור לילה עדין נדלק':'תנועה במסדרון: האור נדלק');ui();
+ walk(){walker.visible=true;walker.position.set(363,0,300);wp={i:0,path:WP};if(locked('mo')){say('אור אוטומטי לפי תנועה דורש חיישן תנועה – תוספת ₪80–180');return}const night=phase(hr).includes('night');D.mo.on=1;const b=D.co.b,o=D.co.on;apply('co',{on:1,b:night?5:30});say(night?'תנועה במסדרון בלילה: אור לילה עדין נדלק':'תנועה במסדרון: האור נדלק');ui();
   setTimeout(()=>{D.mo.on=0;apply('co',{on:o,b});ui()},7000)}};
 P3.focus('none');
 let last=performance.now();const NC=new T.Color(0x334455);
