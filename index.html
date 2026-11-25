@@ -67,22 +67,25 @@ footer{background:#1E2A4A;padding:10px 0 1px}
 .hb-apps b{display:grid;place-items:center;width:44px;height:44px;margin:0 auto 3px;border-radius:12px;font-size:1.35rem;box-shadow:0 3px 8px #0004}
 .hb-apps i{position:absolute;top:-6px;right:calc(50% - 28px);min-width:17px;height:17px;border-radius:9px;background:#e53935;color:#fff;font-style:normal;font-size:.6rem;font-weight:800;display:grid;place-items:center;border:2px solid #1E2A4A}
 .hb-bf .t3{margin:10px 0 0;font-size:.78rem;opacity:.75}
-.hb-col.d{display:none}
-@media(max-width:759px){#uc .sl{display:none}}
-@media(min-width:760px){.hb-wr{flex-direction:row;justify-content:center;align-items:flex-start;gap:40px}.hb-col.d{display:block}.hb-bf{display:none}.hb{width:320px;margin-top:26px}}
+.hb-col.d,.hb-cp{display:none}
+.sub2{max-width:340px;margin:4px auto 0;line-height:1.6;font-weight:600}
+.hb-cp{margin:4px auto 0;line-height:1.6;max-width:320px}.hb-cp span{color:#F2B544;font-weight:700}
+@media(min-width:760px){.hb-wr{display:grid;grid-template-columns:320px 320px;column-gap:70px;row-gap:6px;justify-content:center;grid-template-areas:"a d" "s c";margin-top:18px}
+.hb-col.a{grid-area:a}.hb-col.d{grid-area:d;display:block}.sub2{grid-area:s;max-width:320px}.hb-cp{grid-area:c;display:block}.hb-bf{display:none}.hb{width:300px}}
 </style>
 <a class="badge" href="#contact" style="color:inherit;text-decoration:none"><i></i>📍 ירושלים והסביבה</a>
 <h1>הבית הנבון</h1>
 <p class="tag">כל המכשירים החכמים – באפליקציה אחת, ועובדים יחד.</p>
-<p class="sub"><span class="sl">מזגן, שואב, נורות, דוד ותריס – לכל אחד אפליקציה משלו, והם לא מדברים זה עם זה. </span>אני מחבר את כל המכשירים ל־Home Assistant אחד ובונה אוטומציות שעובדות לבד – בלי ענן ובלי מנוי חובה.</p>
 <div class="hb-wr">
-<div class="hb-col"><p class="hb-l hb-ok">✓ אצלי: אפליקציה אחת, הכל עובד יחד</p>
+<div class="hb-col a">
 <div class="hb" id="hb" role="img" aria-label="שמונה מכשירים מחוברים למערכת אחת בבית"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg><div class="hb-c"><img src="bayit-blue.png" alt=""></div></div></div>
-<div class="hb-col d"><p class="hb-l hb-no">✕ היום: 8 מכשירים חכמים, 8 אפליקציות</p>
+<div class="hb-col d">
 <div class="hb hb0" id="hb0" role="img" aria-label="היום: שמונה מכשירים חכמים, לכל אחד אפליקציה משלו, והם לא מדברים זה עם זה"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg><div class="hb-c"><div class="hb-ph"><em>📱</em>8 אפליקציות</div></div></div></div>
+<p class="hb-cp"><b>המכשירים שלכם כבר חכמים.</b> <span>אבל כל אחד מדבר באפליקציה אחרת.</span></p>
 <div class="hb-bf"><p class="t1">המכשירים שלכם כבר חכמים.</p><p class="t2">אבל כל אחד מדבר באפליקציה אחרת:</p>
 <div class="hb-apps" aria-hidden="true"></div>
 <p class="t3">8 אפליקציות · 8 סיסמאות · אף אחת לא מדברת עם השנייה</p></div>
+<p class="sub2">אני מחבר את כל המכשירים ל־Home Assistant אחד ובונה אוטומציות שעובדות לבד – בלי ענן ובלי מנוי חובה.</p>
 </div>
 <a class="btn" href="#contact">📞 ייעוץ ראשוני – ללא עלות</a>
 <script>
@@ -130,7 +133,6 @@ document.querySelector('.hb-apps').innerHTML=D.map(function(d){return '<div><b s
 .st .st-go{display:inline-block;margin-top:22px;background:#F2B544;color:#1E2A4A;font-weight:800;padding:14px 28px;border-radius:40px;text-decoration:none;box-shadow:0 6px 20px #F2B54466}
 .st .st-dm{display:block;margin-top:14px;color:#2C7FA8;font-weight:700}
 </style>
-<span class="k">למה בכלל צריך את זה?</span>
 <h2>מכשירים חכמים לבד.<br>בית חכם – רק ביחד.</h2>
 <div class="st-cards" id="st-cards">
 <div class="st-cd"><p>❄️ המזגן לא יודע שיצאתם</p><div>כולם יצאו? המזגן נכבה והשואב יוצא לנקות</div></div>
@@ -140,15 +142,14 @@ document.querySelector('.hb-apps').innerHTML=D.map(function(d){return '<div><b s
 <div class="st-cd"><p>🪟 התריס לא יודע שכבר בוקר</p><div>זריחה? התריס נפתח לבד, ובשקיעה נסגר</div></div>
 </div>
 <button class="st-tg" id="st-tg" type="button" aria-pressed="false">✨ חברו את הבית</button>
-<h3>מה אני עושה בשבילכם</h3>
-<p class="ld">מרכיב לכם <b>Home Assistant</b> – מחשב קטן שיושב בבית, מחבר את המכשירים שכבר יש לכם לאפליקציה אחת, ובונה אוטומציות לפי איך שאתם חיים. הכל נשאר אצלכם בבית: בלי ענן ובלי מנוי חובה.</p>
+<h2 class="h2b">מה אני עושה בשבילכם</h2>
+<p class="ld"><b>Home Assistant</b> הוא מחשב קטן שיושב אצלכם בבית ומנהל את הכל. אתם בוחרים כמה רחוק ללכת:</p>
 <div class="st-pk">
 <div class="st-p"><h4>בסיס<small>כל הבית בלוח בקרה אחד</small></h4><ul><li>חיבור המכשירים שכבר יש לכם</li><li>אפליקציה אחת בעברית, לפי חדרים</li><li>שעון שבת וחג</li><li>אוטומציות בסיסיות: אורות, דוד, התראות</li></ul></div>
 <div class="st-p adv"><h4>מתקדם<small>בית שעובד לבד</small></h4><ul><li>כל מה שבבסיס</li><li>המכשירים מסונכרנים ופועלים יחד</li><li>הבית יודע מתי יצאתם ומתי חזרתם</li><li>פקודות ואוטומציות אישיות לפי השגרה שלכם</li></ul></div>
 </div>
 <p class="st-nt">עובדים עם המכשירים שכבר יש לכם, ומוסיפים רק מה שבאמת צריך. עבודה שדורשת חשמלאי – רק על ידי חשמלאי מוסמך.</p>
 <a class="st-go" href="#contact">💬 ספרו לי מה יש לכם בבית</a>
-<a class="st-dm" href="#app">👀 ככה זה נראה באפליקציה</a>
 <script>
 (function(){
 var s=document.getElementById('why'),tg=document.getElementById('st-tg'),cd=document.getElementById('st-cards'),touched=false;
@@ -162,7 +163,7 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e)
 <script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
 <style>#app{padding:28px 0 8px;text-align:center}#app h2{margin:0 0 6px}#app p{margin:0 0 14px;opacity:.85}#app iframe{width:100%;max-width:1080px;height:720px;border:0;background:transparent;transition:height .3s;border-radius:22px;display:block;margin:0 auto}@media(max-width:700px){#app iframe{height:640px}}</style>
 <style>#pk{padding:28px 12px 8px;text-align:center;color:#fff;background:#1E2A4A;box-shadow:0 0 0 100vmax #1E2A4A;clip-path:inset(0 -100vmax)}#pk h2{margin:0 0 14px}.pkg{display:grid;gap:14px;max-width:760px;margin:0 auto}@media(min-width:620px){.pkg{grid-template-columns:1fr 1fr}}.pkg div{border:2px solid #F2B544;border-radius:18px;padding:18px 16px;background:#1E2A4A;color:#fff}.pkg h3{margin:0 0 6px;color:#F2B544;font-size:1.3rem}.pkg p{margin:0;line-height:1.6}</style><script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
-<section class="more"><div id="app"><h2>📱 איך האפליקציה נראית</h2><iframe id="appf" src="demo.html?app=custom" title="איך האפליקציה נראית" loading="lazy"></iframe></div><h2>התהליך</h2><ol class="steps">
+<section class="more"><div id="app"><h2>איך האפליקציה נראית</h2><iframe id="appf" src="demo.html?app=custom" title="איך האפליקציה נראית" loading="lazy"></iframe></div><h2>התהליך</h2><ol class="steps">
 <li>שיחת היכרות – מה מפריע לכם בבית ומה הייתם רוצים שיקרה לבד.</li>
 <li>תכנון – הצעה מותאמת לבית שלכם, רק מה שבאמת צריך.</li>
 <li>התקנה – מכשירים מוגדרים מראש, כך שיום ההתקנה קצר ונקי.</li>
@@ -194,4 +195,9 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e)
 
 
 <footer><small>הבית הנבון – יניב אלירז · ירושלים<br>© 2026 עוסק פטור · כל הזכויות שמורות · <a href="nagishut.html">הצהרת נגישות</a> · <a href="privacy.html">מדיניות פרטיות</a><br>🔒 האתר לא משתמש בעוגיות ולא עוקב אחריכם – הטופס עובר רק בוואטסאפ.<br>Home Assistant ושמות המוצרים הם סימנים מסחריים של בעליהם; העסק אינו קשור אליהם רשמית.</small></footer>
-<script src="a11y.js?v=2611190931" defer></script><script>/*tz*/(function(){var e=document.getElementById("tzr");if(!e)return;var L=["🔥 הדוד נכבה לבד כשהמים חמים","🌙 אור לילה עמום במסדרון","🔔 תמונה מהפעמון ישר לטלפון"],i=0;function sh(a){for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}fetch("ideas.html").then(function(r){return r.text()}).then(function(t){var d=new DOMParser().parseFromString(t,"text/html"),o=[];[].forEach.call(d.querySelectorAll("main section"),function(sc){var em=sc.querySelector("h2 span");em=em?em.textContent+" ":"";[].forEach.call(sc.querySelectorAll(".c b"),function(b){o.push(em+b.textContent)})});if(o.length)L=sh(o)}).catch(function(){});setInterval(function(){if(document.documentElement.classList.contains("a-na"))return;i=(i+1)%L.length;e.textContent=L[i];e.style.animation="none";e.offsetWidth;e.style.animation=""},4500)})()</script><script>/*wf*/(function(){var f=document.getElementById("wf");if(!f)return;var ph=f.getAttribute("data-ph");f.addEventListener("submit",function(ev){ev.preventDefault();var E=document.getElementById("wfe");E.textContent="";if(f.w.value)return;var n=f.n.value.trim();if(!n){E.textContent="רק השם חסר 🙂";f.n.focus();return}var i=[].map.call(f.querySelectorAll('input[name="i"]:checked'),function(x){return x.value});var L=["היי יניב, אשמח לשמוע על בית חכם 🙂","","שם: "+n];function add(k,v){v=(v||"").trim();if(v)L.push(k+": "+v)}add("שכונה",f.a.value);if(i.length)L.push("מעניין אותי: "+i.join(", "));add("מכשירים חכמים",f.d.value);add("נוח לחזור",f.t.value);add("מה מציק",f.m.value);var u="https://wa.me/"+ph+"?text="+encodeURIComponent(L.join("\n"));if(!ph){E.textContent="תקלה בקישור – אפשר לפנות בוואטסאפ מהכפתור למעלה";return}window.open(u,"_blank")||(location.href=u)})})()</script></body></html>
+<script src="a11y.js?v=2611190931" defer></script><script>/*tz*/(function(){var e=document.getElementById("tzr");if(!e)return;var L=["🔥 הדוד נכבה לבד כשהמים חמים","🌙 אור לילה עמום במסדרון","🔔 תמונה מהפעמון ישר לטלפון"],i=0;function sh(a){for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}fetch("ideas.html").then(function(r){return r.text()}).then(function(t){var d=new DOMParser().parseFromString(t,"text/html"),o=[];[].forEach.call(d.querySelectorAll("main section"),function(sc){var em=sc.querySelector("h2 span");em=em?em.textContent+" ":"";[].forEach.call(sc.querySelectorAll(".c b"),function(b){o.push(em+b.textContent)})});if(o.length)L=sh(o)}).catch(function(){});setInterval(function(){if(document.documentElement.classList.contains("a-na"))return;i=(i+1)%L.length;e.textContent=L[i];e.style.animation="none";e.offsetWidth;e.style.animation=""},4500)})()</script><script>/*wf*/(function(){var f=document.getElementById("wf");if(!f)return;var ph=f.getAttribute("data-ph");f.addEventListener("submit",function(ev){ev.preventDefault();var E=document.getElementById("wfe");E.textContent="";if(f.w.value)return;var n=f.n.value.trim();if(!n){E.textContent="רק השם חסר 🙂";f.n.focus();return}var i=[].map.call(f.querySelectorAll('input[name="i"]:checked'),function(x){return x.value});var L=["היי יניב, אשמח לשמוע על בית חכם 🙂","","שם: "+n];function add(k,v){v=(v||"").trim();if(v)L.push(k+": "+v)}add("שכונה",f.a.value);if(i.length)L.push("מעניין אותי: "+i.join(", "));add("מכשירים חכמים",f.d.value);add("נוח לחזור",f.t.value);add("מה מציק",f.m.value);var u="https://wa.me/"+ph+"?text="+encodeURIComponent(L.join("\n"));if(!ph){E.textContent="תקלה בקישור – אפשר לפנות בוואטסאפ מהכפתור למעלה";return}window.open(u,"_blank")||(location.href=u)})})()</script><!--uni--><style>
+.more{max-width:760px}
+.st h2,.more h2,#app h2{font-size:clamp(1.5rem,4.6vw,1.9rem);font-weight:800;line-height:1.3;text-align:center;margin:56px 0 18px}
+.st h2{margin-top:0}.st h2.h2b{margin-top:56px}#app h2{margin-top:0}
+</style><!--/uni-->
+</body></html>
