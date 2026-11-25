@@ -38,32 +38,84 @@ a.post{display:block;color:inherit;text-decoration:none}.more-l{display:inline-b
 footer{background:#1E2A4A;padding:10px 0 1px}
 .more .c,.more .steps li,.more details,.more .note,.more .cta{background:#26355c;border-color:#ffffff1a;backdrop-filter:none}
 /*wide*/@media(min-width:760px){main{min-height:0;padding:64px 24px 48px}.scene{width:min(700px,70vw)}h1{font-size:3rem}.sub{font-size:1.2rem}.feed{width:min(560px,80vw)}.more{max-width:1080px}}/*mec*/.me{flex-direction:column;text-align:center}.me div{min-width:0}/*dm*/.dmg{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.dmc h3{margin:0 0 8px;color:#F2B544}.dm svg{width:100%;height:auto;display:block;border-radius:12px;overflow:hidden}.dm svg *{transition:fill .9s,opacity .9s,height .9s}.dm-c{display:flex;gap:8px;align-items:center;margin-top:10px;min-height:52px}.dm-t{font:700 .85rem monospace;background:#0005;padding:3px 9px;border-radius:8px;white-space:nowrap;direction:ltr}.dm-n{font:700 .8rem monospace;background:#F2B544;color:#1E2A4A;padding:3px 8px;border-radius:8px;direction:ltr}.dm-m{flex:1;background:#fff;color:#1E2A4A;border-radius:12px;padding:8px 12px;font-weight:500;font-size:.92rem;animation:ev .5s both}/*tz*/.tzc{display:block;color:inherit;text-decoration:none;border-color:#F2B54466!important}.tzc p{margin:0}.tz-r{font-weight:700;background:#0004;border-radius:10px;padding:10px 12px;margin:10px 0;min-height:46px;display:flex;align-items:center;gap:10px;animation:ev .5s both}.tg{flex:none;width:46px;height:26px;border-radius:13px;background:#556;position:relative;animation:tg 6s infinite}.tg::after{content:"";position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff;animation:tgk 6s infinite}@keyframes tg{40%,90%{background:#F2B544}}@keyframes tgk{40%,90%{right:23px}}/*wf*/.wf{text-align:right;max-width:560px;margin:18px auto 0;display:grid;gap:12px}.wf label{display:grid;gap:4px;font-weight:700;font-size:.95rem}.wf input,.wf select,.wf textarea{font:inherit;font-weight:400;padding:11px 12px;border-radius:12px;border:1px solid #ffffff33;background:#1E2A4A;color:#fff}.wf input:focus,.wf select:focus,.wf textarea:focus{outline:2px solid #F2B544;border-color:transparent}.wf fieldset{border:0;padding:0;margin:0}.wf legend{font-weight:700;font-size:.95rem;margin-bottom:6px}.ch{display:flex;flex-wrap:wrap;gap:8px}.ch label{display:block;font-weight:500}.ch input{position:absolute;opacity:0;width:1px;height:1px}.ch span{display:inline-block;padding:8px 12px;border-radius:20px;border:1px solid #ffffff33;background:#1E2A4A;cursor:pointer}.ch input:checked+span{background:#F2B544;color:#1E2A4A;border-color:#F2B544;font-weight:700}.ch input:focus-visible+span{outline:3px solid #F2B544;outline-offset:2px}.wf .btn{border:0;cursor:pointer;font:inherit;font-weight:700;justify-self:center;margin-top:6px}.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}.wf-e{color:#ffb4a8;margin:0;text-align:center;min-height:1em}.wf-p{font-size:.85rem;opacity:.75;margin:0;text-align:center}/*smooth*/html{scroll-behavior:smooth}/*note*/.note p{margin:4px 0}/*hot*/.tzhot{background:linear-gradient(135deg,#F2B544,#ffd98a)!important;color:#1E2A4A!important;border:0!important;box-shadow:0 10px 30px #F2B54444!important}.tzhot h3{color:#1E2A4A!important;font-size:1.3rem}.tzph{background:#1E2A4A;color:#fff;border-radius:16px;padding:10px 14px;margin:12px 0;display:grid;gap:8px;font-weight:700}.tzph div{display:flex;align-items:center;gap:10px}.tg{animation-delay:var(--d,0s)!important}.tg::after{animation-delay:var(--d,0s)!important}.tzgo{display:inline-block;background:#1E2A4A;color:#fff;font-weight:800;padding:12px 28px;border-radius:40px;font-size:1.05rem}@media(min-width:760px){.tz{grid-template-columns:1.2fr 1fr}}</style><link rel="icon" type="image/png" sizes="512x512" href="/bayit-blue.png?v=2611181950"><link rel="apple-touch-icon" href="/bayit-blue.png?v=2611181950"><link rel="manifest" href="/manifest.webmanifest?v=2611181950"><meta name="theme-color" content="#0b1026"></head><body><main id="uc">
+<!--hero2-->
+<style>
+#uc{padding-top:60px}
+#uc .tag{font-size:clamp(1.25rem,5.2vw,1.75rem);font-weight:800;margin:4px 0 8px;line-height:1.3;text-shadow:0 2px 12px #0005}
+#uc .sub{max-width:520px;line-height:1.65;margin:0 auto 4px;opacity:.88}
+.hb{position:relative;width:min(350px,86vw);aspect-ratio:1;margin:14px auto 0}
+.hb svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.hb-ln{stroke:#48A4CE;stroke-width:.9;stroke-dasharray:100;stroke-dashoffset:100;transition:stroke-dashoffset .6s ease}
+.hb.on .hb-ln{stroke-dashoffset:0}
+.hb-pl{fill:#F2B544;opacity:0;transition:opacity .4s}.hb.on .hb-pl{opacity:1;transition-delay:1.3s}
+.hb-br{transition:opacity .4s}.hb.on .hb-br{opacity:0}
+.hb-n{position:absolute;left:var(--bx);top:var(--by);width:19%;transform:translate(-50%,-50%) rotate(var(--r));transition:left .8s cubic-bezier(.6,.1,.2,1),top .8s cubic-bezier(.6,.1,.2,1),transform .8s}
+.hb.on .hb-n{left:var(--ax);top:var(--ay);transform:translate(-50%,-50%)}
+.hb-n b{display:grid;place-items:center;width:100%;aspect-ratio:1;border-radius:50%;background:#fff;font-size:clamp(1.2rem,5.6vw,1.7rem);border:3px solid #ffffff33;transition:border-color .5s,box-shadow .5s}
+.hb.on .hb-n b{border-color:#48A4CE;box-shadow:0 0 14px #48A4CE88}
+.hb-n span{display:block;font-size:.7rem;font-weight:700;margin-top:2px}
+.hb-n i{position:absolute;top:-8px;inset-inline-start:-8px;font-style:normal;font-size:.56rem;background:#d9534f;color:#fff;border-radius:8px;padding:1px 5px;white-space:nowrap;transition:opacity .3s}
+.hb.on .hb-n i{opacity:0}
+.hb-c{position:absolute;left:50%;top:50%;width:27%;aspect-ratio:1;transform:translate(-50%,-50%)}
+.hb-c>*{position:absolute;inset:0;transition:opacity .5s,transform .5s}
+.hb-ph{display:grid;place-content:center;border-radius:22%;border:2px dashed #ffffff66;font-weight:800;font-size:.72rem;line-height:1.3;background:#ffffff12}
+.hb-ph em{font-style:normal;font-size:1.4rem}
+.hb.on .hb-ph{opacity:0;transform:scale(.6)}
+.hb-c img{width:100%;height:100%;border-radius:22%;opacity:0;transform:scale(.5);box-shadow:0 8px 26px #48A4CE99}
+.hb.on .hb-c img{opacity:1;transform:none;transition-delay:.4s}
+.hb-cap{font-weight:700;margin:4px 0 0;min-height:1.5em}
+.hb-cap span+span,.hb.on~.hb-cap span:first-child{display:none}.hb.on~.hb-cap span+span{display:inline}
+.hb-rp{background:none;border:0;color:#ffffffaa;font:inherit;font-size:.8rem;cursor:pointer;text-decoration:underline;margin-top:2px}
+</style>
 <a class="badge" href="#contact" style="color:inherit;text-decoration:none"><i></i>📍 ירושלים והסביבה</a>
 <h1>הבית הנבון</h1>
-<p class="sub">תאורה, דוד, תריסים וניקיון – וגם שבת וחג. הבית עושה את זה לבד, בלי ענן ובלי מנויים.</p>
-<div class="scene"><svg viewBox="0 0 520 330" role="img" aria-label="איור מונפש של בית חכם לאורך יום: אורות, תריס, דוד ושואב שפועלים לבד">
-<g id="stars" opacity="0"><circle class="star" cx="40" cy="30" r="1.6" fill="#fff"/><circle class="star" cx="120" cy="60" r="1.2" fill="#fff" style="animation-delay:1s"/><circle class="star" cx="470" cy="40" r="1.5" fill="#fff" style="animation-delay:.5s"/><circle class="star" cx="300" cy="22" r="1.1" fill="#fff" style="animation-delay:2s"/><circle class="star" cx="400" cy="80" r="1.3" fill="#fff" style="animation-delay:1.5s"/></g>
-<circle id="sun" r="18" fill="#FFD54F"/><circle id="moon" r="13" fill="#eef2ff"/>
-<!-- street lamp --><polygon id="cglow" points="404,92 426,92 450,300 380,300" fill="#ffe066" opacity="0"/><g stroke="#9aa7c0" stroke-linecap="round" fill="none"><path d="M455 300V104q0-26-26-26h-14" stroke-width="5"/><path d="M445 300h20" stroke-width="7"/></g><path d="M400 74h30l-5 12h-20z" fill="#cfd8dc"/><ellipse id="cbulb" cx="415" cy="89" rx="9" ry="4" fill="#fff6c0"/>
-<!-- house -->
-<path d="M40 150 200 60 360 150" fill="none" stroke="#fff" stroke-width="7" stroke-linejoin="round" stroke-linecap="round"/>
-<!-- solar water collector --><g transform="translate(262 89) rotate(29.4)"><rect x="-22" y="-7" width="44" height="14" rx="2" fill="#263238" stroke="#cfd8dc" stroke-width="2"/><g stroke="#90a4ae" stroke-width="1.6"><line x1="-17" y1="-5" x2="-17" y2="5"/><line x1="-12" y1="-5" x2="-12" y2="5"/><line x1="-7" y1="-5" x2="-7" y2="5"/><line x1="-2" y1="-5" x2="-2" y2="5"/><line x1="3" y1="-5" x2="3" y2="5"/><line x1="8" y1="-5" x2="8" y2="5"/><line x1="13" y1="-5" x2="13" y2="5"/><line x1="18" y1="-5" x2="18" y2="5"/></g></g><path d="M282 101q10 2 18-4" fill="none" stroke="#cfd8dc" stroke-width="2.5" stroke-linecap="round"/><g><rect id="boiler" x="300" y="74" width="22" height="36" rx="9" fill="#cfd8dc"/><text id="steam" x="311" y="68" font-size="14" text-anchor="middle" opacity="0">♨️</text></g>
-<rect class="wall" x="62" y="146" width="276" height="160" rx="6" fill="#26355c" stroke="#fff" stroke-width="5"/>
-<line x1="200" y1="146" x2="200" y2="306" stroke="#ffffff55" stroke-width="3"/><line x1="62" y1="226" x2="200" y2="226" stroke="#ffffff55" stroke-width="3"/>
-<g class="room" tabindex="0" role="button" aria-label="אור בחדר שינה" data-r="0"><rect class="glass" x="96" y="166" width="70" height="44" rx="4" fill="#3a4a75"/><text x="131" y="194" font-size="13" text-anchor="middle" fill="#ffffffaa">🛏️</text></g>
-<g class="room" tabindex="0" role="button" aria-label="אור במטבח" data-r="1"><rect class="glass" x="96" y="242" width="70" height="44" rx="4" fill="#3a4a75"/><text x="131" y="270" font-size="13" text-anchor="middle" fill="#ffffffaa">🍳</text></g>
-<g class="room" tabindex="0" role="button" aria-label="אור בסלון" data-r="2"><rect class="glass" x="222" y="166" width="96" height="74" rx="4" fill="#3a4a75"/><text x="270" y="210" font-size="16" text-anchor="middle" fill="#ffffffaa">🛋️</text><rect id="shut" x="222" y="166" width="96" height="0" fill="url(#sl)" opacity=".9"/></g>
-<defs><pattern id="sl" width="8" height="7" patternUnits="userSpaceOnUse"><rect width="8" height="5" fill="#9aa4b1"/><rect y="5" width="8" height="2" fill="#7d8794"/></pattern></defs>
-<g id="vac" transform="translate(230 292)"><ellipse rx="13" ry="6" fill="#eceff1"/><circle cx="4" cy="-2" r="2" fill="#4fc3f7"/></g>
-<line x1="10" y1="306" x2="510" y2="306" stroke="#ffffff44" stroke-width="2"/>
-</svg></div>
-<div class="fr"><svg class="ck" viewBox="0 0 40 40" aria-hidden="true"><circle cx="20" cy="20" r="19" fill="#fff"/><circle cx="20" cy="4.5" r="1.3" fill="#333" transform="rotate(0 20 20)"/><circle cx="20" cy="4.5" r="0.7" fill="#999" transform="rotate(30 20 20)"/><circle cx="20" cy="4.5" r="0.7" fill="#999" transform="rotate(60 20 20)"/><circle cx="20" cy="4.5" r="1.3" fill="#333" transform="rotate(90 20 20)"/><circle cx="20" cy="4.5" r="0.7" fill="#999" transform="rotate(120 20 20)"/><circle cx="20" cy="4.5" r="0.7" fill="#999" transform="rotate(150 20 20)"/><circle cx="20" cy="4.5" r="1.3" fill="#333" transform="rotate(180 20 20)"/><circle cx="20" cy="4.5" r="0.7" fill="#999" transform="rotate(210 20 20)"/><circle cx="20" cy="4.5" r="0.7" fill="#999" transform="rotate(240 20 20)"/><circle cx="20" cy="4.5" r="1.3" fill="#333" transform="rotate(270 20 20)"/><circle cx="20" cy="4.5" r="0.7" fill="#999" transform="rotate(300 20 20)"/><circle cx="20" cy="4.5" r="0.7" fill="#999" transform="rotate(330 20 20)"/><line id="hh" x1="20" y1="20" x2="20" y2="11.5" stroke="#111" stroke-width="2.4" stroke-linecap="round"/><line id="mh" x1="20" y1="20" x2="20" y2="7" stroke="#111" stroke-width="1.4" stroke-linecap="round"/><circle cx="20" cy="20" r="1.6" fill="#111"/></svg><div class="feed" id="feed"></div></div>
-<div class="clock" id="clock" style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">06:00</div>
-<div class="hint">💡 לחצו על חלון כדי להדליק או לכבות</div>
+<p class="tag">כל המכשירים החכמים – באפליקציה אחת, ועובדים יחד.</p>
+<p class="sub">מזגן, שואב, נורות, דוד ותריס – לכל אחד אפליקציה משלו, והם לא מדברים זה עם זה. אני מחבר את כולם ל־Home Assistant אחד ובונה אוטומציות שעובדות לבד – בלי ענן ובלי מנוי חובה.</p>
+<div class="hb" id="hb" role="img" aria-label="לפני: שמונה מכשירים, לכל אחד אפליקציה משלו. אחרי: כולם מחוברים למערכת אחת בבית">
+<svg viewBox="0 0 100 100" preserveAspectRatio="none" id="hb-svg" aria-hidden="true"></svg>
+<div class="hb-c"><div class="hb-ph"><em>📱</em>8 אפליקציות</div><img src="bayit-blue.png" alt=""></div>
+</div>
+<p class="hb-cap" aria-live="polite"><span>8 מכשירים · 8 אפליקציות · אפס תיאום</span><span>8 מכשירים · אפליקציה אחת · הכל עובד יחד</span></p>
+<button class="hb-rp" id="hb-rp" type="button">↺ לראות שוב לפני ואחרי</button>
 <a class="btn" href="#contact">📞 ייעוץ ראשוני – ללא עלות</a>
-
-
+<script>
+(function(){
+var D=[['❄️','מזגן',18,14,-9],['🤖','שואב',82,16,8],['💡','נורות',50,8,-4],['🔔','פעמון',11,50,6],['☀️','דוד',89,48,-7],['🪟','תריס',20,82,5],['📷','מצלמה',55,88,-6],['🌡️','חיישן',86,80,9]];
+var hb=document.getElementById('hb'),sv=document.getElementById('hb-svg'),NS='',h='';
+D.forEach(function(d,i){var a=-Math.PI/2+i*Math.PI/4,ax=50+38*Math.cos(a),ay=50+38*Math.sin(a);
+ var n=document.createElement('div');n.className='hb-n';n.style.cssText='--bx:'+d[2]+'%;--by:'+d[3]+'%;--ax:'+ax.toFixed(1)+'%;--ay:'+ay.toFixed(1)+'%;--r:'+d[4]+'deg';
+ n.innerHTML='<b aria-hidden="true">'+d[0]+'</b><span>'+d[1]+'</span><i>📱 אפליקציה</i>';hb.appendChild(n);
+ h+='<line class="hb-ln" pathLength="100" x1="50" y1="50" x2="'+ax+'" y2="'+ay+'" style="transition-delay:'+(0.6+i*0.07)+'s"/>';
+ h+='<circle class="hb-pl" r="1.3"><animate attributeName="cx" values="'+ax+';50" dur="1.6s" begin="'+(i*0.4)+'s" repeatCount="indefinite"/><animate attributeName="cy" values="'+ay+';50" dur="1.6s" begin="'+(i*0.4)+'s" repeatCount="indefinite"/></circle>';});
+[[0,2],[1,4],[3,5],[6,7]].forEach(function(p){var a=D[p[0]],b=D[p[1]];
+ h+='<g class="hb-br"><line x1="'+a[2]+'" y1="'+a[3]+'" x2="'+b[2]+'" y2="'+b[3]+'" stroke="#ffffff55" stroke-width=".6" stroke-dasharray="2 2"/><text x="'+(a[2]+b[2])/2+'" y="'+((a[3]+b[3])/2+1.5)+'" font-size="5" text-anchor="middle" fill="#ff6b6b" font-weight="700">✕</text></g>';});
+sv.innerHTML=h;
+var rm=window.matchMedia&&matchMedia('(prefers-reduced-motion: reduce)').matches,t;
+function go(){clearTimeout(t);hb.classList.remove('on');t=setTimeout(function(){hb.classList.add('on')},rm?0:1300)}
+document.getElementById('hb-rp').onclick=go;go();
+})();
+</script>
+<!--/hero2-->
 </main>
+<!--cards-->
+<section id="why" class="why">
+<style>
+.why{padding:34px 16px 10px;max-width:980px;margin:auto}
+.why h2{font-size:1.5rem;margin:0 0 14px;line-height:1.35;text-shadow:0 2px 12px #0005}
+.why .g{text-align:right}
+.why .c p{margin:0}
+.why .c .x{opacity:.6;text-decoration:line-through;font-size:.9rem}
+.why .c .v{color:#F2B544;font-weight:800;margin-top:4px;opacity:1}
+</style>
+<h2>מכשירים חכמים לבד.<br>בית חכם – רק ביחד.</h2>
+<div class="g">
+<div class="c"><p class="x">❄️ המזגן לא יודע שיצאתם</p><p class="v">כולם יצאו? המזגן נכבה והשואב יוצא לנקות</p></div>
+<div class="c"><p class="x">☀️ הדוד לא יודע שיש שמש</p><p class="v">יש שמש? הדוד מחמם רק כמה שצריך</p></div>
+<div class="c"><p class="x">🕯️ הנורות לא יודעות שנכנסה שבת</p><p class="v">נכנסה שבת? האורות עוברים לשעון שבת לפי הלוח העברי</p></div>
+<div class="c"><p class="x">🔔 הפעמון לא יודע שהילדים ישנים</p><p class="v">מצלצלים בלילה? בלי צלצול – רק תמונה לטלפון</p></div>
+</div>
+</section>
+<!--/cards-->
 <script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
 <style>#app{padding:28px 0 8px;text-align:center}#app h2{margin:0 0 6px}#app p{margin:0 0 14px;opacity:.85}#app iframe{width:100%;max-width:1080px;height:720px;border:0;background:transparent;transition:height .3s;border-radius:22px;display:block;margin:0 auto}@media(max-width:700px){#app iframe{height:640px}}</style>
 <style>#pk{padding:28px 12px 8px;text-align:center;color:#fff;background:#1E2A4A;box-shadow:0 0 0 100vmax #1E2A4A;clip-path:inset(0 -100vmax)}#pk h2{margin:0 0 14px}.pkg{display:grid;gap:14px;max-width:760px;margin:0 auto}@media(min-width:620px){.pkg{grid-template-columns:1fr 1fr}}.pkg div{border:2px solid #F2B544;border-radius:18px;padding:18px 16px;background:#1E2A4A;color:#fff}.pkg h3{margin:0 0 6px;color:#F2B544;font-size:1.3rem}.pkg p{margin:0;line-height:1.6}</style><section id="pk"><h2>החבילות שלנו</h2><div class="pkg"><div><h3>בסיס</h3><p>המרת המכשירים בבית לחכמים וריכוזם ללוח בקרה אחד.</p></div><div><h3>מתקדם</h3><p>המרת המכשירים בבית לחכמים ובניית מערכת שמסנכרנת בין כל המכשירים ויוצרת פקודות מותאמות אישית.</p></div></div></section><script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
@@ -100,27 +152,4 @@ footer{background:#1E2A4A;padding:10px 0 1px}
 
 
 <footer><small>הבית הנבון – יניב אלירז · ירושלים<br>© 2026 עוסק פטור · כל הזכויות שמורות · <a href="nagishut.html">הצהרת נגישות</a> · <a href="privacy.html">מדיניות פרטיות</a><br>🔒 האתר לא משתמש בעוגיות ולא עוקב אחריכם – הטופס עובר רק בוואטסאפ.<br>Home Assistant ושמות המוצרים הם סימנים מסחריים של בעליהם; העסק אינו קשור אליהם רשמית.</small></footer>
-<script>
-(function(){
-const $=id=>document.getElementById(id),R=[...document.querySelectorAll('.room')],G=R.map(r=>r.querySelector('.glass'));
-const sky=[[0,'#0d1428'],[5,'#1a2346'],[6.5,'#f6a86b'],[8,'#5fa8e8'],[16,'#4a90d9'],[17.3,'#e8875a'],[18.3,'#2c3c66'],[20,'#141c36'],[24,'#0d1428']];
-const hex=h=>[1,3,5].map(i=>parseInt(h.substr(i,2),16)),mix=(a,b,t)=>'rgb('+a.map((v,i)=>Math.round(v+(b[i]-v)*t)).join(',')+')';
-function skyAt(h){for(let i=0;i<sky.length-1;i++){const[a,c1]=sky[i],[b,c2]=sky[i+1];if(h>=a&&h<b)return mix(hex(c1),hex(c2),(h-a)/(b-a))}return sky[0][1]}
-const EV=[[6.5,'☀️','זריחה – התריס בסלון נפתח'],[7,'🌅','אור עדין במטבח לבוקר טוב'],[10,'🤖','כולם יצאו – השואב יצא לנקות'],[11.6,'✅','הניקיון הסתיים, השואב חזר לתחנה'],[17.2,'🌇','שקיעה – אורות הסלון נדלקו, התריס נסגר'],[17.5,'🔥','הדוד התחיל לחמם'],[18.3,'🚿','המים חמים – הדוד כבה לבד'],[21.5,'🛏️','אור לילה עמום בחדר השינה'],[23.3,'🌙','לילה טוב – הכל כבה בבית']];
-let h=6,last=-1,hold=0,man=[null,null,null],DAY=24000;const rm=false;
-function auto(h){return[(h>=21.5&&h<23.3)?.35:0,(h>=7&&h<8.5)?.6:(h>=17.2&&h<21)?1:0,(h>=17.2&&h<23.3)?1:0]}
-function show(e){hold=performance.now()+2800;const f=$('feed');f.innerHTML='<div class="ev"><span>'+e[1]+'</span>'+e[2]+'</div>'}
-function draw(){document.body.style.setProperty('--sky',skyAt(h));
- const a=auto(h);G.forEach((g,i)=>{const v=man[i]!==null?man[i]:a[i];g.setAttribute('fill',v?'rgba(255,'+(200+Math.round(30*v))+',90,'+(.35+.65*v)+')':'#3a4a75');g.parentNode.setAttribute('aria-pressed',!!v)});
- const sh=(h>=6.5&&h<17.2)?0:46;$('shut').setAttribute('height',sh);
- const boil=h>=17.5&&h<18.3;$('boiler').setAttribute('fill',boil?'#ff8a65':'#cfd8dc');$('steam').setAttribute('opacity',boil?1:0);
- const d=h>=6&&h<18,t=d?(h-6)/12:((h+6)%24)/12,x=40+t*440,y=120-Math.sin(t*Math.PI)*95;
- $('sun').setAttribute('cx',x);$('sun').setAttribute('cy',y);$('sun').setAttribute('opacity',d?1:0);$('moon').setAttribute('cx',x);$('moon').setAttribute('cy',y);$('moon').setAttribute('opacity',d?0:1);
- $('stars').setAttribute('opacity',(h<5.5||h>19)?1:0);$('cbulb').setAttribute('fill',(h<6.5||h>17.2)?'#ffe066':'#fff6c0');$('cglow').setAttribute('opacity',(h<6.5||h>17.2)?.28:0);
- const vx=(h>=10&&h<11.6)?(225+Math.abs(Math.sin((h-10)*9))*90):230;$('vac').setAttribute('transform','translate('+vx+' 292)');
- $('clock').textContent=String(Math.floor(h)).padStart(2,'0')+':'+String(Math.floor(h%1*60)).padStart(2,'0');{const M=h%1*60;$('hh').setAttribute('transform','rotate('+((h%12)*30+M/2)+' 20 20)');$('mh').setAttribute('transform','rotate('+(M*6)+' 20 20)')}
- let i=-1;for(let k=0;k<EV.length;k++)if(EV[k][0]<=h)i=k;if(i!==last&&i>=0){last=i;show(EV[i]);man=[null,null,null]}}
-R.forEach((r,i)=>{const t=()=>{const g=G[i],on=g.getAttribute('fill')!=='#3a4a75';man[i]=on?0:1;draw();show(['', on?'🌑':'💡',(on?'כיביתם':'הדלקתם')+' את האור – בדיוק כמו באפליקציה'])};r.onclick=t;r.onkeydown=e=>{if(e.key==='Enter'||e.key===' '){e.preventDefault();t()}}});
-if(rm){let j=0;const st=()=>{h=EV[j][0]+.01;draw();j=(j+1)%EV.length};st();setInterval(function(){if(!document.documentElement.classList.contains("a-na"))st()},4000)}else{let p=performance.now();(function f(n){if(document.documentElement.classList.contains("a-na")){p=n;requestAnimationFrame(f);return}h=(h+(n-p)/DAY*24*(n<hold?0.06:1))%24;p=n;draw();requestAnimationFrame(f)})(p)}
-})();
-</script><script src="a11y.js?v=2611190931" defer></script><script>/*tz*/(function(){var e=document.getElementById("tzr");if(!e)return;var L=["🔥 הדוד נכבה לבד כשהמים חמים","🌙 אור לילה עמום במסדרון","🔔 תמונה מהפעמון ישר לטלפון"],i=0;function sh(a){for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}fetch("ideas.html").then(function(r){return r.text()}).then(function(t){var d=new DOMParser().parseFromString(t,"text/html"),o=[];[].forEach.call(d.querySelectorAll("main section"),function(sc){var em=sc.querySelector("h2 span");em=em?em.textContent+" ":"";[].forEach.call(sc.querySelectorAll(".c b"),function(b){o.push(em+b.textContent)})});if(o.length)L=sh(o)}).catch(function(){});setInterval(function(){if(document.documentElement.classList.contains("a-na"))return;i=(i+1)%L.length;e.textContent=L[i];e.style.animation="none";e.offsetWidth;e.style.animation=""},4500)})()</script><script>/*wf*/(function(){var f=document.getElementById("wf");if(!f)return;var ph=f.getAttribute("data-ph");f.addEventListener("submit",function(ev){ev.preventDefault();var E=document.getElementById("wfe");E.textContent="";if(f.w.value)return;var n=f.n.value.trim();if(!n){E.textContent="רק השם חסר 🙂";f.n.focus();return}var i=[].map.call(f.querySelectorAll('input[name="i"]:checked'),function(x){return x.value});var L=["היי יניב, אשמח לשמוע על בית חכם 🙂","","שם: "+n];function add(k,v){v=(v||"").trim();if(v)L.push(k+": "+v)}add("שכונה",f.a.value);if(i.length)L.push("מעניין אותי: "+i.join(", "));add("מכשירים חכמים",f.d.value);add("נוח לחזור",f.t.value);add("מה מציק",f.m.value);var u="https://wa.me/"+ph+"?text="+encodeURIComponent(L.join("\n"));if(!ph){E.textContent="תקלה בקישור – אפשר לפנות בוואטסאפ מהכפתור למעלה";return}window.open(u,"_blank")||(location.href=u)})})()</script></body></html>
+<script src="a11y.js?v=2611190931" defer></script><script>/*tz*/(function(){var e=document.getElementById("tzr");if(!e)return;var L=["🔥 הדוד נכבה לבד כשהמים חמים","🌙 אור לילה עמום במסדרון","🔔 תמונה מהפעמון ישר לטלפון"],i=0;function sh(a){for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}fetch("ideas.html").then(function(r){return r.text()}).then(function(t){var d=new DOMParser().parseFromString(t,"text/html"),o=[];[].forEach.call(d.querySelectorAll("main section"),function(sc){var em=sc.querySelector("h2 span");em=em?em.textContent+" ":"";[].forEach.call(sc.querySelectorAll(".c b"),function(b){o.push(em+b.textContent)})});if(o.length)L=sh(o)}).catch(function(){});setInterval(function(){if(document.documentElement.classList.contains("a-na"))return;i=(i+1)%L.length;e.textContent=L[i];e.style.animation="none";e.offsetWidth;e.style.animation=""},4500)})()</script><script>/*wf*/(function(){var f=document.getElementById("wf");if(!f)return;var ph=f.getAttribute("data-ph");f.addEventListener("submit",function(ev){ev.preventDefault();var E=document.getElementById("wfe");E.textContent="";if(f.w.value)return;var n=f.n.value.trim();if(!n){E.textContent="רק השם חסר 🙂";f.n.focus();return}var i=[].map.call(f.querySelectorAll('input[name="i"]:checked'),function(x){return x.value});var L=["היי יניב, אשמח לשמוע על בית חכם 🙂","","שם: "+n];function add(k,v){v=(v||"").trim();if(v)L.push(k+": "+v)}add("שכונה",f.a.value);if(i.length)L.push("מעניין אותי: "+i.join(", "));add("מכשירים חכמים",f.d.value);add("נוח לחזור",f.t.value);add("מה מציק",f.m.value);var u="https://wa.me/"+ph+"?text="+encodeURIComponent(L.join("\n"));if(!ph){E.textContent="תקלה בקישור – אפשר לפנות בוואטסאפ מהכפתור למעלה";return}window.open(u,"_blank")||(location.href=u)})})()</script></body></html>
