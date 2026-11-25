@@ -113,7 +113,7 @@ document.getElementById('hb-rp').onclick=go;go();
 .st.on .st-cd{border-color:#48A4CE}
 .st.on .st-cd p{color:#9aa3b5;text-decoration:line-through;font-weight:500;font-size:.88rem}
 .st.on .st-cd div{max-height:5em;opacity:1;margin-top:4px}
-.st-cd:nth-child(2),.st-cd:nth-child(2) *{transition-delay:.25s}.st-cd:nth-child(3),.st-cd:nth-child(3) *{transition-delay:.5s}.st-cd:nth-child(4),.st-cd:nth-child(4) *{transition-delay:.75s}
+.st-cd:nth-child(2),.st-cd:nth-child(2) *{transition-delay:.25s}.st-cd:nth-child(3),.st-cd:nth-child(3) *{transition-delay:.5s}.st-cd:nth-child(4),.st-cd:nth-child(4) *{transition-delay:.75s}.st-cd:nth-child(5),.st-cd:nth-child(5) *{transition-delay:1s}
 .st-tg{font:inherit;font-weight:800;cursor:pointer;margin-top:16px;padding:12px 26px;border-radius:40px;border:0;background:#1E2A4A;color:#fff;box-shadow:0 6px 18px #1E2A4A33}
 .st-pk{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;max-width:760px;margin:18px auto 0}
 .st-p{background:#fff;border-radius:18px;padding:18px;text-align:start;box-shadow:0 4px 16px #1E2A4A14;color:#1E2A4A}
@@ -131,6 +131,7 @@ document.getElementById('hb-rp').onclick=go;go();
 <div class="st-cd"><p>☀️ הדוד לא יודע שיש שמש</p><div>יש שמש? הדוד מחמם רק כמה שצריך</div></div>
 <div class="st-cd"><p>🕯️ הנורות לא יודעות שנכנסה שבת</p><div>נכנסה שבת? האורות עוברים לשעון שבת לפי הלוח העברי</div></div>
 <div class="st-cd"><p>🔔 הפעמון לא יודע שהילדים ישנים</p><div>מצלצלים בלילה? בלי צלצול – רק תמונה לטלפון</div></div>
+<div class="st-cd"><p>🪟 התריס לא יודע שכבר בוקר</p><div>זריחה? התריס נפתח לבד, ובשקיעה נסגר</div></div>
 </div>
 <button class="st-tg" id="st-tg" type="button" aria-pressed="false">✨ חברו את הבית</button>
 <h3>מה אני עושה בשבילכם</h3>
@@ -155,8 +156,7 @@ if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e)
 <script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
 <style>#app{padding:28px 0 8px;text-align:center}#app h2{margin:0 0 6px}#app p{margin:0 0 14px;opacity:.85}#app iframe{width:100%;max-width:1080px;height:720px;border:0;background:transparent;transition:height .3s;border-radius:22px;display:block;margin:0 auto}@media(max-width:700px){#app iframe{height:640px}}</style>
 <style>#pk{padding:28px 12px 8px;text-align:center;color:#fff;background:#1E2A4A;box-shadow:0 0 0 100vmax #1E2A4A;clip-path:inset(0 -100vmax)}#pk h2{margin:0 0 14px}.pkg{display:grid;gap:14px;max-width:760px;margin:0 auto}@media(min-width:620px){.pkg{grid-template-columns:1fr 1fr}}.pkg div{border:2px solid #F2B544;border-radius:18px;padding:18px 16px;background:#1E2A4A;color:#fff}.pkg h3{margin:0 0 6px;color:#F2B544;font-size:1.3rem}.pkg p{margin:0;line-height:1.6}</style><script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
-<section class="more"><h2>הבית שלכם יכול לעשות כל מה שתרצו</h2><div class="g"><div class="c"><div class="e">💡</div><h3>תאורה</h3><p>אור רך בלילה, סצנות בלחיצה, ואורות שנכבים לבד כשאין אף אחד בחדר.</p></div><div class="c"><div class="e">🔥</div><h3>דוד</h3><p>מים חמים כשצריך, לפי השמש ולפי הלו"ז שלכם – בלי לשכוח את הדוד דולק.</p></div><div class="c"><div class="e">🪟</div><h3>תריסים</h3><p>תריסים שנפתחים בבוקר ונסגרים בערב, או בלחיצה אחת מהטלפון.</p></div><div class="c"><div class="e">🧹</div><h3>ניקיון</h3><p>שואב רובוטי שמנקה כשאתם לא בבית, חדר אחרי חדר.</p></div><div class="c"><div class="e">🌡️</div><h3>נוחות והתראות</h3><p>טמפרטורה ולחות בכל חדר, והתראה לטלפון כשמשהו דורש תשומת לב.</p></div><div class="c"><div class="e">🕯️</div><h3>שבת וחג</h3><p>שעון שבת חכם שמכיר את זמני השבת והחגים לבד – בלי לכוון שעונים.</p></div></div><div class="g tz" style="margin-top:18px"></div>
-<div id="app"><h2>📱 איך האפליקציה נראית</h2><iframe id="appf" src="demo.html?app=custom" title="איך האפליקציה נראית" loading="lazy"></iframe></div><h2>התהליך</h2><ol class="steps">
+<section class="more"><div id="app"><h2>📱 איך האפליקציה נראית</h2><iframe id="appf" src="demo.html?app=custom" title="איך האפליקציה נראית" loading="lazy"></iframe></div><h2>התהליך</h2><ol class="steps">
 <li>שיחת היכרות – מה מפריע לכם בבית ומה הייתם רוצים שיקרה לבד.</li>
 <li>תכנון – הצעה מותאמת לבית שלכם, רק מה שבאמת צריך.</li>
 <li>התקנה – מכשירים מוגדרים מראש, כך שיום ההתקנה קצר ונקי.</li>
