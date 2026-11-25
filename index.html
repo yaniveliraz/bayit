@@ -98,27 +98,63 @@ document.getElementById('hb-rp').onclick=go;go();
 <!--/hero2-->
 </main>
 <!--cards-->
-<section id="why" class="why">
+<section id="why" class="st">
 <style>
-.why{padding:34px 16px 10px;max-width:980px;margin:auto}
-.why h2{font-size:1.5rem;margin:0 0 14px;line-height:1.35;text-shadow:0 2px 12px #0005}
-.why .g{text-align:right}
-.why .c p{margin:0}
-.why .c .x{opacity:.6;text-decoration:line-through;font-size:.9rem}
-.why .c .v{color:#F2B544;font-weight:800;margin-top:4px;opacity:1}
+.st{background:#F4F7FB;color:#1E2A4A;text-align:center;padding:48px 16px 44px;box-shadow:0 0 0 100vmax #F4F7FB;clip-path:inset(0 -100vmax)}
+.st *{box-sizing:border-box}
+.st .k{display:inline-block;font-size:.8rem;font-weight:700;color:#2C7FA8;background:#48A4CE22;padding:4px 12px;border-radius:20px}
+.st h2{font-size:clamp(1.45rem,5.4vw,2.1rem);font-weight:900;margin:12px 0 16px;line-height:1.3;text-shadow:none}
+.st h3{font-size:clamp(1.25rem,4.6vw,1.6rem);font-weight:800;margin:40px 0 12px}
+.st .ld{max-width:560px;margin:0 auto;line-height:1.7;color:#3b4a6b}
+.st-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;max-width:760px;margin:0 auto}
+.st-cd{background:#fff;border-radius:16px;padding:14px 16px;text-align:start;box-shadow:0 3px 12px #1E2A4A12;border-inline-start:4px solid #c9d1df;transition:border-color .6s}
+.st-cd p{margin:0;font-weight:700;transition:color .5s,font-size .5s}
+.st-cd div{max-height:0;opacity:0;overflow:hidden;color:#1d6f96;font-weight:800;transition:max-height .6s,opacity .6s,margin .6s}
+.st.on .st-cd{border-color:#48A4CE}
+.st.on .st-cd p{color:#9aa3b5;text-decoration:line-through;font-weight:500;font-size:.88rem}
+.st.on .st-cd div{max-height:5em;opacity:1;margin-top:4px}
+.st-cd:nth-child(2),.st-cd:nth-child(2) *{transition-delay:.25s}.st-cd:nth-child(3),.st-cd:nth-child(3) *{transition-delay:.5s}.st-cd:nth-child(4),.st-cd:nth-child(4) *{transition-delay:.75s}
+.st-tg{font:inherit;font-weight:800;cursor:pointer;margin-top:16px;padding:12px 26px;border-radius:40px;border:0;background:#1E2A4A;color:#fff;box-shadow:0 6px 18px #1E2A4A33}
+.st-pk{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;max-width:760px;margin:18px auto 0}
+.st-p{background:#fff;border-radius:18px;padding:18px;text-align:start;box-shadow:0 4px 16px #1E2A4A14;color:#1E2A4A}
+.st-p.adv{background:#1E2A4A;color:#fff}
+.st-p h4{margin:0;font-size:1.25rem}.st-p h4 small{all:unset;display:block;font-size:.85rem;font-weight:500;opacity:.75;margin-top:2px}
+.st-p ul{margin:10px 0 0;padding-inline-start:20px;line-height:1.8}
+.st-nt{font-size:.85rem;color:#5d6a85;max-width:560px;margin:16px auto 0;line-height:1.6}
+.st .st-go{display:inline-block;margin-top:22px;background:#F2B544;color:#1E2A4A;font-weight:800;padding:14px 28px;border-radius:40px;text-decoration:none;box-shadow:0 6px 20px #F2B54466}
+.st .st-dm{display:block;margin-top:14px;color:#2C7FA8;font-weight:700}
 </style>
+<span class="k">למה בכלל צריך את זה?</span>
 <h2>מכשירים חכמים לבד.<br>בית חכם – רק ביחד.</h2>
-<div class="g">
-<div class="c"><p class="x">❄️ המזגן לא יודע שיצאתם</p><p class="v">כולם יצאו? המזגן נכבה והשואב יוצא לנקות</p></div>
-<div class="c"><p class="x">☀️ הדוד לא יודע שיש שמש</p><p class="v">יש שמש? הדוד מחמם רק כמה שצריך</p></div>
-<div class="c"><p class="x">🕯️ הנורות לא יודעות שנכנסה שבת</p><p class="v">נכנסה שבת? האורות עוברים לשעון שבת לפי הלוח העברי</p></div>
-<div class="c"><p class="x">🔔 הפעמון לא יודע שהילדים ישנים</p><p class="v">מצלצלים בלילה? בלי צלצול – רק תמונה לטלפון</p></div>
+<div class="st-cards" id="st-cards">
+<div class="st-cd"><p>❄️ המזגן לא יודע שיצאתם</p><div>כולם יצאו? המזגן נכבה והשואב יוצא לנקות</div></div>
+<div class="st-cd"><p>☀️ הדוד לא יודע שיש שמש</p><div>יש שמש? הדוד מחמם רק כמה שצריך</div></div>
+<div class="st-cd"><p>🕯️ הנורות לא יודעות שנכנסה שבת</p><div>נכנסה שבת? האורות עוברים לשעון שבת לפי הלוח העברי</div></div>
+<div class="st-cd"><p>🔔 הפעמון לא יודע שהילדים ישנים</p><div>מצלצלים בלילה? בלי צלצול – רק תמונה לטלפון</div></div>
 </div>
+<button class="st-tg" id="st-tg" type="button" aria-pressed="false">✨ חברו את הבית</button>
+<h3>מה אני עושה בשבילכם</h3>
+<p class="ld">מרכיב לכם <b>Home Assistant</b> – מחשב קטן שיושב בבית, מחבר את המכשירים שכבר יש לכם לאפליקציה אחת, ובונה אוטומציות לפי איך שאתם חיים. הכל נשאר אצלכם בבית: בלי ענן ובלי מנוי חובה.</p>
+<div class="st-pk">
+<div class="st-p"><h4>בסיס<small>כל הבית בלוח בקרה אחד</small></h4><ul><li>חיבור המכשירים שכבר יש לכם</li><li>אפליקציה אחת בעברית, לפי חדרים</li><li>שעון שבת וחג</li><li>אוטומציות בסיסיות: אורות, דוד, התראות</li></ul></div>
+<div class="st-p adv"><h4>מתקדם<small>בית שעובד לבד</small></h4><ul><li>כל מה שבבסיס</li><li>המכשירים מסונכרנים ופועלים יחד</li><li>הבית יודע מתי יצאתם ומתי חזרתם</li><li>פקודות ואוטומציות אישיות לפי השגרה שלכם</li></ul></div>
+</div>
+<p class="st-nt">עובדים עם המכשירים שכבר יש לכם, ומוסיפים רק מה שבאמת צריך. עבודה שדורשת חשמלאי – רק על ידי חשמלאי מוסמך.</p>
+<a class="st-go" href="#contact">💬 ספרו לי מה יש לכם בבית</a>
+<a class="st-dm" href="#app">👀 ככה זה נראה באפליקציה</a>
+<script>
+(function(){
+var s=document.getElementById('why'),tg=document.getElementById('st-tg'),cd=document.getElementById('st-cards'),touched=false;
+function set(on){s.classList.toggle('on',on);tg.setAttribute('aria-pressed',on);tg.textContent=on?'↺ ככה זה היה קודם':'✨ חברו את הבית'}
+tg.onclick=function(){touched=true;set(!s.classList.contains('on'))};
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();setTimeout(function(){if(!touched)set(true)},1500)}},{threshold:.6});io.observe(cd)}else set(true);
+})();
+</script>
 </section>
 <!--/cards-->
 <script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
 <style>#app{padding:28px 0 8px;text-align:center}#app h2{margin:0 0 6px}#app p{margin:0 0 14px;opacity:.85}#app iframe{width:100%;max-width:1080px;height:720px;border:0;background:transparent;transition:height .3s;border-radius:22px;display:block;margin:0 auto}@media(max-width:700px){#app iframe{height:640px}}</style>
-<style>#pk{padding:28px 12px 8px;text-align:center;color:#fff;background:#1E2A4A;box-shadow:0 0 0 100vmax #1E2A4A;clip-path:inset(0 -100vmax)}#pk h2{margin:0 0 14px}.pkg{display:grid;gap:14px;max-width:760px;margin:0 auto}@media(min-width:620px){.pkg{grid-template-columns:1fr 1fr}}.pkg div{border:2px solid #F2B544;border-radius:18px;padding:18px 16px;background:#1E2A4A;color:#fff}.pkg h3{margin:0 0 6px;color:#F2B544;font-size:1.3rem}.pkg p{margin:0;line-height:1.6}</style><section id="pk"><h2>החבילות שלנו</h2><div class="pkg"><div><h3>בסיס</h3><p>המרת המכשירים בבית לחכמים וריכוזם ללוח בקרה אחד.</p></div><div><h3>מתקדם</h3><p>המרת המכשירים בבית לחכמים ובניית מערכת שמסנכרנת בין כל המכשירים ויוצרת פקודות מותאמות אישית.</p></div></div></section><script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
+<style>#pk{padding:28px 12px 8px;text-align:center;color:#fff;background:#1E2A4A;box-shadow:0 0 0 100vmax #1E2A4A;clip-path:inset(0 -100vmax)}#pk h2{margin:0 0 14px}.pkg{display:grid;gap:14px;max-width:760px;margin:0 auto}@media(min-width:620px){.pkg{grid-template-columns:1fr 1fr}}.pkg div{border:2px solid #F2B544;border-radius:18px;padding:18px 16px;background:#1E2A4A;color:#fff}.pkg h3{margin:0 0 6px;color:#F2B544;font-size:1.3rem}.pkg p{margin:0;line-height:1.6}</style><script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
 <section class="more"><h2>הבית שלכם יכול לעשות כל מה שתרצו</h2><div class="g"><div class="c"><div class="e">💡</div><h3>תאורה</h3><p>אור רך בלילה, סצנות בלחיצה, ואורות שנכבים לבד כשאין אף אחד בחדר.</p></div><div class="c"><div class="e">🔥</div><h3>דוד</h3><p>מים חמים כשצריך, לפי השמש ולפי הלו"ז שלכם – בלי לשכוח את הדוד דולק.</p></div><div class="c"><div class="e">🪟</div><h3>תריסים</h3><p>תריסים שנפתחים בבוקר ונסגרים בערב, או בלחיצה אחת מהטלפון.</p></div><div class="c"><div class="e">🧹</div><h3>ניקיון</h3><p>שואב רובוטי שמנקה כשאתם לא בבית, חדר אחרי חדר.</p></div><div class="c"><div class="e">🌡️</div><h3>נוחות והתראות</h3><p>טמפרטורה ולחות בכל חדר, והתראה לטלפון כשמשהו דורש תשומת לב.</p></div><div class="c"><div class="e">🕯️</div><h3>שבת וחג</h3><p>שעון שבת חכם שמכיר את זמני השבת והחגים לבד – בלי לכוון שעונים.</p></div></div><div class="g tz" style="margin-top:18px"></div>
 <div id="app"><h2>📱 איך האפליקציה נראית</h2><iframe id="appf" src="demo.html?app=custom" title="איך האפליקציה נראית" loading="lazy"></iframe></div><h2>התהליך</h2><ol class="steps">
 <li>שיחת היכרות – מה מפריע לכם בבית ומה הייתם רוצים שיקרה לבד.</li>
