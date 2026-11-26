@@ -1,0 +1,203 @@
+<!doctype html><html lang="en" dir="ltr"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>HaBayit HaNavon – a smart home with no cloud and no subscriptions | Yaniv Eliraz</title><meta property="og:type" content="website" /><meta property="og:title" content="HaBayit HaNavon – a smart home with no cloud and no subscriptions" /><meta property="og:description" content="Lights, water heater, shutters and cleaning – plus Shabbat and holidays. A smart home with no cloud and no subscriptions, Jerusalem area." /><meta property="og:image" content="https://bayit.eliraz.biz/bayit-blue.png" /><meta property="og:image:width" content="512" /><meta property="og:image:height" content="512" /><meta name="twitter:card" content="summary" /><meta name="description" content="Lights, water heater, shutters and cleaning – plus Shabbat and holidays. A smart home with no cloud and no subscriptions, Jerusalem area.">
+<link href="fonts/heebo.css" rel="stylesheet">
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%}
+body{font-family:Heebo,sans-serif;color:#fff;text-align:center;background:var(--sky,#1E2A4A);transition:background 1s linear;overflow-x:hidden}
+main{min-height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:70px 16px 28px}
+.badge{display:inline-flex;gap:8px;align-items:center;background:#0004;border:1px solid #fff3;padding:6px 14px;border-radius:30px;font-size:.85rem;backdrop-filter:blur(4px)}
+.badge i{width:8px;height:8px;border-radius:50%;background:#F2B544;animation:pulse 1.4s infinite}@keyframes pulse{50%{opacity:.25}}
+h1{font-size:clamp(1.8rem,6vw,2.6rem);font-weight:900;margin:14px 0 4px;text-shadow:0 2px 12px #0005}
+.sub{opacity:.9;margin:0 0 14px;text-shadow:0 1px 8px #0006}
+.scene{width:min(520px,96vw);aspect-ratio:520/330;position:relative}
+svg{width:100%;height:100%;overflow:visible}
+.room{cursor:pointer}.room rect.glass{transition:fill .6s}.room:focus-visible rect.wall{stroke:#F2B544;stroke-width:4}
+.clock{font:700 1.05rem monospace;background:#0005;padding:4px 12px;border-radius:10px;display:inline-block;margin-top:6px;direction:ltr}
+.feed{height:42px;margin:10px auto 0;width:min(460px,94vw);position:relative;overflow:hidden}
+.ev{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:8px;background:none;color:inherit;border-radius:0;font-weight:400;box-shadow:none;opacity:.85;animation:ev .5s both;padding:0 12px;font-size:.8rem}
+@keyframes ev{from{transform:translateY(30px);opacity:0}}
+.fr{display:flex;align-items:center;justify-content:center;gap:10px;width:min(360px,94vw);margin:10px auto 0}.fr .feed{flex:1;margin:0;width:auto!important}.ck{width:44px;height:44px;flex:0 0 44px;filter:drop-shadow(0 2px 6px #0004)}.hint{font-size:.8rem;opacity:.7;margin-top:8px}
+.btn{display:inline-block;background:#F2B544;color:#1E2A4A;font-weight:700;padding:14px 28px;border-radius:40px;text-decoration:none;box-shadow:0 6px 20px #F2B54455;margin-top:18px}
+.btn2{display:inline-block;margin-top:12px;color:#fff;border:2px solid #ffffff66;padding:11px 24px;border-radius:40px;text-decoration:none;font-weight:700;background:#0003}
+small{display:block;margin-top:26px;opacity:.6;line-height:1.7}small a{color:inherit}
+.star{animation:tw 3s infinite}@keyframes tw{50%{opacity:.2}}
+
+:focus-visible{outline:3px solid #F2B544;outline-offset:2px}
+
+.more{max-width:980px;margin:auto;padding:10px 16px 30px;text-align:left}.more h2{font-size:1.6rem;margin:44px 0 14px;text-shadow:0 2px 12px #0005}
+.g{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(230px,1fr))}
+.c,.steps li,details,.note,.cta{background:#0005;border:1px solid #fff2;border-radius:18px;padding:16px 18px;backdrop-filter:blur(6px);box-shadow:0 6px 20px #0002}
+.c h3{margin:0 0 4px;color:#F2B544}.c p{margin:0;opacity:.92}.c a,.more p a:not(.btn){color:#F2B544}.e{font-size:1.8rem}
+.steps{counter-reset:s;list-style:none;padding:0}.steps li{counter-increment:s;margin:10px 0}
+.steps li::before{content:counter(s);display:inline-grid;place-items:center;width:30px;height:30px;border-radius:50%;background:#F2B544;color:#1E2A4A;font-weight:900;margin-right:10px}
+.me{display:flex;gap:18px;align-items:center;flex-wrap:wrap}.me img{width:130px;height:130px;border-radius:50%;object-fit:cover;border:4px solid #fff;box-shadow:0 4px 16px #0005}.me div{flex:1;min-width:220px}
+details{margin:10px 0}summary{font-weight:700;cursor:pointer}details p{margin:8px 0 0;opacity:.92}
+.note{font-size:.9rem;opacity:.85;margin-top:20px}.cta{text-align:center;margin-top:40px;padding:30px 18px}.cta h2{margin-top:0}
+footer small{margin:0 0 30px}
+a.post{display:block;color:inherit;text-decoration:none}.more-l{display:inline-block;margin-top:10px;color:#F2B544;font-weight:700}/*navy*/.more{background:#1E2A4A;box-shadow:0 0 0 100vmax #1E2A4A;clip-path:inset(0 -100vmax);padding-top:24px}
+footer{background:#1E2A4A;padding:10px 0 1px}
+.more .c,.more .steps li,.more details,.more .note,.more .cta{background:#26355c;border-color:#ffffff1a;backdrop-filter:none}
+/*wide*/@media(min-width:760px){main{min-height:0;padding:64px 24px 48px}.scene{width:min(700px,70vw)}h1{font-size:3rem}.sub{font-size:1.2rem}.feed{width:min(560px,80vw)}.more{max-width:1080px}}/*mec*/.me{flex-direction:column;text-align:center}.me div{min-width:0}/*dm*/.dmg{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}.dmc h3{margin:0 0 8px;color:#F2B544}.dm svg{width:100%;height:auto;display:block;border-radius:12px;overflow:hidden}.dm svg *{transition:fill .9s,opacity .9s,height .9s}.dm-c{display:flex;gap:8px;align-items:center;margin-top:10px;min-height:52px}.dm-t{font:700 .85rem monospace;background:#0005;padding:3px 9px;border-radius:8px;white-space:nowrap;direction:ltr}.dm-n{font:700 .8rem monospace;background:#F2B544;color:#1E2A4A;padding:3px 8px;border-radius:8px;direction:ltr}.dm-m{flex:1;background:#fff;color:#1E2A4A;border-radius:12px;padding:8px 12px;font-weight:500;font-size:.92rem;animation:ev .5s both}/*tz*/.tzc{display:block;color:inherit;text-decoration:none;border-color:#F2B54466!important}.tzc p{margin:0}.tz-r{font-weight:700;background:#0004;border-radius:10px;padding:10px 12px;margin:10px 0;min-height:46px;display:flex;align-items:center;gap:10px;animation:ev .5s both}.tg{flex:none;width:46px;height:26px;border-radius:13px;background:#556;position:relative;animation:tg 6s infinite}.tg::after{content:"";position:absolute;top:3px;right:3px;width:20px;height:20px;border-radius:50%;background:#fff;animation:tgk 6s infinite}@keyframes tg{40%,90%{background:#F2B544}}@keyframes tgk{40%,90%{right:23px}}/*wf*/.wf{text-align:left;max-width:560px;margin:18px auto 0;display:grid;gap:12px}.wf label{display:grid;gap:4px;font-weight:700;font-size:.95rem}.wf input,.wf select,.wf textarea{font:inherit;font-weight:400;padding:11px 12px;border-radius:12px;border:1px solid #ffffff33;background:#1E2A4A;color:#fff}.wf input:focus,.wf select:focus,.wf textarea:focus{outline:2px solid #F2B544;border-color:transparent}.wf fieldset{border:0;padding:0;margin:0}.wf legend{font-weight:700;font-size:.95rem;margin-bottom:6px}.ch{display:flex;flex-wrap:wrap;gap:8px}.ch label{display:block;font-weight:500}.ch input{position:absolute;opacity:0;width:1px;height:1px}.ch span{display:inline-block;padding:8px 12px;border-radius:20px;border:1px solid #ffffff33;background:#1E2A4A;cursor:pointer}.ch input:checked+span{background:#F2B544;color:#1E2A4A;border-color:#F2B544;font-weight:700}.ch input:focus-visible+span{outline:3px solid #F2B544;outline-offset:2px}.wf .btn{border:0;cursor:pointer;font:inherit;font-weight:700;justify-self:center;margin-top:6px}.hp{position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0);opacity:0;pointer-events:none}.wf-e{color:#ffb4a8;margin:0;text-align:center;min-height:1em}.wf-p{font-size:.85rem;opacity:.75;margin:0;text-align:center}/*smooth*/html{scroll-behavior:smooth}/*note*/.note p{margin:4px 0}/*hot*/.tzhot{background:linear-gradient(135deg,#F2B544,#ffd98a)!important;color:#1E2A4A!important;border:0!important;box-shadow:0 10px 30px #F2B54444!important}.tzhot h3{color:#1E2A4A!important;font-size:1.3rem}.tzph{background:#1E2A4A;color:#fff;border-radius:16px;padding:10px 14px;margin:12px 0;display:grid;gap:8px;font-weight:700}.tzph div{display:flex;align-items:center;gap:10px}.tg{animation-delay:var(--d,0s)!important}.tg::after{animation-delay:var(--d,0s)!important}.tzgo{display:inline-block;background:#1E2A4A;color:#fff;font-weight:800;padding:12px 28px;border-radius:40px;font-size:1.05rem}@media(min-width:760px){.tz{grid-template-columns:1.2fr 1fr}}</style><link rel="icon" type="image/png" sizes="512x512" href="/bayit-blue.png?v=2611181950"><link rel="apple-touch-icon" href="/bayit-blue.png?v=2611181950"><link rel="manifest" href="/manifest.webmanifest?v=2611181950"><meta name="theme-color" content="#0b1026"><link rel="alternate" hreflang="he" href="https://bayit.eliraz.biz/"><link rel="alternate" hreflang="en" href="https://bayit.eliraz.biz/en.html"></head><body><main id="uc">
+<!--hero2-->
+<style>
+#uc{padding-top:56px}
+#uc .tag{font-size:clamp(1.25rem,5.2vw,1.75rem);font-weight:800;margin:4px 0 8px;line-height:1.3;text-shadow:0 2px 12px #0005}
+#uc .sub{max-width:520px;line-height:1.65;margin:0 auto 4px;opacity:.88}
+.hb-wr{display:flex;flex-direction:column;align-items:center;gap:10px;margin-top:8px}
+.hb-col p.hb-l{font-size:.82rem;font-weight:700;margin:0}
+.hb-ok{color:#7fd0f0}.hb-no{color:#ff9a9a}
+.hb{position:relative;width:min(260px,68vw);aspect-ratio:1;margin:4px auto 0}
+.hb svg{position:absolute;inset:0;width:100%;height:100%;overflow:visible}
+.hb-ln{stroke:#48A4CE;stroke-width:.9;stroke-dasharray:100;stroke-dashoffset:100;animation:hbd .7s ease forwards}@keyframes hbd{to{stroke-dashoffset:0}}
+.hb-pl{fill:#F2B544}
+.hb-n{position:absolute;left:var(--x);top:var(--y);width:19%;transform:translate(-50%,-50%) rotate(var(--r,0deg))}
+.hb-n b{display:grid;place-items:center;width:100%;aspect-ratio:1;border-radius:50%;background:#fff;font-size:clamp(1.1rem,5vw,1.6rem);border:3px solid #48A4CE;box-shadow:0 0 14px #48A4CE88}
+.hb0 .hb-n b{border-color:#ffffff33;box-shadow:none}
+.hb-n span{display:block;font-size:.68rem;font-weight:700;margin-top:2px}
+.hb-n i{position:absolute;top:-8px;inset-inline-start:-8px;font-style:normal;font-size:.55rem;background:#d9534f;color:#fff;border-radius:8px;padding:1px 5px;white-space:nowrap}
+.hb-c{position:absolute;left:50%;top:50%;width:27%;aspect-ratio:1;transform:translate(-50%,-50%)}
+.hb-c img{width:100%;height:100%;border-radius:22%;box-shadow:0 8px 26px #48A4CE99}
+.hb-ph{display:grid;place-content:center;width:100%;height:100%;border-radius:22%;border:2px dashed #ffffff66;font-weight:800;font-size:.7rem;line-height:1.3;background:#ffffff12}
+.hb-ph em{font-style:normal;font-size:1.3rem}
+.hb-bf{width:min(340px,92vw);border-radius:20px;padding:14px 12px 10px;background:#ffffff12;border:1px solid #ffffff26}
+.hb-bf .t1{margin:0;font-weight:800;font-size:1rem}
+.hb-bf .t2{margin:2px 0 10px;font-weight:700;color:#F2B544}
+.hb-apps{display:grid;grid-template-columns:repeat(4,1fr);gap:10px 6px;max-width:260px;margin:0 auto}
+.hb-apps div{position:relative;font-size:.62rem;font-weight:600;opacity:.9}
+.hb-apps b{display:grid;place-items:center;width:44px;height:44px;margin:0 auto 3px;border-radius:12px;font-size:1.35rem;box-shadow:0 3px 8px #0004}
+.hb-apps i{position:absolute;top:-6px;right:calc(50% - 28px);min-width:17px;height:17px;border-radius:9px;background:#e53935;color:#fff;font-style:normal;font-size:.6rem;font-weight:800;display:grid;place-items:center;border:2px solid #1E2A4A}
+.hb-bf .t3{margin:10px 0 0;font-size:.78rem;opacity:.75}
+.hb-col.d,.hb-cp{display:none}
+.sub2{max-width:340px;margin:4px auto 0;line-height:1.6;font-weight:600}
+.hb-cp{margin:4px auto 0;line-height:1.6;max-width:320px}.hb-cp span{color:#F2B544;font-weight:700}
+@media(min-width:760px){.hb-wr{display:grid;grid-template-columns:320px 320px;column-gap:70px;row-gap:6px;justify-content:center;grid-template-areas:"a d" "s c";margin-top:18px}
+.hb-col.a{grid-area:a}.hb-col.d{grid-area:d;display:block}.sub2{grid-area:s;max-width:320px}.hb-cp{grid-area:c;display:block}.hb-bf{display:none}.hb{width:300px}}
+</style>
+<a class="badge" href="#contact" style="color:inherit;text-decoration:none"><i></i>📍 Jerusalem and area</a>
+<h1>HaBayit HaNavon</h1>
+<p class="tag">All your smart devices – in one app, working together.</p>
+<div class="hb-wr">
+<div class="hb-col a">
+<div class="hb" id="hb" role="img" aria-label="Eight devices connected to one system at home"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg><div class="hb-c"><img src="bayit-blue.png" alt=""></div></div></div>
+<div class="hb-col d">
+<div class="hb hb0" id="hb0" role="img" aria-label="Today: eight smart devices, each with its own app, and none of them talk to each other"><svg viewBox="0 0 100 100" preserveAspectRatio="none" aria-hidden="true"></svg><div class="hb-c"><div class="hb-ph"><em>📱</em>8 apps</div></div></div></div>
+<p class="hb-cp"><b>Your devices are already smart.</b> <span>But each one has its own app.</span></p>
+<div class="hb-bf"><p class="t1">Your devices are already smart.</p><p class="t2">But each one has its own app:</p>
+<div class="hb-apps" aria-hidden="true"></div>
+<p class="t3">8 apps · 8 passwords · none of them talk to each other</p></div>
+<p class="sub2">I connect all your devices to one Home Assistant and build automations that run on their own – no cloud, no required subscription.</p>
+</div>
+<a class="btn" href="#contact">📞 Free initial consultation</a>
+<script>
+(function(){
+var D=[['❄️','A/C',18,14,-9,'#4FC3F7',2],['🤖','Vacuum',82,16,8,'#B0BEC5',1],['💡','Lights',50,8,-4,'#FFD54F',3],['🔔','Doorbell',11,50,6,'#F06292',1],['☀️','Heater',89,48,-7,'#FF8A65',2],['🪟','Shutter',20,82,5,'#AED581',1],['📷','Camera',55,88,-6,'#9575CD',4],['🌡️','Sensor',86,80,9,'#4DB6AC',1]];
+function stage(id,on){var hb=document.getElementById(id),h='';
+ D.forEach(function(d,i){var a=-Math.PI/2+i*Math.PI/4,x=on?50+38*Math.cos(a):d[2],y=on?50+38*Math.sin(a):d[3];
+  var n=document.createElement('div');n.className='hb-n';n.style.cssText='--x:'+x.toFixed(1)+'%;--y:'+y.toFixed(1)+'%'+(on?'':';--r:'+d[4]+'deg');
+  n.innerHTML='<b aria-hidden="true">'+d[0]+'</b><span>'+d[1]+'</span>'+(on?'':'<i>📱 app</i>');hb.appendChild(n);
+  if(on){h+='<line class="hb-ln" pathLength="100" x1="50" y1="50" x2="'+x+'" y2="'+y+'" style="animation-delay:'+(0.3+i*0.07)+'s"/>';
+   h+='<circle class="hb-pl" r="1.3" cx="'+x+'" cy="'+y+'"><animate attributeName="cx" values="'+x+';50" dur="1.6s" begin="'+(1+i*0.4)+'s" repeatCount="indefinite"/><animate attributeName="cy" values="'+y+';50" dur="1.6s" begin="'+(1+i*0.4)+'s" repeatCount="indefinite"/></circle>';}});
+ if(!on)[[0,2],[1,4],[3,5],[6,7]].forEach(function(p){var a=D[p[0]],b=D[p[1]];
+  h+='<line x1="'+a[2]+'" y1="'+a[3]+'" x2="'+b[2]+'" y2="'+b[3]+'" stroke="#ffffff55" stroke-width=".6" stroke-dasharray="2 2"/><text x="'+(a[2]+b[2])/2+'" y="'+((a[3]+b[3])/2+1.5)+'" font-size="5" text-anchor="middle" fill="#ff6b6b" font-weight="700">✕</text>';});
+ hb.querySelector('svg').innerHTML=h;}
+stage('hb',true);stage('hb0',false);
+document.querySelector('.hb-apps').innerHTML=D.map(function(d){return '<div><b style="background:'+d[5]+'">'+d[0]+'</b><i>'+d[6]+'</i>'+d[1]+'</div>'}).join('');
+})();
+</script>
+<!--/hero2-->
+</main>
+<!--cards-->
+<section id="why" class="st">
+<style>
+.st{background:#F4F7FB;color:#1E2A4A;text-align:center;padding:48px 16px 44px;box-shadow:0 0 0 100vmax #F4F7FB;clip-path:inset(0 -100vmax)}
+.st *{box-sizing:border-box}
+.st .k{display:inline-block;font-size:.8rem;font-weight:700;color:#2C7FA8;background:#48A4CE22;padding:4px 12px;border-radius:20px}
+.st h2{font-size:clamp(1.45rem,5.4vw,2.1rem);font-weight:900;margin:12px 0 16px;line-height:1.3;text-shadow:none}
+.st h3{font-size:clamp(1.25rem,4.6vw,1.6rem);font-weight:800;margin:40px 0 12px}
+.st .ld{max-width:560px;margin:0 auto;line-height:1.7;color:#3b4a6b}
+.st-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;max-width:760px;margin:0 auto}
+.st-cd{background:#fff;border-radius:16px;padding:14px 16px;text-align:start;box-shadow:0 3px 12px #1E2A4A12;border-inline-start:4px solid #c9d1df;transition:border-color .6s}
+.st-cd p{margin:0;font-weight:700;transition:color .5s,font-size .5s}
+.st-cd div{max-height:0;opacity:0;overflow:hidden;color:#1d6f96;font-weight:800;transition:max-height .6s,opacity .6s,margin .6s}
+.st.on .st-cd{border-color:#48A4CE}
+.st.on .st-cd p{color:#9aa3b5;text-decoration:line-through;font-weight:500;font-size:.88rem}
+.st.on .st-cd div{max-height:5em;opacity:1;margin-top:4px}
+.st-cd:nth-child(2),.st-cd:nth-child(2) *{transition-delay:.25s}.st-cd:nth-child(3),.st-cd:nth-child(3) *{transition-delay:.5s}.st-cd:nth-child(4),.st-cd:nth-child(4) *{transition-delay:.75s}.st-cd:nth-child(5),.st-cd:nth-child(5) *{transition-delay:1s}
+.st-tg{font:inherit;font-weight:800;cursor:pointer;margin-top:16px;padding:12px 26px;border-radius:40px;border:0;background:#1E2A4A;color:#fff;box-shadow:0 6px 18px #1E2A4A33}
+.st-pk{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:14px;max-width:760px;margin:18px auto 0}
+.st-p{background:#fff;border-radius:18px;padding:18px;text-align:start;box-shadow:0 4px 16px #1E2A4A14;color:#1E2A4A}
+.st-p.adv{background:#1E2A4A;color:#fff}
+.st-p h4{margin:0;font-size:1.25rem}.st-p h4 small{all:unset;display:block;font-size:.85rem;font-weight:500;opacity:.75;margin-top:2px}
+.st-p ul{margin:10px 0 0;padding-inline-start:20px;line-height:1.8}
+.st-nt{font-size:.85rem;color:#5d6a85;max-width:560px;margin:16px auto 0;line-height:1.6}
+.st .st-go{display:inline-block;margin-top:22px;background:#F2B544;color:#1E2A4A;font-weight:800;padding:14px 28px;border-radius:40px;text-decoration:none;box-shadow:0 6px 20px #F2B54466}
+.st .st-dm{display:block;margin-top:14px;color:#2C7FA8;font-weight:700}
+</style>
+<h2>Smart devices work alone.<br>A smart home works together.</h2>
+<div class="st-cards" id="st-cards">
+<div class="st-cd"><p>❄️ The A/C doesn't know you've left</p><div>Everyone's out? The A/C turns off and the vacuum starts cleaning</div></div>
+<div class="st-cd"><p>☀️ The water heater doesn't know it's sunny</p><div>Sunny day? The heater only heats as much as needed</div></div>
+<div class="st-cd"><p>🕯️ The lights don't know Shabbat has begun</p><div>Shabbat is in? The lights switch to a Shabbat schedule by the Hebrew calendar</div></div>
+<div class="st-cd"><p>🔔 The doorbell doesn't know the kids are asleep</p><div>Someone rings at night? No chime – just a photo to your phone</div></div>
+<div class="st-cd"><p>🪟 The shutter doesn't know it's morning</p><div>Sunrise? The shutter opens by itself, and closes at sunset</div></div>
+</div>
+<button class="st-tg" id="st-tg" type="button" aria-pressed="false">✨ Connect the home</button>
+<h2 class="h2b">What I do for you</h2>
+<p class="ld"><b>Home Assistant</b> is a small computer that sits in your home and runs everything. You choose how far to go:</p>
+<div class="st-pk">
+<div class="st-p"><h4>Basic<small>The whole home in one control panel</small></h4><ul><li>Connecting the devices you already have</li><li>One app, in Hebrew or English, organized by room</li><li>Shabbat and holiday timer</li><li>Basic automations: lights, water heater, alerts</li></ul></div>
+<div class="st-p adv"><h4>Advanced<small>A home that runs itself</small></h4><ul><li>Everything in Basic</li><li>Devices synced and working together</li><li>The home knows when you leave and when you come back</li><li>Personal commands and automations built around your routine</li></ul></div>
+</div>
+<p class="st-nt">We work with the devices you already have and add only what you really need. Any work that needs an electrician is done only by a licensed electrician.</p>
+<a class="st-go" href="#contact">💬 Tell me what you have at home</a>
+<script>
+(function(){
+var s=document.getElementById('why'),tg=document.getElementById('st-tg'),cd=document.getElementById('st-cards'),touched=false;
+function set(on){s.classList.toggle('on',on);tg.setAttribute('aria-pressed',on);tg.textContent=on?'↺ How it was before':'✨ Connect the home'}
+tg.onclick=function(){touched=true;set(!s.classList.contains('on'))};
+if('IntersectionObserver' in window){var io=new IntersectionObserver(function(e){if(e[0].isIntersecting){io.disconnect();setTimeout(function(){if(!touched)set(true)},1500)}},{threshold:.6});io.observe(cd)}else set(true);
+})();
+</script>
+</section>
+<!--/cards-->
+<script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
+<style>#app{padding:28px 0 8px;text-align:center}#app h2{margin:0 0 6px}#app p{margin:0 0 14px;opacity:.85}#app iframe{width:100%;max-width:1080px;height:720px;border:0;background:transparent;transition:height .3s;border-radius:22px;display:block;margin:0 auto}@media(max-width:700px){#app iframe{height:640px}}</style>
+<style>#pk{padding:28px 12px 8px;text-align:center;color:#fff;background:#1E2A4A;box-shadow:0 0 0 100vmax #1E2A4A;clip-path:inset(0 -100vmax)}#pk h2{margin:0 0 14px}.pkg{display:grid;gap:14px;max-width:760px;margin:0 auto}@media(min-width:620px){.pkg{grid-template-columns:1fr 1fr}}.pkg div{border:2px solid #F2B544;border-radius:18px;padding:18px 16px;background:#1E2A4A;color:#fff}.pkg h3{margin:0 0 6px;color:#F2B544;font-size:1.3rem}.pkg p{margin:0;line-height:1.6}</style><script>addEventListener("message",e=>{if(e.data&&e.data.p3h){const f=document.querySelector("#app iframe");if(f)f.style.height=(e.data.p3h+10)+"px"}})</script>
+<section class="more"><div id="app"><h2>What the app looks like</h2><p>The demo is shown in Hebrew – your app can be in English.</p><iframe id="appf" src="demo.html?app=custom" title="What the app looks like" loading="lazy"></iframe></div><h2>How it works</h2><ol class="steps">
+<li>Intro call – what bothers you at home and what you'd like to happen by itself.</li>
+<li>Planning – a proposal tailored to your home, only what you really need.</li>
+<li>Installation – devices are set up in advance, so installation day is short and tidy.</li>
+<li>Training – an easy app, and regular switches that keep working.</li>
+<li>Support – remote help and updates, and regular backups of your settings.</li></ol>
+<h2>About me</h2><div class="c me"><img src="me.jpg" alt="Yaniv Eliraz"><div><h3>Yaniv Eliraz</h3><p>A father of three from Jerusalem, with a background in biotech research and development – where I learned to take an idea, build it, test it and improve it until it works every single time. We keep Shabbat at home, and that's where it all started: I wanted the house to know by itself when to turn lights on, dim them and turn them off – no timers, no thinking about it. Since then every small need at home has become a new idea, and now I build it for you too.</p></div></div>
+<h2 id="posts">From my LinkedIn</h2><div class="g"><a class="c post" href="https://www.linkedin.com/posts/yaniveliraz_homeassistant-smarthome-homeautomation-ugcPost-7524104179364020226-aEZx" target="_blank" rel="noopener"><div class="e">🤖</div><h3>The robot vacuum got a work method of its own</h3><p>A cleaning plan for every room, automatic water refill every 10 m², a finish report to your phone – and one button per plan.</p><span class="more-l">Read on LinkedIn →</span> <small style="display:inline;margin:0">(in Hebrew)</small></a></div>
+<h2>FAQ</h2>
+<details><summary>What happens when the internet is down?</summary><p>The home keeps working. The system runs on a small computer in your home, not in the cloud.</p></details>
+<details><summary>Do I need a monthly subscription?</summary><p>No. You can choose ongoing support, but the home doesn't depend on it.</p></details>
+<details><summary>Do the regular switches still work?</summary><p>Yes. Everyone at home – guests and grandparents too – turns things on and off as usual.</p></details>
+<details><summary>What if something stops working?</summary><p>I fix most problems remotely, and your settings are backed up.</p></details>
+<details><summary>Where do you work?</summary><p>Jerusalem and the surrounding area.</p></details>
+<div class="cta" id="contact"><h2 style="margin-top:0">Want a home like this?</h2><p>Tell me a little – and the details reach me on WhatsApp in one tap.</p>
+<form id="wf" class="wf" novalidate data-ph="972547429424">
+<label>Name<input name="n" required autocomplete="name" placeholder="What should I call you?"></label>
+<label>Neighborhood<input name="a" placeholder="e.g. Beit HaKerem"></label>
+
+<fieldset><legend>What interests you most?</legend><div class="ch">
+<label><input type="checkbox" name="i" value="Lighting"><span>💡 Lighting</span></label><label><input type="checkbox" name="i" value="Water heater"><span>🔥 Water heater</span></label><label><input type="checkbox" name="i" value="Shutters"><span>🪟 Shutters</span></label><label><input type="checkbox" name="i" value="Cleaning"><span>🧹 Cleaning</span></label><label><input type="checkbox" name="i" value="Door and doorbell"><span>🔔 Door and doorbell</span></label><label><input type="checkbox" name="i" value="Climate and electricity"><span>🌡️ Climate and electricity</span></label><label><input type="checkbox" name="i" value="Safety"><span>🛡️ Safety</span></label><label><input type="checkbox" name="i" value="Shabbat and holidays"><span>🕯️ Shabbat and holidays</span></label></div></fieldset>
+<label>Do you already have smart devices?<select name="d"><option value="">Choose</option><option>Not yet</option><option>A few</option><option>Lots – I want them all connected</option></select></label>
+<label>When should I get back to you?<select name="t"><option value="">Choose</option><option>Morning</option><option>Noon</option><option>Evening</option><option>Any time</option></select></label>
+<label>What bothers you most at home?<textarea name="m" rows="3" placeholder="Anything – even small things"></textarea></label>
+<input name="w" class="hp" tabindex="-1" autocomplete="off" aria-hidden="true">
+<button class="btn" type="submit">💬 Send on WhatsApp</button><p class="wf-e" id="wfe" role="alert"></p>
+<p class="wf-p">🔒 Your details aren't stored on this site – they reach only me, in a WhatsApp message you send yourself.</p></form></div>
+<div class="note"><p>⚡ Any work that requires an electrical connection is done only by a licensed electrician.</p><p>🔔 The system alerts and assists – it does not prevent damage and does not replace an alarm system, a certified smoke detector or supervision.</p><p>🕯️ Shabbat and holidays – according to your custom.</p><p>🎬 The demos on this site are for illustration; actual results depend on your home and equipment.</p></div>
+</section>
+
+
+<footer><small>HaBayit HaNavon – Yaniv Eliraz · Jerusalem<br>© 2026 Sole proprietor · All rights reserved · <a href="nagishut-en.html">Accessibility statement</a> · <a href="privacy-en.html">Privacy policy</a><br>🔒 This site uses no cookies and doesn't track you – the form goes only through WhatsApp.<br>Home Assistant and product names are trademarks of their owners; this business is not officially affiliated with them.</small></footer>
+<script src="a11y.js?v=2611261542" defer></script><script>/*tz*/(function(){var e=document.getElementById("tzr");if(!e)return;var L=["🔥 The water heater turns off by itself when the water is hot","🌙 A dim night light in the hallway","🔔 A doorbell photo straight to your phone"],i=0;function sh(a){for(var k=a.length-1;k>0;k--){var j=Math.floor(Math.random()*(k+1)),t=a[k];a[k]=a[j];a[j]=t}return a}fetch("ideas.html").then(function(r){return r.text()}).then(function(t){var d=new DOMParser().parseFromString(t,"text/html"),o=[];[].forEach.call(d.querySelectorAll("main section"),function(sc){var em=sc.querySelector("h2 span");em=em?em.textContent+" ":"";[].forEach.call(sc.querySelectorAll(".c b"),function(b){o.push(em+b.textContent)})});if(o.length)L=sh(o)}).catch(function(){});setInterval(function(){if(document.documentElement.classList.contains("a-na"))return;i=(i+1)%L.length;e.textContent=L[i];e.style.animation="none";e.offsetWidth;e.style.animation=""},4500)})()</script><script>/*wf*/(function(){var f=document.getElementById("wf");if(!f)return;var ph=f.getAttribute("data-ph");f.addEventListener("submit",function(ev){ev.preventDefault();var E=document.getElementById("wfe");E.textContent="";if(f.w.value)return;var n=f.n.value.trim();if(!n){E.textContent="Just your name is missing 🙂";f.n.focus();return}var i=[].map.call(f.querySelectorAll('input[name="i"]:checked'),function(x){return x.value});var L=["Hi Yaniv, I'd like to hear about a smart home 🙂 (English site)","","Name: "+n];function add(k,v){v=(v||"").trim();if(v)L.push(k+": "+v)}add("Neighborhood",f.a.value);if(i.length)L.push("Interested in: "+i.join(", "));add("Smart devices",f.d.value);add("Best time",f.t.value);add("What bothers me",f.m.value);var u="https://wa.me/"+ph+"?text="+encodeURIComponent(L.join("\n"));if(!ph){E.textContent="Link error – you can reach me with the WhatsApp button at the top";return}window.open(u,"_blank")||(location.href=u)})})()</script><!--uni--><style>
+.more{max-width:760px}
+.st h2,.more h2,#app h2{font-size:clamp(1.5rem,4.6vw,1.9rem);font-weight:800;line-height:1.3;text-align:center;margin:56px 0 18px}
+.st h2{margin-top:0}.st h2.h2b{margin-top:56px}#app h2{margin-top:0}
+</style><!--/uni-->
+</body></html>
